@@ -7,8 +7,13 @@ public class Administrador {
 	private String apellido;
 	private Date fechaAlta;
 	private Integer nroIdentificacion;
-	
+
 //	private String nombreUsuario;
 //	private String contrasenia;
-	
+
+
+	private Integer haceCuantoEsAdministrador(){
+		return 1;
+	}
 }
+

@@ -7,4 +7,5 @@ public abstract class Categoria {
 	public Float estimarFactura(Float unConsumo) {
 		return this.cargoFijo + unConsumo*this.cargoVariable;
 	}
+
 }
