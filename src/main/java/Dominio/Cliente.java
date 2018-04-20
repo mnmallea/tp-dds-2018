@@ -1,7 +1,8 @@
 package Dominio;
 
-import java.util.Date;
+
 import java.util.List;
+import org.joda.time.DateTime;
 
 public class Cliente {
 	private String nombre;
@@ -10,7 +11,7 @@ public class Cliente {
 	private Integer nroDocumento;
 	private Integer nroTelefono;
 	private String domicilio;
-	private Date fechaAlta;
+	private DateTime fechaAlta;
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos;
 
