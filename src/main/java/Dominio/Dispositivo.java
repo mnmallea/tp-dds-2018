@@ -1,14 +1,21 @@
 package Dominio;
 
 public class Dispositivo {
-	private Boolean status;
+	private Boolean encendido;
 	private String nombre;
+	private Float consumoPorHora;
 	
-	public Float consumoPorHora() {
-		return 0F;
+	
+
+	public Dispositivo(String nombre, Float consumoPorHora) {
+		super();
+		this.nombre = nombre;
+		this.consumoPorHora = consumoPorHora;
 	}
 
-	public Boolean getStatus(){
-		return this.status;
+
+
+	public Boolean getEncedido(){
+		return this.encendido;
 	}
 }

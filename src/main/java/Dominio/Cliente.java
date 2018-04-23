@@ -45,7 +45,7 @@ public class Cliente {
 	}
 
 	// private void categorizar() {
-	// this.categoria=this.categorias.stream().findAny(categoria->cateegoria.pertenece(this.consumoMensual)).get();
+	// this.categoria=this.categorias.stream().findAny(categoria->categoria.pertenece(this.consumoMensual)).get();
 	// }
 	
 	/* private void categorizar(Float consumoMesAnterior) { 
@@ -71,16 +71,20 @@ public class Cliente {
 	 * 
 	 */
 
-	private Long cuantosDispositivosEstanEncendidos(List<Dispositivo> dispositivosList) {
-		return dispositivosList.stream().filter(dispositivo -> dispositivo.getStatus()).count();
+	public Long cantidadDispositivosEncendidos() {
+		return this.dispositivos.stream().filter(dispositivo -> dispositivo.getEncedido()).count();
 	}
 
-	private Long cuantosDispositivosEstanApagados(List<Dispositivo> dispositivoList) {
-		return this.dispositivos.size() - this.cuantosDispositivosEstanEncendidos(dispositivoList);
+	public Long cantidadDispositivosApagados() {
+		return this.dispositivos.stream().filter(dispositivo -> !dispositivo.getEncedido()).count();
 	}
 
-	public int cantidadDispositivos(List<Dispositivo> dispositivosList) {
-		return dispositivosList.size();
+	public int cantidadDispositivos() {
+		return this.dispositivos.size();
+	}
+	
+	public Boolean algunDispositivoEncendido() {
+		return this.dispositivos.stream().anyMatch(dispositivo -> dispositivo.getEncedido());
 	}
 	
 	public Float montoEstimadoAPagar() {
