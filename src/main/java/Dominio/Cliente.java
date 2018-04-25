@@ -11,14 +11,23 @@ public class Cliente {
 	private String nombre;
 	private String apellido;
 	private TipoDocumento tipoDocumento;
-	private Integer nroDocumento;
+	private int nroDocumento;
 	private Integer nroTelefono;
 	private String domicilio;
 	private LocalDate fechaAlta;
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos;
+	
 	// private String nombreUsuario;
 	// private String contrasenia;
+	
+	public List<Dispositivo> getDispositivos() {
+		return dispositivos;
+	}
+
+	public void setDispositivos(List<Dispositivo> dispositivos) {
+		this.dispositivos = dispositivos;
+	}
 	
 	//Tipos de categoria que puede adoptar un cliente
 	static final Categoria r1 = new Categoria(18.76f, 0.644f);
@@ -33,7 +42,7 @@ public class Cliente {
 	//-----------------------------------------------
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
-			Integer nroTelefono, String domicilio, Categoria categoria) {
+			Integer nroTelefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -42,8 +51,10 @@ public class Cliente {
 		this.nroTelefono = nroTelefono;
 		this.domicilio = domicilio;
 		this.categoria = categoria;
+		this.dispositivos = dispositivos;
 	}
 
+	public String getNombre() {return nombre;}
 	// private void categorizar() {
 	// this.categoria=this.categorias.stream().findAny(categoria->categoria.pertenece(this.consumoMensual)).get();
 	// }
