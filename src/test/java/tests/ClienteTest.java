@@ -39,7 +39,7 @@ public class ClienteTest {
 		listaDeDispositivos.add(microondas);
 
 		cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, "unaCalle 123",
-				new Categoria(18.76f, 0.644f), listaDeDispositivos); // categoria R1
+				Categorizador.getR1(), listaDeDispositivos); // categoria R1
 	}
 
 	@Test
