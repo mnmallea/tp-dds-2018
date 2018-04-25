@@ -3,11 +3,14 @@ package Dominio;
 public class Dispositivo {
 	private Boolean encendido;
 	private String nombre;
-	private Float consumoPorHora;
+	private Double consumoPorHora;
 	
+	public void setEncendido(Boolean encendido) {
+		this.encendido = encendido;
+	}
 	
 
-	public Dispositivo(String nombre, Float consumoPorHora) {
+	public Dispositivo(String nombre, Double consumoPorHora) {
 		super();
 		this.nombre = nombre;
 		this.consumoPorHora = consumoPorHora;
@@ -18,4 +21,5 @@ public class Dispositivo {
 	public Boolean getEncedido(){
 		return this.encendido;
 	}
+	
 }

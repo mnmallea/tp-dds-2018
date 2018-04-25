@@ -15,11 +15,12 @@ public class AdministradorTests {
 	@Before
 	public void init() {
 		administrador = new Administrador();
-		administrador.setFechaAlta(new LocalDate(2018,1,19));
+		new LocalDate();
+		administrador.setFechaAlta(LocalDate.now().minusMonths(3));
 	}
 	
 	@Test
-	public void elAdministradorEstaHace3Meses() {//no se como testear bien esto porque hoy anda y mañana va a romper
+	public void elAdministradorEstaHace3Meses() {
 		Assert.assertEquals(3, administrador.mesesDeAdministrador());
 	}
 }
