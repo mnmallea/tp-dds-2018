@@ -1,16 +1,15 @@
 package tests;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.joda.time.LocalDate;
+import dominio.Categorizador;
+import dominio.Cliente;
+import dominio.Dispositivo;
+import dominio.TipoDocumento;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import dominio.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  *Pruebas para hacer:
@@ -20,6 +19,7 @@ import dominio.*;
  	Informar la cantidad total de dispositivos que posee 
  *  
  */
+
 public class ClienteTest {
 	public Cliente cliente;
 
@@ -47,14 +47,6 @@ public class ClienteTest {
 		Assert.assertEquals(3, cliente.getDispositivos().size());
 	}
 
-	/*
-	 * No puedo lograr que me pase este test, ya me fije que devuelve Long y debe
-	 * ser un problema de castearlo a Int pero no encuentro como
-	 * 
-	 * @Test public void elClienteTieneSoloUnDispositivoEncendido() {
-	 * Assert.assertEquals(1, cliente.cantidadDispositivosEncendidos().intValue());
-	 * }
-	 */
 	@Test
 	public void elClienteTieneAlgunDispositivoEncendido() {
 		Assert.assertEquals(true, cliente.algunDispositivoEncendido());// heladera

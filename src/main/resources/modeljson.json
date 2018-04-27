@@ -1,0 +1,19 @@
+{
+  "nombre": "Belen",
+  "apellido": "Tripodi",
+  "tipo_documento": "DNI",
+  "nro_documento": 2222222,
+  "nro_telefono": 123456789,
+  "domicilio": "Suipacha 999",
+  "categoria": "R1",
+  "nombre_usuario": "beltripo",
+  "contraseña": "123belen",
+  "consumo": 300.999455,
+  "dispositivos": [
+    {
+      "nombre": "heladera",
+      "encendido": false,
+      "consumo_por_hora": 150
+    }
+  ]
+}

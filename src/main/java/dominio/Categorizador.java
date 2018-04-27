@@ -2,7 +2,6 @@ package dominio;
 
 import java.util.Arrays;
 import java.util.List;
-
 public class Categorizador {
 	
 	//Tipos de categoria que puede adoptar un cliente
