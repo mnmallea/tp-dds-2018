@@ -13,9 +13,9 @@ public class UsuariosService {
     private TipoDocService tipoDocService = TipoDocService.getInstance();
     private UsuariosClient usuariosClient = new UsuariosClient();
 
-    public Cliente parserUsuarioToCliente(){
+    public Cliente parserUsuarioToCliente(String file){
 
-        UsuarioDTO usuarioDTO = usuariosClient.obtenerUsuarios("src/main/resources/modeljson.json");
+        UsuarioDTO usuarioDTO = usuariosClient.obtenerUsuarios(file);
 
         TipoDocumento tipoDoc = tipoDocService.parserToDocumentType(usuarioDTO.getTipoDocumento());
 

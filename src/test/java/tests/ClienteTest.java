@@ -51,4 +51,20 @@ public class ClienteTest {
 	public void elClienteTieneAlgunDispositivoEncendido() {
 		Assert.assertEquals(true, cliente.algunDispositivoEncendido());// heladera
 	}
+	
+	@Test
+	public void elClienteTieneUnDispositivoEncendido() {
+		Assert.assertEquals(1, cliente.cantidadDispositivosEncendidos());
+	}
+	
+	@Test
+	public void elClienteTieneDosDispositivosApagados() {
+		Assert.assertEquals(2, cliente.cantidadDispositivosApagados());
+	}
+	
+	@Test
+	public void seRecategorizaAlClienteYDeberiaQuedarEnR1() {
+		cliente.categorizar(0.50f);
+		Assert.assertSame(Categorizador.getR1(), cliente.getCategoria());
+	}
 }

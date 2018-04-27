@@ -7,6 +7,9 @@ import dominio.TipoDocumento;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.google.gson.JsonSyntaxException;
+
 import service.UsuariosService;
 
 import java.util.ArrayList;
@@ -16,12 +19,12 @@ public class UsuarioServiceTest {
 
 	UsuariosService usuariosService;
 	Cliente cliente;
+	Cliente cliente2;
 
 	@Before
 	public void init() {
 		usuariosService = new UsuariosService();
-		cliente = usuariosService.parserUsuarioToCliente();
-
+		cliente = usuariosService.parserUsuarioToCliente("src/main/resources/modeljson.json");
 	}
 
 	@Test
@@ -37,5 +40,12 @@ public class UsuarioServiceTest {
 	@Test
 	public void elClienteNoTieneDispositivosEncendidos() {
 		Assert.assertFalse(cliente.algunDispositivoEncendido());
+	}
+	
+	@Test(expected = JsonSyntaxException.class)
+	public void elCliente2Rompe() {
+		cliente2 = usuariosService.parserUsuarioToCliente("src/main/resources/fake.json");
+		
+		Assert.assertTrue(false);
 	}
 }

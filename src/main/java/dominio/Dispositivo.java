@@ -1,7 +1,7 @@
 package dominio;
 
 public class Dispositivo {
-	private Boolean encendido;
+	private Boolean encendido = false;
 	private String nombre;
 	private Double consumoPorHora;
 	
