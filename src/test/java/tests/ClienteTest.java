@@ -38,17 +38,22 @@ public class ClienteTest {
 		listaDeDispositivos.add(tostadora);
 		listaDeDispositivos.add(microondas);
 
-		cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, "unaCalle 123",
-				Categorizador.getR1(), listaDeDispositivos); // categoria R1
+		//Cliente de categoria R1 (su consumo en el mes anterior fue 120)
+		cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, "unaCalle 123", 120f, listaDeDispositivos); 
 	}
 
 	@Test
 	public void elClienteTieneTresDispositivos() {
 		Assert.assertEquals(3, cliente.getDispositivos().size());
 	}
-
+	
 	@Test
 	public void elClienteTieneAlgunDispositivoEncendido() {
 		Assert.assertEquals(true, cliente.algunDispositivoEncendido());// heladera
+	}	
+	
+	@Test
+	public void elClienteEsDeCategoriaR1(){
+		Assert.assertSame(Categorizador.getR1(), cliente.getCategoria());
 	}
 }

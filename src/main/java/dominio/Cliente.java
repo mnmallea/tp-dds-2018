@@ -30,7 +30,7 @@ public class Cliente {
 	}
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
-			Integer nroTelefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos) {
+			Integer nroTelefono, String domicilio, Float consumoMesAnterior, List<Dispositivo> dispositivos) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -38,6 +38,7 @@ public class Cliente {
 		this.nroDocumento = nroDocumento;
 		this.nroTelefono = nroTelefono;
 		this.domicilio = domicilio;
+		this.consumoMesAnterior = consumoMesAnterior;
 		this.dispositivos = dispositivos;
 	}
 
@@ -45,8 +46,13 @@ public class Cliente {
 		return nombre;
 	}
 
-	public void categorizar(Float unConsumo) {
-		this.categoria = Categorizador.getInstanceOf().getCategoriaSegunRango(unConsumo);
+	public void categorizar() {
+		this.categoria = Categorizador.getInstanceOf().getCategoriaSegunRango(consumoMesAnterior);
+	}
+	
+	// Para Test
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
 	public Long cantidadDispositivosEncendidos() {

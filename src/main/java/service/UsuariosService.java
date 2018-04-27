@@ -19,7 +19,7 @@ public class UsuariosService {
 
         TipoDocumento tipoDoc = tipoDocService.parserToDocumentType(usuarioDTO.getTipoDocumento());
 
-        Cliente cliente = new Cliente(usuarioDTO.getNombre(), usuarioDTO.getApellido(), tipoDoc, usuarioDTO.getNroDocumento(), usuarioDTO.getNroTelefono(), usuarioDTO.getDomicilio(), Categorizador.getInstanceOf().getCategoriaSegunRango(usuarioDTO.getConsumo()), this.parserDispositivo(usuarioDTO.getDispositivosDto()));
+        Cliente cliente = new Cliente(usuarioDTO.getNombre(), usuarioDTO.getApellido(), tipoDoc, usuarioDTO.getNroDocumento(), usuarioDTO.getNroTelefono(), usuarioDTO.getDomicilio(), usuarioDTO.getConsumo(), this.parserDispositivo(usuarioDTO.getDispositivosDto()));
 
         return cliente;
     }
