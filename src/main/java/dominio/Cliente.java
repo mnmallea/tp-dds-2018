@@ -21,6 +21,10 @@ public class Cliente {
 	// private String nombreUsuario;
 	// private String contrasenia;
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
 	public List<Dispositivo> getDispositivos() {
 		return dispositivos;
 	}
@@ -55,11 +59,11 @@ public class Cliente {
 		return categoria;
 	}
 
-	public Long cantidadDispositivosEncendidos() {
+	public long cantidadDispositivosEncendidos() {
 		return this.dispositivos.stream().filter(dispositivo -> dispositivo.getEncedido()).count();
 	}
 
-	public Long cantidadDispositivosApagados() {
+	public long cantidadDispositivosApagados() {
 		return this.dispositivos.stream().filter(dispositivo -> !dispositivo.getEncedido()).count();
 	}
 

@@ -13,9 +13,9 @@ public class UsuariosService {
     private TipoDocService tipoDocService = TipoDocService.getInstance();
     private UsuariosClient usuariosClient = new UsuariosClient();
 
-    public Cliente parserUsuarioToCliente(){
+    public Cliente parserUsuarioToCliente(String file){
 
-        UsuarioDTO usuarioDTO = usuariosClient.obtenerUsuarios("/home/mariatripodi/2018-vn-group-12/src/main/resources/modeljson.json");
+        UsuarioDTO usuarioDTO = usuariosClient.obtenerUsuarios(file);
 
         TipoDocumento tipoDoc = tipoDocService.parserToDocumentType(usuarioDTO.getTipoDocumento());
 
@@ -29,7 +29,7 @@ public class UsuariosService {
         for(DispositivoDto dispositivoDto: dispositivosDto){
 
             Dispositivo dispositivo = new Dispositivo(dispositivoDto.getNombre(), dispositivoDto.getConsumoPorHora());
-
+            dispositivo.setEncendido(dispositivoDto.getEncendido());
             dispositivosList.add(dispositivo);
         }
         return dispositivosList;
