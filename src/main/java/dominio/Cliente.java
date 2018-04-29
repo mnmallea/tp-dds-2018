@@ -4,7 +4,7 @@ import java.util.List;
 import java.time.LocalDate;
 
 public class Cliente {
-	public Float consumoUltimoMes;
+	private Float consumoUltimoMes;
 	private String nombre;
 	private String apellido;
 	private TipoDocumento tipoDocumento;
@@ -14,9 +14,6 @@ public class Cliente {
 	private LocalDate fechaAlta;
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos;
-
-	// private String nombreUsuario;
-	// private String contrasenia;
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -46,8 +43,13 @@ public class Cliente {
 		return nombre;
 	}
 
-	public void categorizar(Float unConsumo) {
-		this.categoria = Categorizador.getInstanceOf().getCategoriaSegunRango(unConsumo);
+	public void calcularConsumo() { // Es la suma de cada uno de los consumos de sus dispositivos
+		this.consumoUltimoMes = this.dispositivos.stream().map(dispositivo -> dispositivo.getConsumoPorHora())
+				.reduce(0f, (unConsumo, otroConsumo) -> unConsumo + otroConsumo);
+	}
+
+	public void categorizar() {
+		this.categoria = Categorizador.getInstanceOf().getCategoriaSegunRango(consumoUltimoMes);
 	}
 
 	public long cantidadDispositivosEncendidos() {

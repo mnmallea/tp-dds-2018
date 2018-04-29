@@ -27,9 +27,9 @@ public class ClienteTest {
 	@Before
 	public void init() {
 
-		Dispositivo heladera = new Dispositivo("heladera", 7.0);
-		Dispositivo tostadora = new Dispositivo("tostadora", 2.5);
-		Dispositivo microondas = new Dispositivo("microondas", 4.5);
+		Dispositivo heladera = new Dispositivo("heladera", 7.0f);
+		Dispositivo tostadora = new Dispositivo("tostadora", 2.5f);
+		Dispositivo microondas = new Dispositivo("microondas", 4.5f);
 
 		heladera.setEncendido(true); // encendemos uno
 
@@ -65,7 +65,8 @@ public class ClienteTest {
 	
 	@Test
 	public void seRecategorizaAlClienteYDeberiaQuedarEnR1() {
-		cliente.categorizar(0.50f);
+		cliente.calcularConsumo();
+		cliente.categorizar();
 		Assert.assertSame(Categorizador.getInstanceOf().getR1(), cliente.getCategoria());
 	}
 }

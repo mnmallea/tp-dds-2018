@@ -7,9 +7,6 @@ import constantes.MontosCategorias;
 
 public class Categorizador {
 
-
-	
-
 	// Tipos de categoria que puede adoptar un cliente
 	private Categoria r1 = new Categoria(MontosCategorias.cargoFijoR1, MontosCategorias.cargoVariableR1, MontosCategorias.topeInferiorR1, MontosCategorias.topeSuperiorR1);
 	private Categoria r2 = new Categoria(MontosCategorias.cargoFijoR2, MontosCategorias.cargoVariableR2, MontosCategorias.topeInferiorR2, MontosCategorias.topeSuperiorR2);

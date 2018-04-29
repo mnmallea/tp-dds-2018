@@ -9,7 +9,7 @@ public class DispositivoDto implements Serializable {
     private Boolean encendido;
     private String nombre;
     @SerializedName("consumo_por_hora")
-    private Double consumoPorHora;
+    private Float consumoPorHora;
 
     public Boolean getEncendido() {
         return encendido;
@@ -27,11 +27,11 @@ public class DispositivoDto implements Serializable {
         this.nombre = nombre;
     }
 
-    public Double getConsumoPorHora() {
+    public Float getConsumoPorHora() {
         return consumoPorHora;
     }
 
-    public void setConsumoPorHora(Double consumoPorHora) {
+    public void setConsumoPorHora(Float consumoPorHora) {
         this.consumoPorHora = consumoPorHora;
     }
 }
