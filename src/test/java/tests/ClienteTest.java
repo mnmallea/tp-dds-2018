@@ -1,15 +1,16 @@
 package tests;
 
-import dominio.Categorizador;
-import dominio.Cliente;
-import dominio.Dispositivo;
-import dominio.TipoDocumento;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import dominio.Categorizador;
+import dominio.Cliente;
+import dominio.Dispositivo;
+import dominio.TipoDocumento;
 
 /*
  *Pruebas para hacer:
@@ -39,7 +40,7 @@ public class ClienteTest {
 		listaDeDispositivos.add(microondas);
 
 		cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, "unaCalle 123",
-				Categorizador.getR1(), listaDeDispositivos); // categoria R1
+				Categorizador.getInstanceOf().getR1(), listaDeDispositivos); // categoria R1
 	}
 
 	@Test
@@ -65,6 +66,6 @@ public class ClienteTest {
 	@Test
 	public void seRecategorizaAlClienteYDeberiaQuedarEnR1() {
 		cliente.categorizar(0.50f);
-		Assert.assertSame(Categorizador.getR1(), cliente.getCategoria());
+		Assert.assertSame(Categorizador.getInstanceOf().getR1(), cliente.getCategoria());
 	}
 }
