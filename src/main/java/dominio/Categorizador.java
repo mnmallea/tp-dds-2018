@@ -3,41 +3,23 @@ package dominio;
 import java.util.Arrays;
 import java.util.List;
 
+import constantes.MontosCategorias;
+
 public class Categorizador {
 
-	// Cargo fijo segun categoria
-	private float cargoFijoR1 = 18.76f;
-	private float cargoFijoR2 = 35.32f;
-	private float cargoFijoR3 = 60.71f;
-	private float cargoFijoR4 = 71.74f;
-	private float cargoFijoR5 = 110.38f;
-	private float cargoFijoR6 = 220.75f;
-	private float cargoFijoR7 = 443.59f;
-	private float cargoFijoR8 = 545.96f;
-	private float cargoFijoR9 = 887.19f;
-	
-	// Cargo variable segun categoria
-	private float cargoVariableR1 = 0.644f;
-	private float cargoVariableR2 = 0.644f;
-	private float cargoVariableR3 = 0.681f;
-	private float cargoVariableR4 = 0.738f;
-	private float cargoVariableR5 = 0.794f;
-	private float cargoVariableR6 = 0.832f;
-	private float cargoVariableR7 = 0.851f;
-	private float cargoVariableR8 = 0.851f;
-	private float cargoVariableR9 = 0.851f;
+
 	
 
 	// Tipos de categoria que puede adoptar un cliente
-	private Categoria r1 = new CategoriaMinima(cargoFijoR1, cargoVariableR1, 150f);
-	private Categoria r2 = new Categoria(cargoFijoR2, cargoVariableR2, 150f, 325f);
-	private Categoria r3 = new Categoria(cargoFijoR3, cargoVariableR3, 325f, 400f);
-	private Categoria r4 = new Categoria(cargoFijoR4, cargoVariableR4, 400f, 450f);
-	private Categoria r5 = new Categoria(cargoFijoR5, cargoVariableR5, 450f, 500f);
-	private Categoria r6 = new Categoria(cargoFijoR6, cargoVariableR6, 500f, 600f);
-	private Categoria r7 = new Categoria(cargoFijoR7, cargoVariableR7, 600f, 700f);
-	private Categoria r8 = new Categoria(cargoFijoR8, cargoVariableR8, 700f, 1400f);
-	private Categoria r9 = new CategoriaMaxima(cargoFijoR9, cargoVariableR9, 1400f);
+	private Categoria r1 = new Categoria(MontosCategorias.cargoFijoR1, MontosCategorias.cargoVariableR1, MontosCategorias.topeInferiorR1, MontosCategorias.topeSuperiorR1);
+	private Categoria r2 = new Categoria(MontosCategorias.cargoFijoR2, MontosCategorias.cargoVariableR2, MontosCategorias.topeInferiorR2, MontosCategorias.topeSuperiorR2);
+	private Categoria r3 = new Categoria(MontosCategorias.cargoFijoR3, MontosCategorias.cargoVariableR3, MontosCategorias.topeInferiorR3, MontosCategorias.topeSuperiorR3);
+	private Categoria r4 = new Categoria(MontosCategorias.cargoFijoR4, MontosCategorias.cargoVariableR4, MontosCategorias.topeInferiorR4, MontosCategorias.topeSuperiorR4);
+	private Categoria r5 = new Categoria(MontosCategorias.cargoFijoR5, MontosCategorias.cargoVariableR5, MontosCategorias.topeInferiorR5, MontosCategorias.topeSuperiorR5);
+	private Categoria r6 = new Categoria(MontosCategorias.cargoFijoR6, MontosCategorias.cargoVariableR6, MontosCategorias.topeInferiorR6, MontosCategorias.topeSuperiorR6);
+	private Categoria r7 = new Categoria(MontosCategorias.cargoFijoR7, MontosCategorias.cargoVariableR7, MontosCategorias.topeInferiorR7, MontosCategorias.topeSuperiorR7);
+	private Categoria r8 = new Categoria(MontosCategorias.cargoFijoR8, MontosCategorias.cargoVariableR8, MontosCategorias.topeInferiorR8, MontosCategorias.topeSuperiorR8);
+	private Categoria r9 = new Categoria(MontosCategorias.cargoFijoR9, MontosCategorias.cargoVariableR9, MontosCategorias.topeInferiorR9, MontosCategorias.topeSuperiorR9);
 	// -----------------------------------------------
 
 	private List<Categoria> categorias;

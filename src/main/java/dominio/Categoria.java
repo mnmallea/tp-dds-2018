@@ -15,11 +15,11 @@ public class Categoria {
 	}
 
 	public Float facturaEstimada(Float unConsumo) {
-		return this.cargoFijo + unConsumo*this.cargoVariable;
+		return this.cargoFijo + unConsumo * this.cargoVariable;
 	}
 	
 	public Boolean perteneceACategoria(Float unConsumo) {
-		return unConsumo > this.topeInferior && unConsumo <= this.topeSuperior;
+		return unConsumo >= this.topeInferior && unConsumo < this.topeSuperior;
 	}
 
 }

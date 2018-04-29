@@ -3,7 +3,6 @@ package dominio;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 public class Cliente {
 	public Float consumoMesAnterior;

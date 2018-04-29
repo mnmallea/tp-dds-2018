@@ -1,15 +1,13 @@
 package client;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import dominio.Cliente;
-import dto.UsuarioDTO;
-import exception.UsuariosException;
-import utils.Mapper;
 
-import java.io.*;
-import java.util.List;
+import dto.UsuarioDTO;
 
 public class UsuariosClient {
 

@@ -1,19 +1,13 @@
 package tests;
 
-import dominio.Categorizador;
-import dominio.Cliente;
-import dominio.Dispositivo;
-import dominio.TipoDocumento;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.google.gson.JsonSyntaxException;
 
+import dominio.Cliente;
 import service.UsuariosService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UsuarioServiceTest {
 

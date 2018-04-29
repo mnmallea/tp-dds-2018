@@ -1,7 +1,6 @@
 package exception;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class UsuariosException extends RuntimeException {
 
