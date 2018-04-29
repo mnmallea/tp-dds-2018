@@ -7,7 +7,6 @@ public class Categoria {
 	public Float topeSuperior;
 
 	public Categoria(Float cargoFijo, Float cargoVariable, Float topeInferior, Float topeSuperior) {
-		super();
 		this.cargoFijo = cargoFijo;
 		this.cargoVariable = cargoVariable;
 		this.topeInferior = topeInferior;

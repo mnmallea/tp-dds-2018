@@ -10,7 +10,6 @@ public class Dispositivo {
 	}
 	
 	public Dispositivo(String nombre, Float consumoPorHora) {
-		super();
 		this.nombre = nombre;
 		this.consumoPorHora = consumoPorHora;
 	}

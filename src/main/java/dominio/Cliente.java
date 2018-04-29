@@ -1,7 +1,7 @@
 package dominio;
 
-import java.util.List;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Cliente {
 	private String nombre;
@@ -28,7 +28,6 @@ public class Cliente {
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
 			Integer nroTelefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
