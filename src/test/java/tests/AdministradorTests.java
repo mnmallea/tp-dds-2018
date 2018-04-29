@@ -1,6 +1,6 @@
 package tests;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class AdministradorTests {
 	
 	@Test
 	public void elAdministradorEstaHace0meses() {
-		administrador.setFechaAlta(new LocalDate());
+		administrador.setFechaAlta(LocalDate.now());
 		Assert.assertEquals(0, administrador.mesesDeAdministrador());
 	}
 }

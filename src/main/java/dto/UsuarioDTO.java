@@ -1,7 +1,7 @@
 package dto;
 
 import com.google.gson.annotations.SerializedName;
-import org.joda.time.DateTime;
+import java.time.LocalDate;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,7 +18,7 @@ public class UsuarioDTO implements Serializable {
 	private Integer nroTelefono;
 	private String domicilio;
 	@SerializedName("fecha_alta")
-	private DateTime fechaAlta;
+	private LocalDate fechaAlta;
 	private String categoria;
 	private Float consumo;
 	@SerializedName("dispositivos")
@@ -101,11 +101,11 @@ public class UsuarioDTO implements Serializable {
 		this.domicilio = domicilio;
 	}
 
-	public DateTime getFechaAlta() {
+	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}
 
-	public void setFechaAlta(DateTime fechaAlta) {
+	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 

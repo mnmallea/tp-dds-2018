@@ -1,7 +1,7 @@
 package dominio;
 
-import org.joda.time.LocalDate;
-import org.joda.time.Months;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class Administrador {
 	private String nombre;
@@ -14,7 +14,7 @@ public class Administrador {
 
 
 	public int mesesDeAdministrador(){
-		return Months.monthsBetween(fechaAlta, new LocalDate()).getMonths();
+		return Period.between(fechaAlta, LocalDate.now()).getMonths();
 	}
 
 	public void setFechaAlta(LocalDate fechaAlta) {

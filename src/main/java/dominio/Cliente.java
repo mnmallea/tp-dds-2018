@@ -1,11 +1,9 @@
 package dominio;
 
 import java.util.List;
-
-import org.joda.time.DateTime;
+import java.time.LocalDate;
 
 public class Cliente {
-	public Float consumoMesAnterior;
 	public Float consumoUltimoMes;
 	private String nombre;
 	private String apellido;
@@ -13,7 +11,7 @@ public class Cliente {
 	private int nroDocumento;
 	private Integer nroTelefono;
 	private String domicilio;
-	private DateTime fechaAlta;
+	private LocalDate fechaAlta;
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos;
 
