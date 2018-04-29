@@ -65,7 +65,6 @@ public class ClienteTest {
 	
 	@Test
 	public void seRecategorizaAlClienteYDeberiaQuedarEnR1() {
-		cliente.calcularConsumo();
 		cliente.categorizar();
 		Assert.assertSame(Categorizador.getInstanceOf().getR1(), cliente.getCategoria());
 	}
