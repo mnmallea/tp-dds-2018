@@ -1,3 +1,14 @@
 {
-	esto no es un json
+  "nombre": "Belen",
+  "apellido": "Tripodi",
+  "nroDocumento": 2222222,
+  "nroTelefono": 123456789,
+  "domicilio": "Suipacha 999",
+  "dispositivos": [
+    {
+      "nombre": "heladera",
+      "encendido": false,
+      "consumo_por_hora": 150
+    }
+  ]
 }

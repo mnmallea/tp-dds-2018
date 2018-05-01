@@ -7,6 +7,7 @@ import org.junit.Test;
 import com.google.gson.JsonSyntaxException;
 
 import dominio.Cliente;
+import jsonAObjeto.ParserCliente;
 import service.UsuariosService;
 
 public class UsuarioServiceTest {
@@ -39,7 +40,7 @@ public class UsuarioServiceTest {
 	@Test(expected = JsonSyntaxException.class)
 	public void elCliente2Rompe() {
 		cliente2 = usuariosService.parserUsuarioToCliente("src/main/resources/fake.json");
-		
 		Assert.assertTrue(false);
 	}
+
 }
