@@ -14,6 +14,10 @@ public class Cliente {
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos;
 
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
