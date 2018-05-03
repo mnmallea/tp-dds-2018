@@ -1,0 +1,17 @@
+[
+{
+  "nombre": "Eric",
+  "apellido": "Fahnle",
+  "nroIdentificacion": 123
+},
+{
+  "nombre": "Franco",
+  "apellido": "Curi",
+  "nroIdentificacion": 456
+},
+{
+  "nombre": "Martin",
+  "apellido": "Mallea",
+  "nroIdentificacion": 789
+}
+]

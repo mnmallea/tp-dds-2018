@@ -21,5 +21,21 @@ public class Administrador {
 		this.fechaAlta = fechaAlta;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Integer getNroIdentificacion() {
+		return nroIdentificacion;
+	}
+
+	public void setNroIdentificacion(Integer nroIdentificacion) {
+		this.nroIdentificacion = nroIdentificacion;
+	}
+
 }
 

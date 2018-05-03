@@ -18,51 +18,71 @@ public class ParserClienteTests {
 	@Before
 	public void init() {
 		parser = new ParserCliente();
-		clientes = parser.obtenerCliente("src/main/resources/variosClientes.json");
+		clientes = parser.obtenerClientes("src/main/resources/variosClientes.json");
 	}
 	
-/* ------------------------- TESTS SOBRE CLIENTES ---------------------------------*/ 
+/* ------------------------- TESTS SOBRE CLIENTE BELEN ---------------------------------*/ 
 	
 	@Test
-	public void coincidenNombres() {
+	public void belenSeLlamaBelen() {
 		Assert.assertEquals("Belen", clientes[0].getNombre());
+	}
+	@Test
+	public void belenTieneUnDispositivo() {
+		Assert.assertEquals(1, clientes[0].cantidadDispositivos());
+	}
+	@Test
+	public void belenTieneUnDispositivoApagado() {
+		Assert.assertEquals(1, clientes[0].cantidadDispositivosApagados());
+	}
+	@Test
+	public void belenNoTieneDispositivosEncendidos() {
+		Assert.assertEquals(0, clientes[0].cantidadDispositivosEncendidos());
+	}
+	@Test
+	public void belenConsume150() {
+		Assert.assertEquals(150f, clientes[0].consumo(),0.000005);
+	}
+	@Test
+	public void belenTieneTipoDNI() {
+		Assert.assertEquals(TipoDocumento.DNI, clientes[0].getTipoDocumento());
+	}
+	
+/* ------------------------- TESTS SOBRE CLIENTE GASTON ---------------------------------*/
+
+	@Test
+	public void gastonSeLlamaGaston() {
 		Assert.assertEquals("Gaston", clientes[1].getNombre());
 	}
 	@Test
-	public void cantidadDeDispositivos() {
-		Assert.assertEquals(1, clientes[0].cantidadDispositivos());
+	public void gastonTieneDosDispositivos() {
 		Assert.assertEquals(2, clientes[1].cantidadDispositivos());
 	}
 	@Test
-	public void cantidadDeDispositivosApagados() {
-		Assert.assertEquals(1, clientes[0].cantidadDispositivosApagados());
+	public void gastonTieneUnDispositivoApagado() {
 		Assert.assertEquals(1, clientes[1].cantidadDispositivosApagados());
 	}
 	@Test
-	public void cantidadDeDispositivosEncendidos() {
-		Assert.assertEquals(0, clientes[0].cantidadDispositivosEncendidos());
+	public void gastonTieneUnDispositivoEncendido() {
 		Assert.assertEquals(1, clientes[1].cantidadDispositivosEncendidos());
 	}
 	@Test
-	public void coincidenConsumos() {
-		Assert.assertEquals(150f, clientes[0].consumo(),0.000005);
+	public void gastonConsume220() {
 		Assert.assertEquals(220f, clientes[1].consumo(),0.000005);
 	}
 	@Test
-	public void coincideTipoDeDocumento() {
-		Assert.assertEquals(TipoDocumento.DNI, clientes[0].getTipoDocumento());
+	public void gastonTieneTipoLC() {
 		Assert.assertEquals(TipoDocumento.LC, clientes[1].getTipoDocumento());
 	}
 	
-	/* ------------------------- TESTS SOBRE EXCEPCIONES ---------------------------------*/ 
-
+/* ------------------------- TESTS SOBRE EXCEPCIONES ---------------------------------*/ 
 	
 	@Test(expected=ParserException.class)
 	public void elJSONMalFormateadoProvocaError() {
-		clientes2 = parser.obtenerCliente("src/main/resources/json_mal_formateado.json");
+		clientes2 = parser.obtenerClientes("src/main/resources/json_mal_formateado.json");
 	}
 	@Test(expected=ArchivoNoEncontradoException.class)
 	public void cuandoNoExisteElJsonLanzaExcepcion() {
-		clientes2 = parser.obtenerCliente("src/main/resources/esteJsonNoexiste.json");
+		clientes2 = parser.obtenerClientes("src/main/resources/esteJsonNoexiste.json");
 	}
 }
