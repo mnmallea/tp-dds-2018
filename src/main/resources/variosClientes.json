@@ -1,0 +1,37 @@
+[
+{
+  "nombre": "Belen",
+  "apellido": "Tripodi",
+  "nroDocumento": 2222222,
+  "nroTelefono": 123456789,
+  "tipoDocumento": DNI,
+  "domicilio": "Suipacha 999",
+  "dispositivos": [
+    {
+      "nombre": "heladera",
+      "encendido": false,
+      "consumoPorHora": 150
+    }
+  ]
+},
+{
+  "nombre": "Gaston",
+  "apellido": "Gabadian",
+  "nroDocumento": 1234567,
+  "nroTelefono": 987654321,
+  "tipoDocumento": LC,
+  "domicilio": "Uruguay 700",
+  "dispositivos": [
+    {
+      "nombre": "freezer",
+      "encendido": false,
+      "consumoPorHora": 200
+    },
+    {
+      "nombre": "radio",
+      "encendido": true,
+      "consumoPorHora": 20
+    }
+  ]
+}
+]
