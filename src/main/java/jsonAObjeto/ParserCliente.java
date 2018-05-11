@@ -7,7 +7,7 @@ import exception.ParserException;
 
 public class ParserCliente {
 
-	public Cliente[] obtenerClientes(String file) {
+	public static Cliente[] obtenerClientes(String file) {
 		Cliente[] clientes;
 		Reader reader = FileOpener.abrirArchivo(file);
 		Gson gson = new Gson();

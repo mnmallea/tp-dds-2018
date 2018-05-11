@@ -37,5 +37,10 @@ public class Administrador {
 		this.nroIdentificacion = nroIdentificacion;
 	}
 
+	public LocalDate getFechaAlta() {
+		return fechaAlta;
+	}
+	
+
 }
 

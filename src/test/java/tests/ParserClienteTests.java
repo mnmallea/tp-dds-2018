@@ -13,12 +13,10 @@ import jsonAObjeto.ParserCliente;
 public class ParserClienteTests {
 	
 	Cliente[] clientes, clientes2;
-	ParserCliente parser;
 	
 	@Before
 	public void init() {
-		parser = new ParserCliente();
-		clientes = parser.obtenerClientes("src/main/resources/variosClientes.json");
+		clientes = ParserCliente.obtenerClientes("src/main/resources/variosClientes.json");
 	}
 	
 /* ------------------------- TESTS SOBRE CLIENTE BELEN ---------------------------------*/ 
@@ -79,10 +77,10 @@ public class ParserClienteTests {
 	
 	@Test(expected=ParserException.class)
 	public void elJSONMalFormateadoProvocaError() {
-		clientes2 = parser.obtenerClientes("src/main/resources/json_mal_formateado.json");
+		clientes2 = ParserCliente.obtenerClientes("src/main/resources/json_mal_formateado.json");
 	}
 	@Test(expected=ArchivoNoEncontradoException.class)
 	public void cuandoNoExisteElJsonLanzaExcepcion() {
-		clientes2 = parser.obtenerClientes("src/main/resources/esteJsonNoexiste.json");
+		clientes2 = ParserCliente.obtenerClientes("src/main/resources/esteJsonNoexiste.json");
 	}
 }

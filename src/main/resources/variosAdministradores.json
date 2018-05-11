@@ -2,7 +2,8 @@
 {
   "nombre": "Eric",
   "apellido": "Fahnle",
-  "nroIdentificacion": 123
+  "nroIdentificacion": 123,
+  "fechaAlta": "2018-05-11"
 },
 {
   "nombre": "Franco",

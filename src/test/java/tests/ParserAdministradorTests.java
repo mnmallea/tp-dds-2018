@@ -1,5 +1,7 @@
 package tests;
 
+import java.time.LocalDate;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,12 +14,10 @@ import jsonAObjeto.ParserAdministrador;
 public class ParserAdministradorTests {
 	
 	Administrador[] administradores, administradores2;
-	ParserAdministrador parser;
 	
 	@Before
 	public void init() {
-		parser = new ParserAdministrador();
-		administradores = parser.obtenerAdministradores("src/main/resources/variosAdministradores.json");
+		administradores = ParserAdministrador.obtenerAdministradores("src/main/resources/variosAdministradores.json");
 	}
 	
 /* ------------------------- TESTS SOBRE ADMINISTRADOR ERIC ---------------------------------*/ 
@@ -29,6 +29,10 @@ public class ParserAdministradorTests {
 	@Test
 	public void ericTieneNroDeIdentificacion123() {
 		Assert.assertEquals(new Integer(123), administradores[0].getNroIdentificacion());
+	}
+	@Test
+	public void ericSeDioDeAltaEl11_05_2018() {
+		Assert.assertEquals(LocalDate.of(2018, 05, 11), administradores[0].getFechaAlta());
 	}
 	
 /* ------------------------- TESTS SOBRE ADMINISTRADOR FRANCO ---------------------------------*/ 
@@ -58,10 +62,10 @@ public class ParserAdministradorTests {
 	
 	@Test(expected=ParserException.class)
 	public void elJSONMalFormateadoProvocaError() {
-		administradores2 = parser.obtenerAdministradores("src/main/resources/json_mal_formateado.json");
+		administradores2 = ParserAdministrador.obtenerAdministradores("src/main/resources/json_mal_formateado.json");
 	}
 	@Test(expected=ArchivoNoEncontradoException.class)
 	public void cuandoNoExisteElJsonLanzaExcepcion() {
-		administradores = parser.obtenerAdministradores("src/main/resources/esteJsonNoexiste.json");
+		administradores = ParserAdministrador.obtenerAdministradores("src/main/resources/esteJsonNoexiste.json");
 	}
 }
