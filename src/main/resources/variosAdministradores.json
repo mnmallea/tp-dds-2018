@@ -8,11 +8,13 @@
 {
   "nombre": "Franco",
   "apellido": "Curi",
-  "nroIdentificacion": 456
+  "nroIdentificacion": 456,
+  "fechaAlta": "1997-05-11"
 },
 {
   "nombre": "Martin",
   "apellido": "Mallea",
-  "nroIdentificacion": 789
+  "nroIdentificacion": 789,
+  "fechaAlta": "1998-05-10"
 }
 ]

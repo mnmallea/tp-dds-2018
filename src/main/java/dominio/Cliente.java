@@ -31,7 +31,7 @@ public class Cliente {
 	}
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
-			Integer nroTelefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos) {
+			Integer nroTelefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos, LocalDate fechaAlta) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
@@ -39,6 +39,7 @@ public class Cliente {
 		this.nroTelefono = nroTelefono;
 		this.domicilio = domicilio;
 		this.dispositivos = dispositivos;
+		this.fechaAlta = fechaAlta;
 	}
 
 	public String getNombre() {
@@ -51,7 +52,7 @@ public class Cliente {
 	}
 
 	public void categorizar() {
-		this.categoria = Categorizador.getInstanceOf().getCategoriaSegunRango(consumo());
+		this.categoria = Categorizador.instancia.getCategoriaSegunRango(consumo());
 	}
 
 	public long cantidadDispositivosEncendidos() {

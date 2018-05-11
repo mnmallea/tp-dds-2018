@@ -20,16 +20,10 @@ public class Categorizador {
 	// -----------------------------------------------
 
 	private List<Categoria> categorias;
-	private static Categorizador instancia;
+	public static Categorizador instancia = new Categorizador();
 
 	private Categorizador() {
 		categorias = Arrays.asList(r1, r2, r3, r4, r5, r6, r7, r8, r9);
-	}
-
-	public static Categorizador getInstanceOf() {
-		if (instancia == null)
-			instancia = new Categorizador();
-		return instancia;
 	}
 
 	public Categoria getCategoriaSegunRango(Float unConsumo) {

@@ -8,22 +8,21 @@ import org.junit.Test;
 import dominio.Administrador;
 
 public class AdministradorTests {
-	public Administrador administrador;
+	public Administrador administrador, administradorNuevo;
 	
 	@Before
 	public void init() {
-		administrador = new Administrador();
+		administrador = new Administrador("Alexis", "Gabadian", LocalDate.now().minusMonths(3), 123);
+		administradorNuevo = new Administrador("Alexis", "Gabadian", LocalDate.now(), 123);
 	}
 	
 	@Test
 	public void elAdministradorEstaHace3Meses() {
-		administrador.setFechaAlta(LocalDate.now().minusMonths(3));
 		Assert.assertEquals(3, administrador.mesesDeAdministrador());
 	}
 	
 	@Test
 	public void elAdministradorEstaHace0meses() {
-		administrador.setFechaAlta(LocalDate.now());
-		Assert.assertEquals(0, administrador.mesesDeAdministrador());
+		Assert.assertEquals(0, administradorNuevo.mesesDeAdministrador());
 	}
 }

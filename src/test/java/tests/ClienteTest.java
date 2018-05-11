@@ -1,5 +1,6 @@
 package tests;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class ClienteTest {
 		listaDeDispositivos.add(microondas);
 
 		cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, "unaCalle 123",
-				Categorizador.getInstanceOf().getR1(), listaDeDispositivos); // categoria R1
+				Categorizador.instancia.getR1(), listaDeDispositivos, LocalDate.now()); // categoria R1
 	}
 
 	@Test
@@ -66,6 +67,11 @@ public class ClienteTest {
 	@Test
 	public void seRecategorizaAlClienteYDeberiaQuedarEnR1() {
 		cliente.categorizar();
-		Assert.assertSame(Categorizador.getInstanceOf().getR1(), cliente.getCategoria());
+		Assert.assertSame(Categorizador.instancia.getR1(), cliente.getCategoria());
+	}
+	
+	@Test
+	public void elClienteConsume14Kwh() {
+		Assert.assertEquals(new Float(14f), cliente.consumo());
 	}
 }

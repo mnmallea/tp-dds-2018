@@ -45,6 +45,10 @@ public class ParserAdministradorTests {
 	public void francoTieneNroDeIdentificacion123() {
 		Assert.assertEquals(new Integer(456), administradores[1].getNroIdentificacion());
 	}
+	@Test
+	public void francoSeDioDeAltaEl11_05_1997() {
+		Assert.assertEquals(LocalDate.of(1997, 05, 11), administradores[1].getFechaAlta());
+	}
 
 /* ------------------------- TESTS SOBRE ADMINISTRADOR MARTIN ---------------------------------*/ 
 	
@@ -55,6 +59,10 @@ public class ParserAdministradorTests {
 	@Test
 	public void martinTieneNroDeIdentificacion123() {
 		Assert.assertEquals(new Integer(789), administradores[2].getNroIdentificacion());
+	}
+	@Test
+	public void martinSeDioDeAltaEl10_05_1998() {
+		Assert.assertEquals(LocalDate.of(1998, 05, 10), administradores[2].getFechaAlta());
 	}
 	
 

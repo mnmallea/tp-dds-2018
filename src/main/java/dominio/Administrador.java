@@ -7,34 +7,25 @@ public class Administrador {
 	private String nombre;
 	private String apellido;
 	private LocalDate fechaAlta;
-	private Integer nroIdentificacion;
+	private Integer nroIdentificacion;	
 
-//	private String nombreUsuario;
-//	private String contrasenia;
-
+	public Administrador(String nombre, String apellido, LocalDate fechaAlta, Integer nroIdentificacion) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaAlta = fechaAlta;
+		this.nroIdentificacion = nroIdentificacion;
+	}
 
 	public int mesesDeAdministrador(){
 		return Period.between(fechaAlta, LocalDate.now()).getMonths();
-	}
-
-	public void setFechaAlta(LocalDate fechaAlta) {
-		this.fechaAlta = fechaAlta;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public Integer getNroIdentificacion() {
 		return nroIdentificacion;
-	}
-
-	public void setNroIdentificacion(Integer nroIdentificacion) {
-		this.nroIdentificacion = nroIdentificacion;
 	}
 
 	public LocalDate getFechaAlta() {
