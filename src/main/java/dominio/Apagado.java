@@ -1,20 +1,11 @@
 package dominio;
 
-public class Apagado implements Estado{
+public class Apagado extends Estado{
 
-
-    @Override
-    public void apagarse() {
-
-    }
-
-    @Override
-    public void encenderse() {
-
-    }
-
-    @Override
-    public void modoAhorroEnergia() {
-
-    }
+	@Override
+	public void apagarse(TipoDispositivo dispositivo) {
+		
+	}
+	
+	
 }

@@ -13,6 +13,7 @@ public class Cliente {
 	private LocalDate fechaAlta;
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos;
+	private int puntos = 0;
 
 	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
@@ -56,11 +57,11 @@ public class Cliente {
 	}
 
 	public long cantidadDispositivosEncendidos() {
-		return this.dispositivos.stream().filter(dispositivo -> dispositivo.getEncedido()).count();
+		return this.dispositivos.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
 	}
 
 	public long cantidadDispositivosApagados() {
-		return this.dispositivos.stream().filter(dispositivo -> !dispositivo.getEncedido()).count();
+		return this.dispositivos.stream().filter(dispositivo -> !dispositivo.estaEncendido()).count();
 	}
 
 	public int cantidadDispositivos() {
@@ -68,11 +69,15 @@ public class Cliente {
 	}
 
 	public Boolean algunDispositivoEncendido() {
-		return this.dispositivos.stream().anyMatch(dispositivo -> dispositivo.getEncedido());
+		return this.dispositivos.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
 	}
 
 	public Float montoEstimadoAPagar() {
 		return categoria.facturaEstimada(consumo());
+	}
+
+	public void sumarPuntos(int unosPuntos) {
+		this.puntos  += unosPuntos;
 	}
 
 }

@@ -1,9 +1,18 @@
 package dominio;
 
-public interface Estado {
+public abstract class Estado {
 
-    void apagarse();
-    void encenderse();
-    void modoAhorroEnergia();
+    public void apagarse(TipoDispositivo dispositivo) {
+    	dispositivo.setEstado(new Apagado());
+    }
+    public void encenderse(TipoDispositivo dispositivo) {
+    	dispositivo.setEstado(new Encendido());
+    }
+    public void ahorrarEnergia(TipoDispositivo dispositivo) {
+    	dispositivo.setEstado(new AhorroEnergia());
+    }
+    public Boolean estaEncendido() {
+    	return false;
+    }
 
 }

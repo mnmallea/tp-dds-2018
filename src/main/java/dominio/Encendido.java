@@ -1,18 +1,14 @@
 package dominio;
 
-public class Encendido implements Estado{
-    @Override
-    public void apagarse() {
+public class Encendido extends Estado{
+	@Override
+	public void encenderse(TipoDispositivo dispositivo) {
+		
+	}
 
-    }
-
-    @Override
-    public void encenderse() {
-
-    }
-
-    @Override
-    public void modoAhorroEnergia() {
-
-    }
+	@Override
+	public Boolean estaEncendido() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }
