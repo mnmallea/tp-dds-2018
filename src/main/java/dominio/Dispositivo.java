@@ -14,6 +14,23 @@ public class Dispositivo {
 		return tipoDispositivo.estaEncendido();
 	}
 	
+	public Boolean estaApagado() {
+		return tipoDispositivo.estaApagado();
+	}
+	
+	public void encenderse() {
+		tipoDispositivo.encenderse();
+	}
+	
+	public void apagarse() {
+		tipoDispositivo.apagarse();
+	}
+	
+	public void ahorrarEnergia() {
+		tipoDispositivo.ahorrarEnergia();
+	}
+	
+	
 	public Float getConsumoPorHora() {
 		return this.consumoPorHora;
 	}

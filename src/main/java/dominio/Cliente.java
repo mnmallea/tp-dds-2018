@@ -53,7 +53,7 @@ public class Cliente {
 	}
 
 	public void categorizar() {
-		this.categoria = Categorizador.instancia.getCategoriaSegunRango(consumo());
+		this.categoria = Categorizador.instancia.getCategoriaSegunRango(this.consumo());
 	}
 
 	public long cantidadDispositivosEncendidos() {
@@ -73,7 +73,7 @@ public class Cliente {
 	}
 
 	public Float montoEstimadoAPagar() {
-		return categoria.facturaEstimada(consumo());
+		return categoria.facturaEstimada(this.consumo());
 	}
 
 	public void sumarPuntos(int unosPuntos) {
