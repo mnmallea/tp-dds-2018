@@ -31,6 +31,11 @@ public class Cliente {
 	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
 		this.dispositivosInteligentes = dispositivos;
 	}
+	
+	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
+		dispositivosInteligentes.add(nuevoDispositivo);
+		sumarPuntos(15);
+	}
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
 			Integer nroTelefono, String domicilio, Categoria categoria,
@@ -80,7 +85,7 @@ public class Cliente {
 	}
 
 	public int cantidadDispositivosInteligentes() {
-		return this.dispositivosEstandar.size();
+		return this.dispositivosInteligentes.size();
 	}
 
 	public int cantidadDeDispositivos() {
@@ -99,11 +104,15 @@ public class Cliente {
 		this.puntos += unosPuntos;
 	}
 	
-	public void convertirAInteligente(DispositivoEstandar unDispositivo) {
-		DispositivoInteligente nuevoDispositivo= new DispositivoInteligente();
-		nuevoDispositivo.setConsumoPorHora(unDispositivo.getConsumoPorHora());
-		dispositivosInteligentes.add(nuevoDispositivo);
-		dispositivosEstandar.remove(unDispositivo);
+	public void convertirAInteligente(DispositivoEstandar unDispositivoEstandar) {
+		Estado estadoPorDefecto = new Apagado();
+		Long idPorDefecto = 0l; // Se desconoce el id de fabrica
+		Fabricante fabricante = null; // El fabricante es desconocido
+		
+		DispositivoInteligente nuevoDispositivoInteligente = new DispositivoInteligente(unDispositivoEstandar.getNombre(), estadoPorDefecto, unDispositivoEstandar.getConsumoPorHora(), fabricante, idPorDefecto);
+		
+		dispositivosInteligentes.add(nuevoDispositivoInteligente);
+		dispositivosEstandar.remove(unDispositivoEstandar);
 		this.sumarPuntos(10);
 	}
 
