@@ -11,6 +11,10 @@ public class DispositivoEstandar {
 		this.consumoPorHora = consumoPorHora;
 		this.horasDeUsoDiarias = horasDeUsoDiarias;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
 
 	public Float getConsumoPorHora() {
 		return this.consumoPorHora;

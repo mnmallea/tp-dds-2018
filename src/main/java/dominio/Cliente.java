@@ -31,6 +31,11 @@ public class Cliente {
 	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
 		this.dispositivosInteligentes = dispositivos;
 	}
+	
+	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
+		dispositivosInteligentes.add(nuevoDispositivo);
+		sumarPuntos(15);
+	}
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
 			Integer nroTelefono, String domicilio, Categoria categoria,
@@ -99,6 +104,7 @@ public class Cliente {
 		this.puntos += unosPuntos;
 	}
 
+
 	public void convertirAInteligente(DispositivoEstandar unDispositivo, Fabricante unFabricante) {
 		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente   (unDispositivo.getNombre(), 
 																				new Apagado(), 
@@ -107,6 +113,7 @@ public class Cliente {
 																				unDispositivo.getNumeroDeSerie());
 		dispositivosInteligentes.add(nuevoDispositivo);
 		dispositivosEstandar.remove(unDispositivo);
+
 		this.sumarPuntos(10);
 	}
 
