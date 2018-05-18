@@ -1,5 +1,6 @@
 package dominio;
 
+import java.time.LocalDate;
 import java.time.Period;
 
 public class DispositivoInteligente implements TipoDispositivo {
@@ -60,5 +61,9 @@ public class DispositivoInteligente implements TipoDispositivo {
 
 	public void ahorrarEnergiaPosta() {
 		fabricante.ahorrarEnergia(this.idDeFabrica);
+	}
+
+	public Float getConsumo() {
+		return this.consumoEnPeriodo(Period.between(LocalDate.now().minusMonths(1),LocalDate.now()));
 	}
 }

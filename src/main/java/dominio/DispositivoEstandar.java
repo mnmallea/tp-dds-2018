@@ -16,5 +16,9 @@ public class DispositivoEstandar {
 	public void convertirEnInteligente() {
 		
 	}
+	
+	public Float getConsumo() {
+		return this.consumoPorHora * this.horasDeUsoDiarias * 30;
+	}
 
 }
