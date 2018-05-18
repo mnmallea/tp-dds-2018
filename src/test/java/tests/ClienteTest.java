@@ -46,7 +46,7 @@ public class ClienteTest {
 
 	@Test
 	public void elClienteTieneTresDispositivos() {
-		Assert.assertEquals(3, cliente.getDispositivos().size());
+		Assert.assertEquals(3, cliente.cantidadDeDispositivos());
 	}
 
 	@Test
@@ -56,12 +56,12 @@ public class ClienteTest {
 	
 	@Test
 	public void elClienteTieneUnDispositivoEncendido() {
-		Assert.assertEquals(1, cliente.cantidadDispositivosEncendidos());
+		Assert.assertEquals(1, cliente.cantidadDispositivosInteligentesEncendidos());
 	}
 	
 	@Test
 	public void elClienteTieneDosDispositivosApagados() {
-		Assert.assertEquals(2, cliente.cantidadDispositivosApagados());
+		Assert.assertEquals(2, cliente.cantidadDispositivosInteligentesApagados());
 	}
 	
 	@Test

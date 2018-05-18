@@ -33,15 +33,18 @@ public class Cliente {
 	}
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
-			Integer nroTelefono, String domicilio, Categoria categoria, List<DispositivoInteligente> dispositivosInteligentes, LocalDate fechaAlta) {
+			Integer nroTelefono, String domicilio, Categoria categoria,
+			List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
+			LocalDate fechaAlta) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
 		this.nroTelefono = nroTelefono;
 		this.domicilio = domicilio;
-		this.dispositivosInteligentes = dispositivosInteligentes;
 		this.fechaAlta = fechaAlta;
+		this.agregarDispositivosEstandar(dispositivosEstandar);
+		this.agregarDispositivosInteligentes(dispositivosInteligentes);
 	}
 
 	public String getNombre() {
@@ -49,8 +52,8 @@ public class Cliente {
 	}
 
 	public Float consumo() { // Es la suma de cada uno de los consumos de sus dispositivos
-		return this.dispositivosInteligentes.stream().map(dispositivo -> dispositivo.getConsumo())
-				.reduce(0f, (unConsumo, otroConsumo) -> unConsumo + otroConsumo);
+		return this.dispositivosInteligentes.stream().map(dispositivo -> dispositivo.getConsumo()).reduce(0f,
+				(unConsumo, otroConsumo) -> unConsumo + otroConsumo);
 	}
 
 	public void categorizar() {
@@ -68,11 +71,11 @@ public class Cliente {
 	public int cantidadDispositivosEstandar() {
 		return this.dispositivosEstandar.size();
 	}
-	
+
 	public int cantidadDispositivosInteligentes() {
 		return this.dispositivosEstandar.size();
 	}
-	
+
 	public int cantidadDeDispositivos() {
 		return this.cantidadDispositivosEstandar() + this.cantidadDispositivosInteligentes();
 	}
@@ -86,7 +89,7 @@ public class Cliente {
 	}
 
 	public void sumarPuntos(int unosPuntos) {
-		this.puntos  += unosPuntos;
+		this.puntos += unosPuntos;
 	}
 	
 	public void convertirAInteligente(DispositivoEstandar unDispositivo) {

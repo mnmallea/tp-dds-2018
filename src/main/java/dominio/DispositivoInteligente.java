@@ -9,6 +9,21 @@ public class DispositivoInteligente{
 	private Float consumoPorHora;
 	private Fabricante fabricante;
 	private Long idDeFabrica;//entiendo que este seria como un numero de serie unico para cada dispositivo
+	
+	
+	
+	public DispositivoInteligente(Estado estado, Float consumoPorHora, Fabricante fabricante, Long idDeFabrica) {
+		this.estado = estado;
+		this.consumoPorHora = consumoPorHora;
+		this.fabricante = fabricante;
+		this.idDeFabrica = idDeFabrica;
+	}
+	
+	
+	public Long getIdDeFabrica() {
+		return idDeFabrica;
+	}
+
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
@@ -68,5 +83,11 @@ public class DispositivoInteligente{
 
 	public Float getConsumo() {
 		return this.consumoEnPeriodo(Period.between(LocalDate.now().minusMonths(1),LocalDate.now()));
+	}
+
+
+	public Estado getEstado() {
+		// TODO Auto-generated method stub
+		return this.estado;
 	}
 }
