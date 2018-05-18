@@ -1,7 +1,7 @@
 package actuadores;
 
-import dominio.Dispositivo;
+import dominio.DispositivoInteligente;
 
 public interface Accion {
-	public void aplicarseA(Dispositivo unDispositivo);
+	public void aplicarseA(DispositivoInteligente unDispositivo);
 }

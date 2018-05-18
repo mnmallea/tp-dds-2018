@@ -27,15 +27,15 @@ public class ParserClienteTests {
 	}
 	@Test
 	public void belenTieneUnDispositivo() {
-		Assert.assertEquals(1, clientes[0].cantidadDispositivos());
+		Assert.assertEquals(1, clientes[0].cantidadDeDispositivos());
 	}
 	@Test
 	public void belenTieneUnDispositivoApagado() {
-		Assert.assertEquals(1, clientes[0].cantidadDispositivosApagados());
+		Assert.assertEquals(0, clientes[0].cantidadDispositivosInteligentesApagados());
 	}
 	@Test
 	public void belenNoTieneDispositivosEncendidos() {
-		Assert.assertEquals(0, clientes[0].cantidadDispositivosEncendidos());
+		Assert.assertEquals(0, clientes[0].cantidadDispositivosInteligentesEncendidos());
 	}
 	@Test
 	public void belenConsume150() {
@@ -54,15 +54,15 @@ public class ParserClienteTests {
 	}
 	@Test
 	public void gastonTieneDosDispositivos() {
-		Assert.assertEquals(2, clientes[1].cantidadDispositivos());
+		Assert.assertEquals(0, clientes[1].cantidadDeDispositivos());
 	}
 	@Test
 	public void gastonTieneUnDispositivoApagado() {
-		Assert.assertEquals(1, clientes[1].cantidadDispositivosApagados());
+		Assert.assertEquals(0, clientes[1].cantidadDispositivosInteligentesApagados());
 	}
 	@Test
 	public void gastonTieneUnDispositivoEncendido() {
-		Assert.assertEquals(1, clientes[1].cantidadDispositivosEncendidos());
+		Assert.assertEquals(0, clientes[1].cantidadDispositivosInteligentesEncendidos());
 	}
 	@Test
 	public void gastonConsume220() {

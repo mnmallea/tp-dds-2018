@@ -12,7 +12,8 @@ public class Cliente {
 	private String domicilio;
 	private LocalDate fechaAlta;
 	private Categoria categoria;
-	private List<Dispositivo> dispositivos;
+	private List<DispositivoInteligente> dispositivosInteligentes;
+	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos = 0;
 
 	public TipoDocumento getTipoDocumento() {
@@ -23,24 +24,27 @@ public class Cliente {
 		return categoria;
 	}
 
-	public List<Dispositivo> getDispositivos() {
-		return dispositivos;
+	public List<DispositivoInteligente> getDispositivosInteligentes() {
+		return dispositivosInteligentes;
 	}
 
-	public void setDispositivos(List<Dispositivo> dispositivos) {
-		this.dispositivos = dispositivos;
+	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
+		this.dispositivosInteligentes = dispositivos;
 	}
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
-			Integer nroTelefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos, LocalDate fechaAlta) {
+			Integer nroTelefono, String domicilio, Categoria categoria,
+			List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
+			LocalDate fechaAlta) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
 		this.nroTelefono = nroTelefono;
 		this.domicilio = domicilio;
-		this.dispositivos = dispositivos;
 		this.fechaAlta = fechaAlta;
+		this.dispositivosEstandar = dispositivosEstandar;
+		this.dispositivosInteligentes = dispositivosInteligentes;
 	}
 
 	public String getNombre() {
@@ -48,28 +52,43 @@ public class Cliente {
 	}
 
 	public Float consumo() { // Es la suma de cada uno de los consumos de sus dispositivos
-		return this.dispositivos.stream().map(dispositivo -> dispositivo.getConsumoPorHora())
-				.reduce(0f, (unConsumo, otroConsumo) -> unConsumo + otroConsumo);
+		return (float) (this.consumoDispositivosEstandares() + this.consumoDispositivosInteligentes());
 	}
-
+	
+	public Double consumoDispositivosInteligentes() {
+		return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+	}
+	
+	public Double consumoDispositivosEstandares() {
+		return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+	}
+	
 	public void categorizar() {
 		this.categoria = Categorizador.instancia.getCategoriaSegunRango(this.consumo());
 	}
 
-	public long cantidadDispositivosEncendidos() {
-		return this.dispositivos.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
+	public long cantidadDispositivosInteligentesEncendidos() {
+		return this.dispositivosInteligentes.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
 	}
 
-	public long cantidadDispositivosApagados() {
-		return this.dispositivos.stream().filter(dispositivo -> !dispositivo.estaEncendido()).count();
+	public long cantidadDispositivosInteligentesApagados() {
+		return this.dispositivosInteligentes.stream().filter(dispositivo -> !dispositivo.estaEncendido()).count();
 	}
 
-	public int cantidadDispositivos() {
-		return this.dispositivos.size();
+	public int cantidadDispositivosEstandar() {
+		return this.dispositivosEstandar.size();
+	}
+
+	public int cantidadDispositivosInteligentes() {
+		return this.dispositivosEstandar.size();
+	}
+
+	public int cantidadDeDispositivos() {
+		return this.cantidadDispositivosEstandar() + this.cantidadDispositivosInteligentes();
 	}
 
 	public Boolean algunDispositivoEncendido() {
-		return this.dispositivos.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
+		return this.dispositivosInteligentes.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
 	}
 
 	public Float montoEstimadoAPagar() {
@@ -77,7 +96,15 @@ public class Cliente {
 	}
 
 	public void sumarPuntos(int unosPuntos) {
-		this.puntos  += unosPuntos;
+		this.puntos += unosPuntos;
+	}
+	
+	public void convertirAInteligente(DispositivoEstandar unDispositivo) {
+		DispositivoInteligente nuevoDispositivo= new DispositivoInteligente();
+		nuevoDispositivo.setConsumoPorHora(unDispositivo.getConsumoPorHora());
+		dispositivosInteligentes.add(nuevoDispositivo);
+		dispositivosEstandar.remove(unDispositivo);
+		this.sumarPuntos(10);
 	}
 
 }

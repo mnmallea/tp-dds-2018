@@ -1,8 +1,8 @@
 package actuadores;
 
-import dominio.Dispositivo;
+import dominio.DispositivoInteligente;
 
-public abstract class Sensor {
-	public abstract Medicion realizarMedicion(Dispositivo unDispositivo);
-	public abstract void comunicarMedicion();
+public interface Sensor {
+	public Medicion realizarMedicion(DispositivoInteligente unDispositivo);
+	public void comunicarMedicion();
 }
