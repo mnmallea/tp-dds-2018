@@ -5,6 +5,8 @@ import java.time.Period;
 public class DispositivoInteligente implements TipoDispositivo {
 	private Estado estado;
 	private Float consumoPorHora;
+	private Fabricante fabricante;
+	private Long idDeFabrica;//entiendo que este seria como un numero de serie unico para cada dispositivo
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
@@ -14,12 +16,6 @@ public class DispositivoInteligente implements TipoDispositivo {
 		return horas * consumoPorHora;
 	}
 
-	/*
-	 * Para mi esto es medio en vano, porque tenemos el consumo en n horas, que
-	 * seria lo mismo que en un periodo public Float consumoEnPeriodo(int empezo,
-	 * int termino){ int horas = termino - empezo; return
-	 * this.consumoEnHoras(horas); }
-	 */
 	@Override
 	public void apagarse() {
 		estado.apagarse(this);
@@ -42,13 +38,27 @@ public class DispositivoInteligente implements TipoDispositivo {
 
 	@Override
 	public Boolean estaApagado() {
-		return !this.estaEncendido();
+		return !estado.estaEncendido();
 	}
 
 	@Override
 	public Float consumoEnPeriodo(Period periodo) {
-		// TODO Auto-generated method stub
-		return null;
+		return fabricante.consumoEnPeriodo(periodo, this.idDeFabrica);
+	}
+	
+	public Float consumoEnUltimasHoras(int unasHoras) {
+		return fabricante.consumoEnUltimasHoras(unasHoras, this.idDeFabrica);
 	}
 
+	public void apagarsePosta() {
+		fabricante.apagarDispositivo(this.idDeFabrica);
+	}
+
+	public void encendersePosta() {
+		fabricante.encenderDispositivo(this.idDeFabrica);
+	}
+
+	public void ahorrarEnergiaPosta() {
+		fabricante.ahorrarEnergia(this.idDeFabrica);
+	}
 }

@@ -32,7 +32,7 @@ public class ClienteTest {
 		Dispositivo tostadora = new Dispositivo("tostadora", 2.5f);
 		Dispositivo microondas = new Dispositivo("microondas", 4.5f);
 
-		heladera.setEncendido(true); // encendemos uno
+//		heladera.encenderse();; // encendemos uno
 
 		List<Dispositivo> listaDeDispositivos = new ArrayList<Dispositivo>();
 
