@@ -30,6 +30,14 @@ public class ParserClienteTests {
 		Assert.assertEquals(1, clientes[0].cantidadDeDispositivos());
 	}
 	@Test
+	public void belenTieneUnDispositivoEstandar() {
+		Assert.assertEquals(1, clientes[0].cantidadDispositivosEstandar());
+	}
+	@Test
+	public void belenNoTieneDispositivosInteligentes() {
+		Assert.assertEquals(0, clientes[0].cantidadDispositivosInteligentes());
+	}
+	@Test
 	public void belenTieneUnDispositivoApagado() {
 		Assert.assertEquals(0, clientes[0].cantidadDispositivosInteligentesApagados());
 	}
@@ -38,8 +46,8 @@ public class ParserClienteTests {
 		Assert.assertEquals(0, clientes[0].cantidadDispositivosInteligentesEncendidos());
 	}
 	@Test
-	public void belenConsume150() {
-		Assert.assertEquals(150f, clientes[0].consumo(),0.000005);
+	public void belenConsume30() {
+		Assert.assertEquals(30f, clientes[0].consumo(),0.000005);
 	}
 	@Test
 	public void belenTieneTipoDNI() {
@@ -54,7 +62,7 @@ public class ParserClienteTests {
 	}
 	@Test
 	public void gastonTieneDosDispositivos() {
-		Assert.assertEquals(0, clientes[1].cantidadDeDispositivos());
+		Assert.assertEquals(2, clientes[1].cantidadDeDispositivos());
 	}
 	@Test
 	public void gastonTieneUnDispositivoApagado() {
@@ -65,8 +73,8 @@ public class ParserClienteTests {
 		Assert.assertEquals(0, clientes[1].cantidadDispositivosInteligentesEncendidos());
 	}
 	@Test
-	public void gastonConsume220() {
-		Assert.assertEquals(220f, clientes[1].consumo(),0.000005);
+	public void gastonConsume60() {
+		Assert.assertEquals(60f, clientes[1].consumo(),0.000005);
 	}
 	@Test
 	public void gastonTieneTipoLC() {
