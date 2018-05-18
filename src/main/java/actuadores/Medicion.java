@@ -1,12 +1,12 @@
 package actuadores;
 
-import dominio.Dispositivo;
+import dominio.DispositivoInteligente;
 
 public abstract class Medicion {
 	private Accion accionQueDebeDesencadenar;
-	private Dispositivo dispositivo;
+	private DispositivoInteligente dispositivo;
 
-	public Medicion(Accion accionQueDebeDesencadenar, Dispositivo dispositivo) {
+	public Medicion(Accion accionQueDebeDesencadenar, DispositivoInteligente dispositivo) {
 		this.accionQueDebeDesencadenar = accionQueDebeDesencadenar;
 		this.dispositivo = dispositivo;
 	}

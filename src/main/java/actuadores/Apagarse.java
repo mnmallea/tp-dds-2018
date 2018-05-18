@@ -1,11 +1,11 @@
 package actuadores;
 
-import dominio.Dispositivo;
+import dominio.DispositivoInteligente;
 
 public class Apagarse implements Accion{
 
 	@Override
-	public void aplicarseA(Dispositivo unDispositivo) {
+	public void aplicarseA(DispositivoInteligente unDispositivo) {
 		unDispositivo.apagarse();
 	}
 	

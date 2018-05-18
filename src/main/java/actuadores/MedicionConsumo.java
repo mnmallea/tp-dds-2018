@@ -1,9 +1,9 @@
 package actuadores;
 
-import dominio.Dispositivo;
+import dominio.DispositivoInteligente;
 
 public class MedicionConsumo extends Medicion {
-	public MedicionConsumo(Dispositivo dispositivo, Float consumo) {
+	public MedicionConsumo(DispositivoInteligente dispositivo, Float consumo) {
 		super(new Apagarse(), dispositivo);
 		this.consumo = consumo;
 	}

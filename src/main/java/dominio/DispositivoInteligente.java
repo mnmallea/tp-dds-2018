@@ -3,7 +3,8 @@ package dominio;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class DispositivoInteligente implements TipoDispositivo {
+public class DispositivoInteligente{
+	
 	private Estado estado;
 	private Float consumoPorHora;
 	private Fabricante fabricante;
@@ -16,33 +17,35 @@ public class DispositivoInteligente implements TipoDispositivo {
 	public Float consumoEnHoras(int horas) {
 		return horas * consumoPorHora;
 	}
-
-	@Override
+	
+	public Float getConsumoPorHora() {
+		return consumoPorHora;
+	}
+	
+	public void setConsumoPorHora(Float consumoPorHora) {
+		this.consumoPorHora = consumoPorHora;
+	}
+	
 	public void apagarse() {
 		estado.apagarse(this);
 	}
 
-	@Override
 	public void encenderse() {
 		estado.encenderse(this);
 	}
 
-	@Override
 	public void ahorrarEnergia() {
 		estado.ahorrarEnergia(this);
 	}
 
-	@Override
 	public Boolean estaEncendido() {
 		return estado.estaEncendido();
 	}
 
-	@Override
 	public Boolean estaApagado() {
 		return !estado.estaEncendido();
 	}
 
-	@Override
 	public Float consumoEnPeriodo(Period periodo) {
 		return fabricante.consumoEnPeriodo(periodo, this.idDeFabrica);
 	}

@@ -13,10 +13,6 @@ public class DispositivoEstandar {
 		return this.consumoPorHora;
 	}
 	
-	public void convertirEnInteligente() {
-		
-	}
-	
 	public Float getConsumo() {
 		return this.consumoPorHora * this.horasDeUsoDiarias * 30;
 	}

@@ -88,5 +88,13 @@ public class Cliente {
 	public void sumarPuntos(int unosPuntos) {
 		this.puntos  += unosPuntos;
 	}
+	
+	public void convertirAInteligente(DispositivoEstandar unDispositivo) {
+		DispositivoInteligente nuevoDispositivo= new DispositivoInteligente();
+		nuevoDispositivo.setConsumoPorHora(unDispositivo.getConsumoPorHora());
+		dispositivosInteligentes.add(nuevoDispositivo);
+		dispositivosEstandar.remove(unDispositivo);
+		this.sumarPuntos(10);
+	}
 
 }

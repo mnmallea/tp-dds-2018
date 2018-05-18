@@ -1,11 +1,11 @@
 package actuadores;
 
-import dominio.Dispositivo;
+import dominio.DispositivoInteligente;
 
 public class SensorConsumo implements Sensor{
 
 	@Override
-	public Medicion realizarMedicion(Dispositivo unDispositivo) {
+	public Medicion realizarMedicion(DispositivoInteligente unDispositivo) {
 		return new MedicionConsumo(unDispositivo, unDispositivo.getConsumoPorHora());
 	}
 
