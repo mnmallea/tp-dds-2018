@@ -10,10 +10,17 @@ public abstract class Medicion {
 		this.accionQueDebeDesencadenar = accionQueDebeDesencadenar;
 		this.dispositivo = dispositivo;
 	}
+	
+	
+	public void setDispositivo(DispositivoInteligente unDispositivo) {
+		this.dispositivo = unDispositivo;
+	}
+	
 
 	public abstract Boolean debeDesencadenarAccion();
 
-	public void desencadenarAccionSiDebe() {
-		this.accionQueDebeDesencadenar.aplicarseA(this.dispositivo);
+	public void dispararAccion() {
+		if(this.debeDesencadenarAccion())
+			accionQueDebeDesencadenar.aplicarseA(dispositivo);
 	}
 }
