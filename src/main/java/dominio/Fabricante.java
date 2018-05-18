@@ -13,5 +13,7 @@ public interface Fabricante {
 	void encenderDispositivo(Long idDeFabrica);
 
 	void ahorrarEnergia(Long idDeFabrica);
+
+	Float consumoUltimoMes(Long idDeFabrica);
 	
 }

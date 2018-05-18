@@ -18,8 +18,8 @@ public class DispositivoInteligenteTest {
 
 	Fabricante fabricante = Mockito.mock(Fabricante.class);
 	Fabricante fabricanteFallado = Mockito.mock(Fabricante.class);
-	DispositivoInteligente dispositivo = new DispositivoInteligente(new Apagado(), 30f, fabricante, 1l);
-	DispositivoInteligente dispositivoFallado = new DispositivoInteligente(new Apagado(), 30f, fabricanteFallado, 1l);
+	DispositivoInteligente dispositivo = new DispositivoInteligente("tele",new Apagado(), 30f, fabricante, 1l);
+	DispositivoInteligente dispositivoFallado = new DispositivoInteligente("AC", new Apagado(), 30f, fabricanteFallado, 1l);
 
 	@Before
 	public void init() {

@@ -43,8 +43,8 @@ public class Cliente {
 		this.nroTelefono = nroTelefono;
 		this.domicilio = domicilio;
 		this.fechaAlta = fechaAlta;
-		this.agregarDispositivosEstandar(dispositivosEstandar);
-		this.agregarDispositivosInteligentes(dispositivosInteligentes);
+		this.dispositivosEstandar = dispositivosEstandar;
+		this.dispositivosInteligentes = dispositivosInteligentes;
 	}
 
 	public String getNombre() {
@@ -52,10 +52,17 @@ public class Cliente {
 	}
 
 	public Float consumo() { // Es la suma de cada uno de los consumos de sus dispositivos
-		return this.dispositivosInteligentes.stream().map(dispositivo -> dispositivo.getConsumo()).reduce(0f,
-				(unConsumo, otroConsumo) -> unConsumo + otroConsumo);
+		return (float) (this.consumoDispositivosEstandares() + this.consumoDispositivosInteligentes());
 	}
-
+	
+	public Double consumoDispositivosInteligentes() {
+		return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+	}
+	
+	public Double consumoDispositivosEstandares() {
+		return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+	}
+	
 	public void categorizar() {
 		this.categoria = Categorizador.instancia.getCategoriaSegunRango(this.consumo());
 	}

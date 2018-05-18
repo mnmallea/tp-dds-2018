@@ -3,27 +3,26 @@ package dominio;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class DispositivoInteligente{
-	
+public class DispositivoInteligente {
+
+	private String nombre;
 	private Estado estado;
 	private Float consumoPorHora;
 	private Fabricante fabricante;
-	private Long idDeFabrica;//entiendo que este seria como un numero de serie unico para cada dispositivo
-	
-	
-	
-	public DispositivoInteligente(Estado estado, Float consumoPorHora, Fabricante fabricante, Long idDeFabrica) {
+	private Long idDeFabrica;// entiendo que este seria como un numero de serie unico para cada dispositivo
+
+	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, Fabricante fabricante,
+			Long idDeFabrica) {
+		this.nombre = nombre;
 		this.estado = estado;
 		this.consumoPorHora = consumoPorHora;
 		this.fabricante = fabricante;
 		this.idDeFabrica = idDeFabrica;
 	}
-	
-	
+
 	public Long getIdDeFabrica() {
 		return idDeFabrica;
 	}
-
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
@@ -32,15 +31,15 @@ public class DispositivoInteligente{
 	public Float consumoEnHoras(int horas) {
 		return horas * consumoPorHora;
 	}
-	
+
 	public Float getConsumoPorHora() {
 		return consumoPorHora;
 	}
-	
+
 	public void setConsumoPorHora(Float consumoPorHora) {
 		this.consumoPorHora = consumoPorHora;
 	}
-	
+
 	public void apagarse() {
 		estado.apagarse(this);
 	}
@@ -64,7 +63,7 @@ public class DispositivoInteligente{
 	public Float consumoEnPeriodo(Period periodo) {
 		return fabricante.consumoEnPeriodo(periodo, this.idDeFabrica);
 	}
-	
+
 	public Float consumoEnUltimasHoras(int unasHoras) {
 		return fabricante.consumoEnUltimasHoras(unasHoras, this.idDeFabrica);
 	}
@@ -82,9 +81,8 @@ public class DispositivoInteligente{
 	}
 
 	public Float getConsumo() {
-		return this.consumoEnPeriodo(Period.between(LocalDate.now().minusMonths(1),LocalDate.now()));
+		return fabricante.consumoUltimoMes(this.idDeFabrica);
 	}
-
 
 	public Estado getEstado() {
 		// TODO Auto-generated method stub

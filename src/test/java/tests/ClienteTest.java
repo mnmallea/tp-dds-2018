@@ -1,16 +1,21 @@
 package tests;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import dominio.Apagado;
 import dominio.Categorizador;
 import dominio.Cliente;
-import dominio.Dispositivo;
+import dominio.DispositivoEstandar;
+import dominio.DispositivoInteligente;
+import dominio.Encendido;
+import dominio.Fabricante;
 import dominio.TipoDocumento;
 
 /*
@@ -24,54 +29,55 @@ import dominio.TipoDocumento;
 
 public class ClienteTest {
 	public Cliente cliente;
+	Fabricante fabricante = Mockito.mock(Fabricante.class);
+
+	DispositivoEstandar heladera = new DispositivoEstandar("heladera", 7f, 4f);
+	DispositivoEstandar tostadora = new DispositivoEstandar("tostadora", 2f, 3f);
+	DispositivoInteligente microondas = new DispositivoInteligente("microondas", new Encendido(), 1f, fabricante, 15l);
+	DispositivoInteligente lavavajillas = new DispositivoInteligente("lavavajillas de la cocina", new Apagado(), 1f,
+			fabricante, 16l);
 
 	@Before
 	public void init() {
-
-		Dispositivo heladera = new Dispositivo("heladera", 7.0f);
-		Dispositivo tostadora = new Dispositivo("tostadora", 2.5f);
-		Dispositivo microondas = new Dispositivo("microondas", 4.5f);
-
-//		heladera.encenderse();; // encendemos uno
-
-		List<Dispositivo> listaDeDispositivos = new ArrayList<Dispositivo>();
-
-		listaDeDispositivos.add(heladera);
-		listaDeDispositivos.add(tostadora);
-		listaDeDispositivos.add(microondas);
+		Mockito.when(fabricante.consumoUltimoMes(microondas.getIdDeFabrica())).thenReturn(10f);
+		Mockito.when(fabricante.consumoUltimoMes(lavavajillas.getIdDeFabrica())).thenReturn(0f);
+		
+		List<DispositivoEstandar> dispositivosEstandar = Arrays.asList(heladera, tostadora);
+		List<DispositivoInteligente> dispositivosInteligentes = Arrays.asList(microondas, lavavajillas);
 
 		cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, "unaCalle 123",
-				Categorizador.instancia.getR1(), listaDeDispositivos, LocalDate.now()); // categoria R1
+				Categorizador.instancia.getR1(), dispositivosInteligentes, dispositivosEstandar, LocalDate.now()); // categoria
+																													// R1
 	}
 
 	@Test
-	public void elClienteTieneTresDispositivos() {
-		Assert.assertEquals(3, cliente.cantidadDeDispositivos());
+	public void elClienteTieneCuatroDispositivos() {
+		Assert.assertEquals(4, cliente.cantidadDeDispositivos());
 	}
 
 	@Test
 	public void elClienteTieneAlgunDispositivoEncendido() {
-		Assert.assertEquals(true, cliente.algunDispositivoEncendido());// heladera
+		Assert.assertTrue(cliente.algunDispositivoEncendido());// microondas
 	}
-	
+
 	@Test
 	public void elClienteTieneUnDispositivoEncendido() {
 		Assert.assertEquals(1, cliente.cantidadDispositivosInteligentesEncendidos());
 	}
-	
+
 	@Test
-	public void elClienteTieneDosDispositivosApagados() {
-		Assert.assertEquals(2, cliente.cantidadDispositivosInteligentesApagados());
+	public void elClienteTieneUnDispositivoApagados() {
+		Assert.assertEquals(1, cliente.cantidadDispositivosInteligentesApagados());
 	}
-	
+
 	@Test
-	public void seRecategorizaAlClienteYDeberiaQuedarEnR1() {
+	public void seRecategorizaAlClienteYDeberiaQuedarEnR8() {
 		cliente.categorizar();
-		Assert.assertSame(Categorizador.instancia.getR1(), cliente.getCategoria());
+		Assert.assertSame(Categorizador.instancia.getR8(), cliente.getCategoria());
 	}
-	
+
 	@Test
 	public void elClienteConsume14Kwh() {
-		Assert.assertEquals(new Float(14f), cliente.consumo());
+		Assert.assertEquals(new Float(1030f), cliente.consumo());
 	}
 }

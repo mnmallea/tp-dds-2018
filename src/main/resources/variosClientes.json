@@ -6,12 +6,15 @@
   "nroTelefono": 123456789,
   "tipoDocumento": DNI,
   "domicilio": "Suipacha 999",
-  "dispositivos": [
+  "dispositivosEstandares": [
     {
       "nombre": "heladera",
-      "encendido": false,
-      "consumoPorHora": 150
+      "consumoPorHora": 1,
+      "horasDeUsoDiarias": 1
     }
+  ],
+  "dispositivosInteligentes":[
+  
   ]
 },
 {
@@ -21,17 +24,19 @@
   "nroTelefono": 987654321,
   "tipoDocumento": LC,
   "domicilio": "Uruguay 700",
-  "dispositivos": [
+  "dispositivosEstandares": [
     {
       "nombre": "freezer",
-      "encendido": false,
-      "consumoPorHora": 200
+      "consumoPorHora": 1,
+      "horasDeUsoDiarias": 1
     },
     {
       "nombre": "radio",
-      "encendido": true,
-      "consumoPorHora": 20
+      "consumoPorHora": 1,
+      "horasDeUsoDiarias": 1
     }
+  ],
+  "dispositivosInteligentes":[
   ]
 }
 ]

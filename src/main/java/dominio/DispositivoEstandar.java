@@ -1,10 +1,12 @@
 package dominio;
 
 public class DispositivoEstandar {
+	private String nombre;
 	private Float consumoPorHora;
 	private Float horasDeUsoDiarias;
 
-	public DispositivoEstandar(Float consumoPorHora, Float horasDeUsoDiarias) {
+	public DispositivoEstandar(String nombre, Float consumoPorHora, Float horasDeUsoDiarias) {
+		this.nombre = nombre;
 		this.consumoPorHora = consumoPorHora;
 		this.horasDeUsoDiarias = horasDeUsoDiarias;
 	}

@@ -8,7 +8,7 @@ public class Encendido extends Estado{
 	
 	@Override
 	public Boolean estaEncendido() {
-    	return false;
+    	return true;
     }
 
 }
