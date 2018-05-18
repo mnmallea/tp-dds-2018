@@ -6,16 +6,15 @@
   "nroTelefono": 123456789,
   "tipoDocumento": DNI,
   "domicilio": "Suipacha 999",
-  "dispositivosEstandares": [
+  "dispositivosEstandar": [
     {
       "nombre": "heladera",
       "consumoPorHora": 1,
-      "horasDeUsoDiarias": 1
+      "horasDeUsoDiarias": 1,
+      "numeroDeSerie": 33334444
     }
   ],
-  "dispositivosInteligentes":[
-  
-  ]
+  "dispositivosInteligentes": []
 },
 {
   "nombre": "Gaston",
@@ -24,7 +23,7 @@
   "nroTelefono": 987654321,
   "tipoDocumento": LC,
   "domicilio": "Uruguay 700",
-  "dispositivosEstandares": [
+  "dispositivosEstandar": [
     {
       "nombre": "freezer",
       "consumoPorHora": 1,
@@ -36,7 +35,6 @@
       "horasDeUsoDiarias": 1
     }
   ],
-  "dispositivosInteligentes":[
-  ]
+  "dispositivosInteligentes":[]
 }
 ]
