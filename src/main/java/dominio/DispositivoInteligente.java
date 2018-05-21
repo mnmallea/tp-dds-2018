@@ -1,6 +1,5 @@
 package dominio;
 
-import java.time.LocalDate;
 import java.time.Period;
 
 public class DispositivoInteligente {
@@ -9,7 +8,7 @@ public class DispositivoInteligente {
 	private Estado estado;
 	private Float consumoPorHora;
 	private Fabricante fabricante;
-	private Long idDeFabrica;// entiendo que este seria como un numero de serie unico para cada dispositivo
+	private Long idDeFabrica;
 
 	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, Fabricante fabricante,
 			Long idDeFabrica) {
@@ -85,7 +84,6 @@ public class DispositivoInteligente {
 	}
 
 	public Estado getEstado() {
-		// TODO Auto-generated method stub
 		return this.estado;
 	}
 }

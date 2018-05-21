@@ -1,10 +1,22 @@
 package dominio;
 
-public class AhorroEnergia extends Estado{
+public class AhorroEnergia implements Estado {
 
-	@Override
-	public void ahorrarEnergia(DispositivoInteligente dispositivo) {
-		
+	public void apagarse(DispositivoInteligente dispositivo) {
+		dispositivo.apagarsePosta();
+		dispositivo.setEstado(new Apagado());
 	}
 
+	public void encenderse(DispositivoInteligente dispositivo) {
+		dispositivo.encendersePosta();
+		dispositivo.setEstado(new Encendido());
+	}
+
+	public void ahorrarEnergia(DispositivoInteligente dispositivo) {
+
+	}
+
+	public Boolean estaEncendido() {
+		return false;
+	}
 }
