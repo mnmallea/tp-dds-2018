@@ -19,6 +19,14 @@ public class DispositivoInteligente {
 		this.idDeFabrica = idDeFabrica;
 	}
 
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
+	}
+
 	public Long getIdDeFabrica() {
 		return idDeFabrica;
 	}

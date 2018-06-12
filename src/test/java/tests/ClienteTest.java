@@ -28,17 +28,23 @@ import dominio.TipoDocumento;
  */
 
 public class ClienteTest {
-	public Cliente cliente;
-	Fabricante fabricante = Mockito.mock(Fabricante.class);
+	private Cliente cliente;
+	private Fabricante fabricante;
 
-	DispositivoEstandar heladera = new DispositivoEstandar("heladera", 7f, 4f);
-	DispositivoEstandar tostadora = new DispositivoEstandar("tostadora", 2f, 3f);
-	DispositivoInteligente microondas = new DispositivoInteligente("microondas", new Encendido(), 1f, fabricante, 15l);
-	DispositivoInteligente lavavajillas = new DispositivoInteligente("lavavajillas de la cocina", new Apagado(), 1f,
-			fabricante, 16l);
+	private DispositivoEstandar heladera;
+	private DispositivoEstandar tostadora;
+	private DispositivoInteligente microondas;
+	private DispositivoInteligente lavavajillas;
 
 	@Before
 	public void init() {
+		fabricante = Mockito.mock(Fabricante.class);
+		heladera = new DispositivoEstandar("heladera", 7f, 4f);
+		tostadora = new DispositivoEstandar("tostadora", 2f, 3f);
+		microondas = new DispositivoInteligente("microondas", new Encendido(), 1f, fabricante, 15l);
+		lavavajillas = new DispositivoInteligente("lavavajillas de la cocina", new Apagado(), 1f,
+				fabricante, 16l);
+		
 		Mockito.when(fabricante.consumoUltimoMes(microondas.getIdDeFabrica())).thenReturn(10f);
 		Mockito.when(fabricante.consumoUltimoMes(lavavajillas.getIdDeFabrica())).thenReturn(0f);
 		

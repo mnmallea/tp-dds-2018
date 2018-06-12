@@ -14,7 +14,14 @@
       "numeroDeSerie": 33334444
     }
   ],
-  "dispositivosInteligentes": []
+  "dispositivosInteligentes": [
+  	{
+  		"nombre" : "lavarropas",
+  		"consumoPorHora" : 151,
+  		"idDeFabrica" : 4567894,
+  		"estado" : "AhorroEnergia"
+  	}
+  ]
 },
 {
   "nombre": "Gaston",
@@ -27,12 +34,14 @@
     {
       "nombre": "freezer",
       "consumoPorHora": 1,
-      "horasDeUsoDiarias": 1
+      "horasDeUsoDiarias": 1,
+      "numeroDeSerie": 33334443
     },
     {
       "nombre": "radio",
       "consumoPorHora": 1,
-      "horasDeUsoDiarias": 1
+      "horasDeUsoDiarias": 1,
+      "numeroDeSerie": 333343
     }
   ],
   "dispositivosInteligentes":[]

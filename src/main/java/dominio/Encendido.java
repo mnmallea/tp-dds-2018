@@ -1,6 +1,7 @@
 package dominio;
 
 public class Encendido implements Estado {
+	
 
 	public void apagarse(DispositivoInteligente dispositivo) {
 		dispositivo.apagarsePosta();

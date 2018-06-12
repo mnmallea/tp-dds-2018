@@ -1,7 +1,5 @@
 package tests;
 
-import static org.junit.Assert.fail;
-
 import java.util.Arrays;
 
 import org.junit.Before;
@@ -18,12 +16,12 @@ import dominio.Fabricante;
 
 public class ActuadoresTest {
 	
-	Regla regla;
-	Accion accion;
-	Fabricante fabricante;
-	DispositivoInteligente dispositivo;
-	Sensor sensor;
-	Medicion medicion;
+	private Regla regla;
+	private Accion accion;
+	private Fabricante fabricante;
+	private DispositivoInteligente dispositivo;
+	private Sensor sensor;
+	private Medicion medicion;
 
 	@Before
 	public void init(){
@@ -43,7 +41,7 @@ public class ActuadoresTest {
 	public void seDebeDesencadenarLaAccionPorqueLaMedicionCumpleLaCondicionDebida() {
 		regla.setMediciones();
 		regla.dispararAcciones();
-		Mockito.verify(accion, Mockito.times(1));
+		Mockito.verify(accion, Mockito.times(1)).aplicarseA(dispositivo);;
 	}
 
 

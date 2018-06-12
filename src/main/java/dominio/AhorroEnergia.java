@@ -17,6 +17,6 @@ public class AhorroEnergia implements Estado {
 	}
 
 	public Boolean estaEncendido() {
-		return false;
+		return true;
 	}
 }
