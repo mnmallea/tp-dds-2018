@@ -1,24 +1,26 @@
 package actuadores;
 
-import java.util.List;
-import java.util.stream.Collectors;
+public abstract class Regla {
+	private Sensor sensor;
+	private Double medicion;
+	private Actuador actuador;
 
-public class Regla {
-	private List<Medicion> mediciones;
-	private List<Sensor> sensores;
-
-
-	public Regla(List<Sensor> sensores) {
-		this.sensores = sensores;
+	public Regla(Sensor sensor, Actuador actuador) {
+		this.sensor = sensor;
+		this.actuador = actuador;
 	}
 
-	
-	public void dispararAcciones() {
-		mediciones.forEach(medicion-> medicion.dispararAccion());
+	public void pedirMedicion() {
+		this.medicion = sensor.tomarMedicion();
 	}
 
-	public void setMediciones(){
-		mediciones = sensores.stream().map(sensor -> sensor.tomarMedicion()).collect(Collectors.toList());
+	public abstract Boolean hayQueActuar(Double medicion);
+
+	public void ejecutarse() {
+		this.pedirMedicion();
+		if (this.hayQueActuar(this.medicion)) {
+			actuador.actua();
+		}
 	}
-	
+
 }
