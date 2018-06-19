@@ -1,8 +1,8 @@
 package actuadores;
 
-public class ReglaEnciendeAC extends Regla {
+public class ReglaEnciendeAC extends Regla<Double> {
 
-	public ReglaEnciendeAC(Sensor sensor, Actuador actuador) {
+	public ReglaEnciendeAC(Sensor<Double> sensor, Actuador actuador) {
 		super(sensor, actuador);
 	}
 

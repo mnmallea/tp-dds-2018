@@ -13,8 +13,9 @@ import actuadores.SensorTemperatura;
 public class EncenderAireTest {
 
 	private Actuador actuadorEnciendeAire;
-	private Regla reglaEnciendeAire;
-	private Sensor sensorTemperatura;
+	private Regla<Double> reglaEnciendeAire;
+	private Sensor<Double> sensorTemperatura;
+
 	
 	@Before
 	public void init() {

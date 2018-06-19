@@ -1,5 +1,5 @@
 package actuadores;
 
-public interface Sensor {
-	public Double tomarMedicion();
+public interface Sensor <TipoMedicion>{
+	public TipoMedicion tomarMedicion();
 }
