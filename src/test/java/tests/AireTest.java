@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 
 import actuadores.Actuador;
 import actuadores.ActuadorBajaTemperaturaAC;
-import actuadores.ActuadorEncenderAC;
+import actuadores.ActuadorEncenderDispositivo;
 import actuadores.ReglaParaTemperatura;
 import actuadores.SensorTemperatura;
 import dominio.AireAcondicionadoInteligente;
@@ -31,7 +31,7 @@ public class AireTest {
 	public void init() {
 		fabricante = Mockito.mock(FabricanteAireAcondicionado.class);
 		aire = new AireAcondicionadoInteligente("Aire LG", new Apagado(), 65.0f, fabricante, 1l);
-		actuadorEnciendeAire = new ActuadorEncenderAC();
+		actuadorEnciendeAire = new ActuadorEncenderDispositivo();
 		reglaParaEncenderAire = new ReglaParaTemperatura(aire, actuadorEnciendeAire);
 		actuadorBajaTemperatura = new ActuadorBajaTemperaturaAC(3);
 		reglaParaBajarTemperatura = new ReglaParaTemperatura(aire, actuadorBajaTemperatura);
