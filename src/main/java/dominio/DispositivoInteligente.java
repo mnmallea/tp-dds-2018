@@ -8,7 +8,7 @@ public class DispositivoInteligente {
 	private Estado estado;
 	private Float consumoPorHora;
 	private Fabricante fabricante;
-	private Long idDeFabrica;
+	protected Long idDeFabrica;
 
 	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, Fabricante fabricante,
 			Long idDeFabrica) {
