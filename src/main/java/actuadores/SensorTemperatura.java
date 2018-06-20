@@ -1,8 +1,13 @@
 package actuadores;
 
-public class SensorTemperatura implements Sensor {
-	public Double tomarMedicion() {
-		return new Double(25);
-	}
+import java.util.List;
+
+public class SensorTemperatura implements SensorTemperaturaFabricante{
+	List<ReglaParaTemperatura> reglas;
 	
+	@Override
+	public void laTemperaturaCambioA(Double temperatura) {
+		reglas.forEach(regla-> regla.temperaturaCambioA(temperatura));
+	}
+
 }
