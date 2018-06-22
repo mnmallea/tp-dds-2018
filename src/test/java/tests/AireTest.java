@@ -17,16 +17,17 @@ import dominio.Apagado;
 import dominio.DispositivoInteligente;
 import dominio.Encendido;
 import dominio.FabricanteAireAcondicionado;
+import dominio.ReflectorInteligente;
 
 public class AireTest {
 	private Actuador<?> actuadorEnciendeAire;
 	private Actuador<?> actuadorBajaTemperatura;
 	private ReglaParaTemperatura reglaParaEncenderAire;
 	private ReglaParaTemperatura reglaParaBajarTemperatura;
-	private DispositivoInteligente aire;
+	private DispositivoInteligente<FabricanteAireAcondicionado> aire;
 	private FabricanteAireAcondicionado fabricante;
 	private SensorTemperatura sensor;
-	
+
 	@Before
 	public void init() {
 		fabricante = Mockito.mock(FabricanteAireAcondicionado.class);
@@ -36,27 +37,26 @@ public class AireTest {
 		actuadorBajaTemperatura = new ActuadorBajaTemperaturaAC(3);
 		reglaParaBajarTemperatura = new ReglaParaTemperatura(aire, actuadorBajaTemperatura);
 		sensor = new SensorTemperatura(Arrays.asList(reglaParaEncenderAire, reglaParaBajarTemperatura));
-		
 	}
-	
+
 	@Test
 	public void elAireSeDebeEncender() {
 		sensor.laTemperaturaCambioA(25.0);
 		Assert.assertEquals(Encendido.class, aire.getEstado().getClass());
 	}
-	
+
 	@Test
 	public void elFabricanteDelAireDebioSerLlamadoASuMetodoEncender() {
 		sensor.laTemperaturaCambioA(25.0);
 		Mockito.verify(fabricante, Mockito.times(1)).encenderDispositivo(aire.getIdDeFabrica());
 	}
-	
+
 	@Test
 	public void elAireDebeQuedarApagado() {
 		sensor.laTemperaturaCambioA(23.2);
 		Assert.assertEquals(Apagado.class, aire.getEstado().getClass());
 	}
-	
+
 	@Test
 	public void laTemperaturaDebioBajar3Grados() {
 		sensor.laTemperaturaCambioA(25.0);

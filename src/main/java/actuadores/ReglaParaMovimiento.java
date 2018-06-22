@@ -5,8 +5,8 @@ import java.util.List;
 import dominio.DispositivoInteligente;
 
 public class ReglaParaMovimiento implements ReglaParaMovimientoFabricante{
-	DispositivoInteligente dispositivo;
-	List<Actuador> actuadores;
+	private DispositivoInteligente dispositivo;
+	private List<Actuador> actuadores;
 	
 	
 	public ReglaParaMovimiento(DispositivoInteligente dispositivo, List<Actuador> actuadores) {

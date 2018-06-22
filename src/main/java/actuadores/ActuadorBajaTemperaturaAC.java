@@ -13,4 +13,5 @@ public class ActuadorBajaTemperaturaAC implements Actuador<AireAcondicionadoInte
 	public void actuaSobre(AireAcondicionadoInteligente unAire) {
 		unAire.bajarTemperatura(this.gradosQueBaja);
 	}
+	
 }

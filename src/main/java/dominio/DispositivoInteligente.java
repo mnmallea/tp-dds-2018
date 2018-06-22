@@ -2,15 +2,15 @@ package dominio;
 
 import java.time.Period;
 
-public class DispositivoInteligente {
+public class DispositivoInteligente<T extends Fabricante> {
 
 	private String nombre;
 	private Estado estado;
 	private Float consumoPorHora;
-	private Fabricante fabricante;
+	protected T fabricante;
 	protected Long idDeFabrica;
 
-	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, Fabricante fabricante,
+	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante,
 			Long idDeFabrica) {
 		this.nombre = nombre;
 		this.estado = estado;
@@ -19,11 +19,11 @@ public class DispositivoInteligente {
 		this.idDeFabrica = idDeFabrica;
 	}
 
-	public Fabricante getFabricante() {
+	public T getFabricante() {
 		return fabricante;
 	}
 
-	public void setFabricante(Fabricante fabricante) {
+	public void setFabricante(T fabricante) {
 		this.fabricante = fabricante;
 	}
 
