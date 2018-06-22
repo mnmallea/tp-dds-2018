@@ -21,8 +21,8 @@ import dominio.FabricanteReflector;
 
 public class ReflectorTest {
 
-	private Actuador actuadorEnciendeReflector;
-	private Actuador actuadorAumentarIntensidadLuminica;
+	private Actuador<?> actuadorEnciendeReflector;
+	private Actuador<?> actuadorAumentarIntensidadLuminica;
 	private ReglaParaMovimiento reglaParaReflector; // lo enciende y le aumenta la intensidad
 	private DispositivoInteligente reflector;
 	private FabricanteReflector fabricante;

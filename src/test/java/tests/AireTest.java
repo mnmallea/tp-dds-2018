@@ -19,8 +19,8 @@ import dominio.Encendido;
 import dominio.FabricanteAireAcondicionado;
 
 public class AireTest {
-	private Actuador actuadorEnciendeAire;
-	private Actuador actuadorBajaTemperatura;
+	private Actuador<?> actuadorEnciendeAire;
+	private Actuador<?> actuadorBajaTemperatura;
 	private ReglaParaTemperatura reglaParaEncenderAire;
 	private ReglaParaTemperatura reglaParaBajarTemperatura;
 	private DispositivoInteligente aire;

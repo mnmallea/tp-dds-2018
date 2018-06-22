@@ -1,9 +1,8 @@
 package actuadores;
 
 import dominio.AireAcondicionadoInteligente;
-import dominio.DispositivoInteligente;
 
-public class ActuadorBajaTemperaturaAC implements Actuador {
+public class ActuadorBajaTemperaturaAC implements Actuador<AireAcondicionadoInteligente> {
 	private Integer gradosQueBaja;
 
 	public ActuadorBajaTemperaturaAC(Integer gradosQueBaja) {
@@ -11,8 +10,7 @@ public class ActuadorBajaTemperaturaAC implements Actuador {
 	}
 
 	@Override
-	public void actuaSobre(DispositivoInteligente unDispositivo) {
-		AireAcondicionadoInteligente aire = (AireAcondicionadoInteligente) unDispositivo;
-		aire.bajarTemperatura(this.gradosQueBaja);
+	public void actuaSobre(AireAcondicionadoInteligente unAire) {
+		unAire.bajarTemperatura(this.gradosQueBaja);
 	}
 }

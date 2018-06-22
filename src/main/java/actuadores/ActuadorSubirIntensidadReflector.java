@@ -1,9 +1,8 @@
 package actuadores;
 
-import dominio.DispositivoInteligente;
 import dominio.ReflectorInteligente;
 
-public class ActuadorSubirIntensidadReflector implements Actuador{
+public class ActuadorSubirIntensidadReflector implements Actuador<ReflectorInteligente>{
 	private Double luxQueSube;
 	
 	public ActuadorSubirIntensidadReflector(Double luxQueSube) {
@@ -12,10 +11,8 @@ public class ActuadorSubirIntensidadReflector implements Actuador{
 
 	
 	@Override
-	public void actuaSobre(DispositivoInteligente unDispositivo) {
-		ReflectorInteligente reflector = (ReflectorInteligente) unDispositivo;
-		reflector.aumentarIntensidad(luxQueSube);
-
+	public void actuaSobre(ReflectorInteligente unReflector) {
+		unReflector.aumentarIntensidad(luxQueSube);
 	}
 
 }
