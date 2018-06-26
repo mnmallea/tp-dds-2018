@@ -37,6 +37,7 @@ public class ClienteTest {
 	private DispositivoInteligente lavavajillas;
 
 	@Before
+	@SuppressWarnings("unchecked")
 	public void init() {
 		fabricante = Mockito.mock(Fabricante.class);
 		heladera = new DispositivoEstandar("heladera", 7f, 4f);

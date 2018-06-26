@@ -1,19 +1,14 @@
 package tests;
 
-import static org.junit.Assert.*;
-
-import java.time.LocalDate;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import dominio.AhorroEnergia;
 import dominio.Apagado;
 import dominio.DispositivoInteligente;
 import dominio.Fabricante;
-
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+@SuppressWarnings("unchecked")
 public class DispositivoInteligenteTest {
 
 	Fabricante fabricante = Mockito.mock(Fabricante.class);

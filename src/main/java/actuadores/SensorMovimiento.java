@@ -11,7 +11,7 @@ public class SensorMovimiento implements SensorMovimientoFabricante {
 
 	@Override
 	public void seMovio() {
-		reglas.forEach(regla -> regla.huboMovimiento());
+		reglas.forEach(ReglaParaMovimiento::huboMovimiento);
 	}
 
 	
