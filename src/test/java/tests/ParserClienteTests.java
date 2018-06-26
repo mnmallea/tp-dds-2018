@@ -15,8 +15,8 @@ import jsonAObjeto.ParserCliente;
 
 public class ParserClienteTests {
 
-	Cliente[] clientes, clientes2;
-	Fabricante fabrica = Mockito.mock(Fabricante.class);
+	private Cliente[] clientes, clientes2;
+	private Fabricante fabrica = Mockito.mock(Fabricante.class);
 	
 	@Before
 	public void init() {
