@@ -3,10 +3,14 @@ package actuadores;
 import java.util.List;
 
 public class SensorMovimiento implements SensorMovimientoFabricante {
-	List<ReglaParaMovimiento> reglas;
+	private List<ReglaParaMovimiento> reglas;
 	
 	public SensorMovimiento(List<ReglaParaMovimiento> reglas) {
 		this.reglas = reglas;
+	}
+
+	public void agregarRegla(ReglaParaMovimiento unaRegla){
+		reglas.add(unaRegla);
 	}
 
 	@Override

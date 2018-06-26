@@ -105,8 +105,8 @@ public class Cliente {
 	}
 
 
-	public void convertirAInteligente(DispositivoEstandar unDispositivo, Fabricante unFabricante) {
-		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente   (unDispositivo.getNombre(), 
+	public <T extends Fabricante>void convertirAInteligente(DispositivoEstandar unDispositivo, T unFabricante) {
+		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente<>   (unDispositivo.getNombre(),
 																				new Apagado(), 
 																				unDispositivo.getConsumoPorHora(), 
 																				unFabricante, 

@@ -1,17 +1,15 @@
 package tests;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
+import actuadores.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import actuadores.Actuador;
-import actuadores.ActuadorBajaTemperaturaAC;
-import actuadores.ActuadorEncenderDispositivo;
-import actuadores.ReglaParaTemperatura;
-import actuadores.SensorTemperatura;
 import dominio.AireAcondicionadoInteligente;
 import dominio.Apagado;
 import dominio.DispositivoInteligente;
@@ -20,46 +18,52 @@ import dominio.FabricanteAireAcondicionado;
 import dominio.ReflectorInteligente;
 
 public class AireTest {
-	private Actuador<?> actuadorEnciendeAire;
-	private Actuador<?> actuadorBajaTemperatura;
-	private ReglaParaTemperatura reglaParaEncenderAire;
-	private ReglaParaTemperatura reglaParaBajarTemperatura;
-	private DispositivoInteligente<FabricanteAireAcondicionado> aire;
+	private Actuador<AireAcondicionadoInteligente> actuadorEnciendeAire;
+	private Actuador<AireAcondicionadoInteligente> actuadorBajaTemperatura;
+	private Regla<Double,AireAcondicionadoInteligente> reglaParaEncenderAire;
+	private Regla<Double,AireAcondicionadoInteligente> reglaParaBajarTemperatura;
+	private AireAcondicionadoInteligente aire;
 	private FabricanteAireAcondicionado fabricante;
-	private SensorTemperatura sensor;
+	private Sensor<Double> sensor;
 
+	@SuppressWarnings("unchecked")
 	@Before
 	public void init() {
 		fabricante = Mockito.mock(FabricanteAireAcondicionado.class);
-		aire = new AireAcondicionadoInteligente("Aire LG", new Apagado(), 65.0f, fabricante, 1l);
-		actuadorEnciendeAire = new ActuadorEncenderDispositivo();
-		reglaParaEncenderAire = new ReglaParaTemperatura(aire, actuadorEnciendeAire);
+		aire = new AireAcondicionadoInteligente("Aire LG", new Apagado(), 65.0f, fabricante, 1L);
+		actuadorEnciendeAire = new ActuadorEncenderDispositivo<>();
+		reglaParaEncenderAire = new Regla<>(new TemperaturaMayorA(24d), Arrays.asList(actuadorEnciendeAire), aire);
 		actuadorBajaTemperatura = new ActuadorBajaTemperaturaAC(3);
-		reglaParaBajarTemperatura = new ReglaParaTemperatura(aire, actuadorBajaTemperatura);
-		sensor = new SensorTemperatura(Arrays.asList(reglaParaEncenderAire, reglaParaBajarTemperatura));
+		reglaParaBajarTemperatura = new Regla<>(new TemperaturaMayorA(24d), Arrays.asList(actuadorBajaTemperatura), aire);
+		sensor = new Sensor<>(new ArrayList<>());
+
 	}
 
 	@Test
 	public void elAireSeDebeEncender() {
-		sensor.laTemperaturaCambioA(25.0);
+		sensor.agregarRegla(reglaParaEncenderAire);
+		sensor.informarMedicion(25.0);
 		Assert.assertEquals(Encendido.class, aire.getEstado().getClass());
 	}
 
 	@Test
 	public void elFabricanteDelAireDebioSerLlamadoASuMetodoEncender() {
-		sensor.laTemperaturaCambioA(25.0);
+		sensor.agregarRegla(reglaParaEncenderAire);
+		sensor.informarMedicion(25.0);
 		Mockito.verify(fabricante, Mockito.times(1)).encenderDispositivo(aire.getIdDeFabrica());
 	}
 
 	@Test
 	public void elAireDebeQuedarApagado() {
-		sensor.laTemperaturaCambioA(23.2);
+		sensor.agregarRegla(reglaParaBajarTemperatura);
+		sensor.informarMedicion(23.2);
 		Assert.assertEquals(Apagado.class, aire.getEstado().getClass());
 	}
 
 	@Test
 	public void laTemperaturaDebioBajar3Grados() {
-		sensor.laTemperaturaCambioA(25.0);
+		sensor.agregarRegla(reglaParaBajarTemperatura);
+		sensor.informarMedicion(25.0);
 		Mockito.verify(fabricante, Mockito.times(1)).bajarTemperatura(aire.getIdDeFabrica(), 3);
 	}
 

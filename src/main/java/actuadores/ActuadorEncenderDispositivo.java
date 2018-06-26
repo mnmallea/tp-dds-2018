@@ -1,12 +1,11 @@
 package actuadores;
-import dominio.DispositivoInteligente;
-import dominio.Fabricante;
 
-public class ActuadorEncenderDispositivo implements Actuador<DispositivoInteligente<? extends Fabricante>>{
+import dominio.DispositivoInteligente;
+
+public class ActuadorEncenderDispositivo<T extends  DispositivoInteligente> implements Actuador{
 
 	@Override
 	public void actuaSobre(DispositivoInteligente unDispositivo) {
 		unDispositivo.encenderse();
 	}
-	
 }
