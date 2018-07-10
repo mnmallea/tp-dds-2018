@@ -9,12 +9,12 @@ public class Cliente {
 	private TipoDocumento tipoDocumento;
 	private int nroDocumento;
 	private Integer nroTelefono;
-	private String domicilio;
 	private LocalDate fechaAlta;
 	private Categoria categoria;
 	private List<DispositivoInteligente> dispositivosInteligentes;
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos = 0;
+	private Direccion direccion;
 
 	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
@@ -38,7 +38,7 @@ public class Cliente {
 	}
 
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
-			Integer nroTelefono, String domicilio, Categoria categoria,
+			Integer nroTelefono, Direccion direccion, Categoria categoria,
 			List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
 			LocalDate fechaAlta) {
 		this.nombre = nombre;
@@ -46,7 +46,7 @@ public class Cliente {
 		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
 		this.nroTelefono = nroTelefono;
-		this.domicilio = domicilio;
+		this.direccion = direccion;
 		this.fechaAlta = fechaAlta;
 		this.dispositivosEstandar = dispositivosEstandar;
 		this.dispositivosInteligentes = dispositivosInteligentes;
@@ -117,4 +117,7 @@ public class Cliente {
 		this.sumarPuntos(10);
 	}
 
+	public Direccion getDireccion() {
+		return direccion;
+	}
 }

@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.uqbar.geodds.Point;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public class ClienteTest {
 		List<DispositivoEstandar> dispositivosEstandar = Arrays.asList(heladera, tostadora);
 		List<DispositivoInteligente> dispositivosInteligentes = Arrays.asList(microondas, lavavajillas);
 
-		cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, "unaCalle 123",
+		cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, new Direccion(new Point(40, 20), "Calle falsa 123"),
 				Categorizador.instancia.getR1(), dispositivosInteligentes, dispositivosEstandar, LocalDate.now()); // categoria
 		// R1
 	}
