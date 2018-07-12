@@ -1,7 +1,8 @@
 package dominio;
 
-import org.uqbar.geodds.Point;
+import puntos.Point;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Zona {
@@ -13,6 +14,7 @@ public class Zona {
 	public Zona(Double radio, Point centro) {
 		this.radio = radio;
 		this.centro = centro;
+		this.transformadores = new ArrayList<>();
 	}
 
 	public List<Transformador> getTransformadores() {

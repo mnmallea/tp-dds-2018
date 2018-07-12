@@ -1,6 +1,6 @@
 package dominio;
 
-import org.uqbar.geodds.Point;
+import puntos.Point;
 
 public class Direccion {
 	private Point coordenada;

@@ -14,7 +14,7 @@ public class RepoClientes {
 	private RepoClientes() {
 	}
 
-	public void agregarClientes(Cliente unCliente){
+	public void agregarCliente(Cliente unCliente){
 		clientes.add(unCliente);
 	}
 

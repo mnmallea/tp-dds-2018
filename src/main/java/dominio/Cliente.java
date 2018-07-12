@@ -124,6 +124,6 @@ public class Cliente {
 	}
 
 	public Transformador transformadorMasCercano() {
-		return Mapa.instancia.transformadorMasCercanoA(this.direccion.getCoordenada());
+		return Mapa.instancia.transformadorMasCercanoA(this.getDireccion().getCoordenada());
 	}
 }

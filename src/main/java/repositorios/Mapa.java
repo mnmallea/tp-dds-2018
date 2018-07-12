@@ -2,7 +2,7 @@ package repositorios;
 
 import dominio.Transformador;
 import dominio.Zona;
-import org.uqbar.geodds.Point;
+import puntos.Point;
 
 import java.util.ArrayList;
 import java.util.Comparator;
