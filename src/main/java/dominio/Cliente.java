@@ -1,5 +1,7 @@
 package dominio;
 
+import repositorios.Mapa;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -119,5 +121,9 @@ public class Cliente {
 
 	public Direccion getDireccion() {
 		return direccion;
+	}
+
+	public Transformador transformadorMasCercano() {
+		return Mapa.instancia.transformadorMasCercanoA(this.direccion.getCoordenada());
 	}
 }
