@@ -41,6 +41,18 @@ class DispositivoPrueba implements Dispositivo {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void apagarse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ahorrarEnergia() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 public class OptimizadorHorasTests {
@@ -70,11 +82,10 @@ public class OptimizadorHorasTests {
 	}
 
 	@Test
-	public void noRompasPls() {
+	public void testPruebaSimplex1() {
 		OptimizadorHoras optimizadorHoras = new OptimizadorHoras();
 		List<SolucionSimplex> solucion = optimizadorHoras.optimizarHorasUso(dispositivos);
-
-		solucion.forEach(s -> System.out.print("Dispositivo: " + solucion.indexOf(s) + "  Horas recomendadas: " + s.getHorasRecomendadas() + "\n"));
+		Assert.assertEquals(solucion.get(0).getHorasRecomendadas(),  360, 0.002);
 	}
 
 	@Test

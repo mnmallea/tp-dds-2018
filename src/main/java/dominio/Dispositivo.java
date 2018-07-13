@@ -5,4 +5,6 @@ public interface Dispositivo {
 	Float getHorasMinimas();
 	Float getHorasMaximas();
 	Float getHorasUsoMes();
+	void apagarse();
+	void ahorrarEnergia();
 }
