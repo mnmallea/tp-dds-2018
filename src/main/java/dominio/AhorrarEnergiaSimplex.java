@@ -1,6 +1,6 @@
 package dominio;
 
-public class AhorrarEnergia implements EfectoSimplex {
+public class AhorrarEnergiaSimplex implements EfectoSimplex {
 
 	@Override
 	public void aplicarseA(Dispositivo dispositivo) {
