@@ -1,5 +1,6 @@
 package simplex;
 
+import dominio.Cliente;
 import dominio.Dispositivo;
 import org.apache.commons.math3.optim.MaxIter;
 import org.apache.commons.math3.optim.OptimizationData;
@@ -13,6 +14,12 @@ public class OptimizadorHoras {
 
 	public static final double CONSUMO_MAX_HOGAR = 612;
 	private static final int MAX_ITERATIONS = 100;
+
+	public void optimizarCliente(Cliente cliente) {
+		List<Dispositivo> dispositivos = cliente.getDispositivos();
+		List<SolucionSimplex> soluciones = optimizarHorasUso(dispositivos);
+		cliente.notificarResultadoSimplex(soluciones);
+	}
 
 	public List<SolucionSimplex> optimizarHorasUso(List<Dispositivo> dispositivos) {
 		SimplexSolver simplexSolver = new SimplexSolver();
@@ -29,7 +36,8 @@ public class OptimizadorHoras {
 
 		OptimizationData iteracionesMaximas = new MaxIter(MAX_ITERATIONS);
 
-		PointValuePair pointValuePair = simplexSolver.optimize(funcion, restricciones, iteracionesMaximas, GoalType.MAXIMIZE, new NonNegativeConstraint(true));
+		PointValuePair pointValuePair = simplexSolver.optimize(funcion, restricciones, iteracionesMaximas,
+				GoalType.MAXIMIZE, new NonNegativeConstraint(true));
 
 		double[] resultados = pointValuePair.getPoint();
 
@@ -43,23 +51,25 @@ public class OptimizadorHoras {
 			soluciones.add(new SolucionSimplex(dispositivos.get(i), resultados[i]));
 		}
 
-		return  soluciones;
+		return soluciones;
 	}
 
 	private LinearConstraint obtenerRestriccionConumoMaximo(List<Dispositivo> dispositivos) {
-		double[] potencias = dispositivos.stream().mapToDouble(Dispositivo::getPotencia).toArray();
+		double[] potencias = dispositivos.stream().mapToDouble(Dispositivo::getConsumo).toArray();
 		return new LinearConstraint(potencias, Relationship.LEQ, CONSUMO_MAX_HOGAR);
 	}
 
 	private Collection<LinearConstraint> obtenerRestriccionesHoras(List<Dispositivo> dispositivos) {
 		Collection<LinearConstraint> linearConstraints = new ArrayList<>();
 
-		dispositivos.forEach(dispositivo -> this.agregarRestriccionesHoras(dispositivo, linearConstraints, dispositivos));
+		dispositivos
+				.forEach(dispositivo -> this.agregarRestriccionesHoras(dispositivo, linearConstraints, dispositivos));
 
 		return linearConstraints;
 	}
 
-	private void agregarRestriccionesHoras(Dispositivo dispositivo, Collection<LinearConstraint> linearConstraints, List<Dispositivo> dispositivos) {
+	private void agregarRestriccionesHoras(Dispositivo dispositivo, Collection<LinearConstraint> linearConstraints,
+			List<Dispositivo> dispositivos) {
 		int cantidadDispositivos = dispositivos.size();
 		int index = dispositivos.indexOf(dispositivo);
 		double horasMaxima = dispositivo.getHorasMaximas();

@@ -1,9 +1,12 @@
 package dominio;
 
 import repositorios.Mapa;
+import simplex.SolucionSimplex;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Cliente {
 	private String nombre;
@@ -17,6 +20,7 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandar;
 	private int puntos = 0;
 	private Direccion direccion;
+	private EfectoSimplex efectoSimplex;
 
 	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
@@ -33,7 +37,7 @@ public class Cliente {
 	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
 		this.dispositivosInteligentes = dispositivos;
 	}
-	
+
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
 		dispositivosInteligentes.add(nuevoDispositivo);
 		sumarPuntos(15);
@@ -106,13 +110,9 @@ public class Cliente {
 		this.puntos += unosPuntos;
 	}
 
-
-	public <T extends Fabricante>void convertirAInteligente(DispositivoEstandar unDispositivo, T unFabricante) {
-		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente<>   (unDispositivo.getNombre(),
-																				new Apagado(), 
-																				unDispositivo.getConsumoPorHora(), 
-																				unFabricante, 
-																				unDispositivo.getNumeroDeSerie());
+	public <T extends Fabricante> void convertirAInteligente(DispositivoEstandar unDispositivo, T unFabricante) {
+		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente<>(unDispositivo.getNombre(), new Apagado(),
+				unDispositivo.getConsumoPorHora(), unFabricante, unDispositivo.getNumeroDeSerie());
 		dispositivosInteligentes.add(nuevoDispositivo);
 		dispositivosEstandar.remove(unDispositivo);
 
@@ -125,5 +125,14 @@ public class Cliente {
 
 	public Transformador transformadorMasCercano() {
 		return Mapa.instancia.transformadorMasCercanoA(this.getDireccion().getCoordenada());
+	}
+
+	public List<Dispositivo> getDispositivos() {
+		return Stream.concat(this.dispositivosInteligentes.stream(), this.dispositivosEstandar.stream())
+				.collect(Collectors.toList());
+	}
+
+	public void notificarResultadoSimplex(List<SolucionSimplex> soluciones) {
+		soluciones.forEach(solucion -> solucion.aplicarEfectoSiDebe(this.efectoSimplex));
 	}
 }

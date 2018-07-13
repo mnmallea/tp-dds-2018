@@ -22,7 +22,7 @@ class DispositivoPrueba implements Dispositivo {
 	}
 
 	@Override
-	public Float getPotencia() {
+	public Float getConsumo() {
 		return potencia;
 	}
 
@@ -34,6 +34,12 @@ class DispositivoPrueba implements Dispositivo {
 	@Override
 	public Float getHorasMaximas() {
 		return horasMaximas;
+	}
+
+	@Override
+	public Float getHorasUsoMes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

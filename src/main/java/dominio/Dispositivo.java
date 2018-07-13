@@ -1,7 +1,8 @@
 package dominio;
 
 public interface Dispositivo {
-	Float getPotencia();
+	Float getConsumo();
 	Float getHorasMinimas();
 	Float getHorasMaximas();
+	Float getHorasUsoMes();
 }

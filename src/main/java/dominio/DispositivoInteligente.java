@@ -2,21 +2,24 @@ package dominio;
 
 import java.time.Period;
 
-public class DispositivoInteligente<T extends Fabricante> {
+public class DispositivoInteligente<T extends Fabricante> implements Dispositivo {
 
 	private String nombre;
 	private Estado estado;
 	private Float consumoPorHora;
+	private Float horasMinimas;
+	private Float horasMaximas;
+	private Float horasUsoMes;
 	protected T fabricante;
 	protected Long idDeFabrica;
 
-	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante,
-			Long idDeFabrica) {
+	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante, Long idDeFabrica) {
 		this.nombre = nombre;
 		this.estado = estado;
 		this.consumoPorHora = consumoPorHora;
 		this.fabricante = fabricante;
 		this.idDeFabrica = idDeFabrica;
+		this.horasUsoMes = 0f;
 	}
 
 	public T getFabricante() {
@@ -94,4 +97,22 @@ public class DispositivoInteligente<T extends Fabricante> {
 	public Estado getEstado() {
 		return this.estado;
 	}
+
+	public Float getHorasMinimas() {
+		return horasMinimas;
+	}
+
+	public Float getHorasMaximas() {
+		return horasMaximas;
+	}
+
+	public void aumentarHorasPrendido(Float horasPrendido) {
+		horasUsoMes += horasPrendido;	
+	}
+
+	@Override
+	public Float getHorasUsoMes() {
+		return this.horasUsoMes;
+	}
+
 }

@@ -1,11 +1,26 @@
 package dominio;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.Period;
+
 public class Encendido implements Estado {
+	private LocalDateTime horaALaQueSePrendio;
 	
+	
+
+	public Encendido() {
+		this.horaALaQueSePrendio = LocalDateTime.now();
+	}
 
 	public void apagarse(DispositivoInteligente dispositivo) {
 		dispositivo.apagarsePosta();
 		dispositivo.setEstado(new Apagado());
+		dispositivo.aumentarHorasPrendido(this.horasPrendido());
+	}
+
+	private Float horasPrendido() {
+		return Duration.between(horaALaQueSePrendio, LocalDateTime.now()).getSeconds() / 3600f;
 	}
 
 	public void encenderse(DispositivoInteligente dispositivo) {

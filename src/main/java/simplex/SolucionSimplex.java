@@ -1,6 +1,7 @@
 package simplex;
 
 import dominio.Dispositivo;
+import dominio.EfectoSimplex;
 
 public class SolucionSimplex {
 	private Dispositivo dispositivo;
@@ -20,6 +21,16 @@ public class SolucionSimplex {
 	}
 
 	public double getConsumoQueProvocaria(){
-		return this.horasRecomendadas * this.dispositivo.getPotencia();
+		return this.horasRecomendadas * this.dispositivo.getConsumo();
+	}
+	
+	public boolean estuvoPrendidoMuchasHoras() {
+		return dispositivo.getHorasUsoMes() > this.horasRecomendadas;
+	}
+
+	public void aplicarEfectoSiDebe(EfectoSimplex efectoSimplex) {
+		if(this.estuvoPrendidoMuchasHoras()) {
+			efectoSimplex.aplicarseA(dispositivo);
+		}
 	}
 }

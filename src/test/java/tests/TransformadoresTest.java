@@ -4,6 +4,9 @@ import dominio.Cliente;
 import dominio.Direccion;
 import dominio.Transformador;
 import dominio.Zona;
+
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,18 +34,28 @@ public class TransformadoresTest {
 		Mapa.instancia.agregarZona(zona);
 		RepoClientes.instancia.agregarCliente(cliente);
 		RepoClientes.instancia.agregarCliente(cliente2);
+		zona.agregarTransformador(transformador1);
 
 	}
 
 	@Test
 	public void hayUnSoloTransformadorEnLaZonaYElConsumoDebeSer150(){
-		zona.agregarTransformador(transformador1);
 		Assert.assertEquals(150.0, zona.consumoTotal(), 0.05);
+	}
+	
+	@Test
+	public void alTransformador1LeCorresponden2Clientes() {
+		List<Cliente> clientes = RepoClientes.instancia.clientesDeTransformador(transformador1);
+		Assert.assertEquals(2, clientes.size());
 	}
 
 	@Test
-	public void laDistanciaDe0A1Es1() {
-		Double distancia = new Point(0,0).distance(new Point(0,1));
-		Assert.assertEquals(1.0, distancia, 0.05);
+	public void elConsumoDelTransformador1DebeSer150() {
+		Assert.assertEquals(150d, transformador1.energiaSuministrada(), 0.05);
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void noSePuedeAgregarElTranformadorDosALaZona() {
+		zona.agregarTransformador(transformador2);
 	}
 }
