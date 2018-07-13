@@ -7,6 +7,7 @@ import dominio.Zona;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,6 +37,12 @@ public class TransformadoresTest {
 		RepoClientes.instancia.agregarCliente(cliente2);
 		zona.agregarTransformador(transformador1);
 
+	}
+
+	@After
+	public void tearDown() {
+		Mapa.instancia.limpiarZonas();
+		RepoClientes.instancia.limpiarClientes();
 	}
 
 	@Test

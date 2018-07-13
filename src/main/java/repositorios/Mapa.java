@@ -22,6 +22,10 @@ public class Mapa {
 		zonas.add(unaZona);
 	}
 
+	public void limpiarZonas(){
+		zonas = new ArrayList<>();
+	}
+
 	public Transformador transformadorMasCercanoA(Point coordenada) {
 		return this.transformadores().stream().min(Comparator.comparingDouble(transformador -> coordenada.distance(transformador.getCoordenadas()))).get();
 	}
