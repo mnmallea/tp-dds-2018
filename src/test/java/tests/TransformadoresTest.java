@@ -5,6 +5,7 @@ import dominio.Direccion;
 import dominio.Transformador;
 import dominio.Zona;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -15,6 +16,7 @@ import org.mockito.Mockito;
 import puntos.Point;
 import repositorios.Mapa;
 import repositorios.RepoClientes;
+import repositorios.RepoTransformadores;
 
 public class TransformadoresTest {
 	private Zona zona = new Zona(6.0, new Point(0, 0));
@@ -22,6 +24,7 @@ public class TransformadoresTest {
 	private Transformador transformador2 = new Transformador(new Point(50, 50));
 	Cliente cliente = Mockito.mock(Cliente.class);
 	Cliente cliente2 = Mockito.mock(Cliente.class);
+	private List<Transformador> transformadores = new ArrayList<>();
 
 	@Before
 	public void setUp() {
@@ -35,7 +38,9 @@ public class TransformadoresTest {
 		Mapa.instancia.agregarZona(zona);
 		RepoClientes.instancia.agregarCliente(cliente);
 		RepoClientes.instancia.agregarCliente(cliente2);
-
+		transformadores.add(transformador1);
+		transformadores.add(transformador2);
+		RepoTransformadores.instancia.setTransformadores(transformadores);
 
 	}
 
@@ -60,9 +65,5 @@ public class TransformadoresTest {
 	public void elConsumoDelTransformador1DebeSer150() {
 		Assert.assertEquals(150d, transformador1.energiaSuministrada(), 0.05);
 	}
-	
-	@Test(expected = RuntimeException.class)
-	public void noSePuedeAgregarElTranformadorDosALaZona() {
-		zona.agregarTransformador(transformador2);
-	}
+
 }

@@ -31,6 +31,7 @@ public class Zona {
 	}
 
 	public Double consumoTotal() {
+		List<Transformador> transformadores = this.getTransformadores();
 		return transformadores.stream().mapToDouble(Transformador::energiaSuministrada).sum();
 	}
 
