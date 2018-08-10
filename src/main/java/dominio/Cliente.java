@@ -9,130 +9,141 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Cliente {
-	private String nombre;
-	private String apellido;
-	private TipoDocumento tipoDocumento;
-	private int nroDocumento;
-	private Integer nroTelefono;
-	private LocalDate fechaAlta;
-	private Categoria categoria;
-	private List<DispositivoInteligente> dispositivosInteligentes;
-	private List<DispositivoEstandar> dispositivosEstandar;
-	private int puntos = 0;
-	private Direccion direccion;
-	private EfectoSimplex efectoSimplex;
+    private String nombre;
+    private String apellido;
+    private TipoDocumento tipoDocumento;
+    private int nroDocumento;
+    private Integer nroTelefono;
+    private LocalDate fechaAlta;
+    private Categoria categoria;
+    private List<DispositivoInteligente> dispositivosInteligentes;
+    private List<DispositivoEstandar> dispositivosEstandar;
+    private int puntos = 0;
+    private Direccion direccion;
+    private EfectoSimplex efectoSimplex;
+    private Zona zona;
 
-	public TipoDocumento getTipoDocumento() {
-		return tipoDocumento;
-	}
+    public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
+                   Integer nroTelefono, Direccion direccion, Categoria categoria,
+                   List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
+                   LocalDate fechaAlta, Zona zona) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.tipoDocumento = tipoDocumento;
+        this.nroDocumento = nroDocumento;
+        this.nroTelefono = nroTelefono;
+        this.direccion = direccion;
+        this.fechaAlta = fechaAlta;
+        this.dispositivosEstandar = dispositivosEstandar;
+        this.dispositivosInteligentes = dispositivosInteligentes;
+        this.zona = zona;
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
+    }
 
-	public List<DispositivoInteligente> getDispositivosInteligentes() {
-		return dispositivosInteligentes;
-	}
+    public Zona getZona() {
+        return zona;
+    }
 
-	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
-		this.dispositivosInteligentes = dispositivos;
-	}
+    public void setZona(Zona zona) {
+        this.zona = zona;
+    }
 
-	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
-		dispositivosInteligentes.add(nuevoDispositivo);
-		sumarPuntos(15);
-	}
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
+    }
 
-	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
-			Integer nroTelefono, Direccion direccion, Categoria categoria,
-			List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
-			LocalDate fechaAlta) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.tipoDocumento = tipoDocumento;
-		this.nroDocumento = nroDocumento;
-		this.nroTelefono = nroTelefono;
-		this.direccion = direccion;
-		this.fechaAlta = fechaAlta;
-		this.dispositivosEstandar = dispositivosEstandar;
-		this.dispositivosInteligentes = dispositivosInteligentes;
-	}
+    public Categoria getCategoria() {
+        return categoria;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public List<DispositivoInteligente> getDispositivosInteligentes() {
+        return dispositivosInteligentes;
+    }
 
-	public Float consumo() { // Es la suma de cada uno de los consumos de sus dispositivos
-		return (float) (this.consumoDispositivosEstandares() + this.consumoDispositivosInteligentes());
-	}
+    public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
+        this.dispositivosInteligentes = dispositivos;
+    }
 
-	public Double consumoDispositivosInteligentes() {
-		return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
-	}
+    public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
+        dispositivosInteligentes.add(nuevoDispositivo);
+        sumarPuntos(15);
+    }
 
-	public Double consumoDispositivosEstandares() {
-		return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void categorizar() {
-		this.categoria = Categorizador.instancia.getCategoriaSegunRango(this.consumo());
-	}
+    public Float consumo() { // Es la suma de cada uno de los consumos de sus dispositivos
+        return (float) (this.consumoDispositivosEstandares() + this.consumoDispositivosInteligentes());
+    }
 
-	public long cantidadDispositivosInteligentesEncendidos() {
-		return this.dispositivosInteligentes.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
-	}
+    public Double consumoDispositivosInteligentes() {
+        return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+    }
 
-	public long cantidadDispositivosInteligentesApagados() {
-		return this.dispositivosInteligentes.stream().filter(dispositivo -> !dispositivo.estaEncendido()).count();
-	}
+    public Double consumoDispositivosEstandares() {
+        return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+    }
 
-	public int cantidadDispositivosEstandar() {
-		return this.dispositivosEstandar.size();
-	}
+    public void categorizar() {
+        this.categoria = Categorizador.instancia.getCategoriaSegunRango(this.consumo());
+    }
 
-	public int cantidadDispositivosInteligentes() {
-		return this.dispositivosInteligentes.size();
-	}
+    public long cantidadDispositivosInteligentesEncendidos() {
+        return this.dispositivosInteligentes.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
+    }
 
-	public int cantidadDeDispositivos() {
-		return this.cantidadDispositivosEstandar() + this.cantidadDispositivosInteligentes();
-	}
+    public long cantidadDispositivosInteligentesApagados() {
+        return this.dispositivosInteligentes.stream().filter(dispositivo -> !dispositivo.estaEncendido()).count();
+    }
 
-	public Boolean algunDispositivoEncendido() {
-		return this.dispositivosInteligentes.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
-	}
+    public int cantidadDispositivosEstandar() {
+        return this.dispositivosEstandar.size();
+    }
 
-	public Float montoEstimadoAPagar() {
-		return categoria.facturaEstimada(this.consumo());
-	}
+    public int cantidadDispositivosInteligentes() {
+        return this.dispositivosInteligentes.size();
+    }
 
-	public void sumarPuntos(int unosPuntos) {
-		this.puntos += unosPuntos;
-	}
+    public int cantidadDeDispositivos() {
+        return this.cantidadDispositivosEstandar() + this.cantidadDispositivosInteligentes();
+    }
 
-	public <T extends Fabricante> void convertirAInteligente(DispositivoEstandar unDispositivo, T unFabricante) {
-		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente<>(unDispositivo.getNombre(), new Apagado(),
-				unDispositivo.getConsumoPorHora(), unFabricante, unDispositivo.getNumeroDeSerie());
-		dispositivosInteligentes.add(nuevoDispositivo);
-		dispositivosEstandar.remove(unDispositivo);
+    public Boolean algunDispositivoEncendido() {
+        return this.dispositivosInteligentes.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
+    }
 
-		this.sumarPuntos(10);
-	}
+    public Float montoEstimadoAPagar() {
+        return categoria.facturaEstimada(this.consumo());
+    }
 
-	public Direccion getDireccion() {
-		return direccion;
-	}
+    public void sumarPuntos(int unosPuntos) {
+        this.puntos += unosPuntos;
+    }
 
-	public Transformador transformadorMasCercano() {
-		return Mapa.instancia.transformadorMasCercanoA(this.getDireccion().getCoordenada());
-	}
+    public <T extends Fabricante> void convertirAInteligente(DispositivoEstandar unDispositivo, T unFabricante) {
+        DispositivoInteligente nuevoDispositivo = new DispositivoInteligente<>(unDispositivo.getNombre(), new Apagado(),
+                unDispositivo.getConsumoPorHora(), unFabricante, unDispositivo.getNumeroDeSerie());
+        dispositivosInteligentes.add(nuevoDispositivo);
+        dispositivosEstandar.remove(unDispositivo);
 
-	public List<Dispositivo> getDispositivos() {
-		return Stream.concat(this.dispositivosInteligentes.stream(), this.dispositivosEstandar.stream())
-				.collect(Collectors.toList());
-	}
+        this.sumarPuntos(10);
+    }
 
-	public void notificarResultadoSimplex(List<SolucionSimplex> soluciones) {
-		soluciones.forEach(solucion -> solucion.aplicarEfectoSiDebe(this.efectoSimplex));
-	}
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public Transformador transformadorMasCercano() {
+        return Mapa.instancia.transformadorMasCercanoA(this.getDireccion().getCoordenada());
+    }
+
+    public List<Dispositivo> getDispositivos() {
+        return Stream.concat(this.dispositivosInteligentes.stream(), this.dispositivosEstandar.stream())
+                .collect(Collectors.toList());
+    }
+
+    public void notificarResultadoSimplex(List<SolucionSimplex> soluciones) {
+        soluciones.forEach(solucion -> solucion.aplicarEfectoSiDebe(this.efectoSimplex));
+    }
 }

@@ -1,13 +1,16 @@
 package dominio;
 
 import puntos.Point;
-
+import repositorios.RepoClientes;
+import repositorios.RepoTransformadores;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Zona {
 
 	private List<Transformador> transformadores;
+	private List<Cliente> clientes;
 	private Double radio;
 	private Point centro;
 
@@ -18,13 +21,13 @@ public class Zona {
 	}
 
 	public List<Transformador> getTransformadores() {
-		return transformadores;
+		List<Transformador> transformadores = RepoTransformadores.instancia.getTransformadores();
+		return transformadores.stream().filter(transformador -> this.estaDentroDeZona(transformador.getCoordenadas())).collect(Collectors.toList());
 	}
 
-	public void agregarTransformador(Transformador unTransformador) {
-		if (!this.estaDentroDeZona(unTransformador.getCoordenadas()))
-			throw new RuntimeException("El transformador no está dentro de esta zona");
-		transformadores.add(unTransformador);
+	public List<Cliente> getClientes() {
+		List<Cliente> clientes = RepoClientes.instancia.getClientes();
+		return clientes.stream().filter(cliente-> cliente.getZona().equals(this)).collect(Collectors.toList());
 	}
 
 	public Double consumoTotal() {

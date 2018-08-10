@@ -24,6 +24,10 @@ public class RepoClientes {
 		clientes = new ArrayList<>();
 	}
 
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
 	public List<Cliente> clientesDeTransformador(Transformador transformador) {
 		return clientes.stream().filter(cliente -> cliente.transformadorMasCercano() == transformador)
 				.collect(Collectors.toList());
