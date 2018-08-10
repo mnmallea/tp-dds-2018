@@ -35,7 +35,7 @@ public class TransformadoresTest {
 		Mapa.instancia.agregarZona(zona);
 		RepoClientes.instancia.agregarCliente(cliente);
 		RepoClientes.instancia.agregarCliente(cliente2);
-		zona.agregarTransformador(transformador1);
+
 
 	}
 
