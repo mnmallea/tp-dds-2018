@@ -6,8 +6,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import dominio.Cliente;
-import dominio.DispositivoInteligente;
-import dominio.Fabricante;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.TipoDocumento;
 import exception.ArchivoNoEncontradoException;
 import exception.ParserException;

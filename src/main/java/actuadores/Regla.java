@@ -1,6 +1,6 @@
 package actuadores;
 
-import dominio.DispositivoInteligente;
+import dominio.dispositivos.DispositivoInteligente;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+import repositorios.MyJob;
 
 public class Main {
     public static void main(String[] args) throws SchedulerException {

@@ -12,11 +12,11 @@ import actuadores.ActuadorEncenderDispositivo;
 import actuadores.ActuadorSubirIntensidadReflector;
 import actuadores.ReglaParaMovimiento;
 import actuadores.SensorMovimiento;
-import dominio.ReflectorInteligente;
-import dominio.Apagado;
-import dominio.DispositivoInteligente;
-import dominio.Encendido;
-import dominio.FabricanteReflector;
+import dominio.dispositivos.ReflectorInteligente;
+import dominio.estados.Apagado;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.estados.Encendido;
+import dominio.dispositivos.fabricantes.FabricanteReflector;
 
 
 public class ReflectorTest {

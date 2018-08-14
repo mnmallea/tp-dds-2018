@@ -1,4 +1,4 @@
-package dominio;
+package dominio.dispositivos;
 
 public interface Dispositivo {
 	Float getConsumo();

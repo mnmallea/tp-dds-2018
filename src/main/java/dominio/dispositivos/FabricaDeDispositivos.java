@@ -1,4 +1,7 @@
-package dominio;
+package dominio.dispositivos;
+
+import dominio.dispositivos.fabricantes.Fabricante;
+import dominio.estados.Apagado;
 
 public class FabricaDeDispositivos {
 

@@ -1,6 +1,6 @@
 package actuadores;
 
-import dominio.DispositivoInteligente;
+import dominio.dispositivos.DispositivoInteligente;
 
 public class ActuadorEncenderDispositivo<T extends  DispositivoInteligente> implements Actuador{
 

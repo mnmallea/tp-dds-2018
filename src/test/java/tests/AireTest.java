@@ -2,7 +2,6 @@ package tests;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import actuadores.*;
 import org.junit.Assert;
@@ -10,12 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import dominio.AireAcondicionadoInteligente;
-import dominio.Apagado;
-import dominio.DispositivoInteligente;
-import dominio.Encendido;
-import dominio.FabricanteAireAcondicionado;
-import dominio.ReflectorInteligente;
+import dominio.dispositivos.AireAcondicionadoInteligente;
+import dominio.estados.Apagado;
+import dominio.estados.Encendido;
+import dominio.dispositivos.fabricantes.FabricanteAireAcondicionado;
 
 public class AireTest {
 	private Actuador<AireAcondicionadoInteligente> actuadorEnciendeAire;

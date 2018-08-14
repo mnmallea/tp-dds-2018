@@ -1,4 +1,6 @@
-package dominio;
+package dominio.estados;
+
+import dominio.dispositivos.DispositivoInteligente;
 
 public class AhorroEnergia implements Estado {
 
@@ -17,6 +19,15 @@ public class AhorroEnergia implements Estado {
 	}
 
 	public Boolean estaEncendido() {
+		return true;
+	}
+
+	public Boolean estaApagado(){
+		return false;
+
+	}
+
+	public Boolean estaAhorroEnergia(){
 		return true;
 	}
 }

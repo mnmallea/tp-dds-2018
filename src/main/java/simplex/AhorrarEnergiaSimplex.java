@@ -1,4 +1,6 @@
-package dominio;
+package simplex;
+
+import dominio.dispositivos.Dispositivo;
 
 public class AhorrarEnergiaSimplex implements EfectoSimplex {
 

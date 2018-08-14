@@ -1,7 +1,7 @@
 package actuadores;
 
-import dominio.DispositivoInteligente;
-import dominio.Fabricante;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.fabricantes.Fabricante;
 
 public class ActuadorApagarDispositivo implements Actuador<DispositivoInteligente<? extends Fabricante>>{
 

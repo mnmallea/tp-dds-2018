@@ -1,5 +1,5 @@
 package actuadores;
-import dominio.DispositivoInteligente;
+import dominio.dispositivos.DispositivoInteligente;
 
 public interface Actuador<T extends DispositivoInteligente<?>> {
 	public void actuaSobre(T unDispositivo);

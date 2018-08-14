@@ -1,6 +1,6 @@
 package tests;
 
-import dominio.Dispositivo;
+import dominio.dispositivos.Dispositivo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

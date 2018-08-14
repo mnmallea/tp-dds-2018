@@ -4,10 +4,10 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-import dominio.AhorroEnergia;
-import dominio.Apagado;
-import dominio.Encendido;
-import dominio.Estado;
+import dominio.estados.AhorroEnergia;
+import dominio.estados.Apagado;
+import dominio.estados.Encendido;
+import dominio.estados.Estado;
 import exception.ParserException;
 
 import java.lang.reflect.Type;

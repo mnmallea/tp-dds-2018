@@ -1,6 +1,11 @@
 package tests;
 
 import dominio.*;
+import dominio.dispositivos.DispositivoEstandar;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.fabricantes.Fabricante;
+import dominio.estados.Apagado;
+import dominio.estados.Encendido;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

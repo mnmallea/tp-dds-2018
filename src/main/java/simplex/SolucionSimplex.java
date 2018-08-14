@@ -1,7 +1,6 @@
 package simplex;
 
-import dominio.Dispositivo;
-import dominio.EfectoSimplex;
+import dominio.dispositivos.Dispositivo;
 
 public class SolucionSimplex {
 	private Dispositivo dispositivo;

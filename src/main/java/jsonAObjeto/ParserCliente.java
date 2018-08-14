@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import dominio.Cliente;
-import dominio.Estado;
+import dominio.estados.Estado;
 import exception.ParserException;
 
 public class ParserCliente {

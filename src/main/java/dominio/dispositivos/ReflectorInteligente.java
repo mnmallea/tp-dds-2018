@@ -1,9 +1,12 @@
-package dominio;
+package dominio.dispositivos;
 
-public class ReflectorInteligente extends DispositivoInteligente<FabricanteReflector>{
+import dominio.dispositivos.fabricantes.FabricanteReflector;
+import dominio.estados.Estado;
+
+public class ReflectorInteligente extends DispositivoInteligente<FabricanteReflector> {
 	
 	public ReflectorInteligente(String nombre, Estado estado, Float consumoPorHora, FabricanteReflector fabricante,
-			Long idDeFabrica) {
+                                Long idDeFabrica) {
 		super(nombre, estado, consumoPorHora, fabricante, idDeFabrica);
 		
 	}

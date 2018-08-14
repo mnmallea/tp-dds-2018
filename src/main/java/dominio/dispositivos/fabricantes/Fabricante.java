@@ -1,4 +1,4 @@
-package dominio;
+package dominio.dispositivos.fabricantes;
 
 import java.time.Period;
 

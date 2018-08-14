@@ -1,4 +1,4 @@
-package dominio;
+package dominio.dispositivos;
 
 public class DispositivoEstandar implements Dispositivo {
 	private String nombre;

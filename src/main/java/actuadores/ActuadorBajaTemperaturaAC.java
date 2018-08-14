@@ -1,6 +1,6 @@
 package actuadores;
 
-import dominio.AireAcondicionadoInteligente;
+import dominio.dispositivos.AireAcondicionadoInteligente;
 
 public class ActuadorBajaTemperaturaAC implements Actuador<AireAcondicionadoInteligente> {
 	private Integer gradosQueBaja;

@@ -1,6 +1,6 @@
 package actuadores;
 
-import dominio.ReflectorInteligente;
+import dominio.dispositivos.ReflectorInteligente;
 
 public class ActuadorSubirIntensidadReflector implements Actuador<ReflectorInteligente>{
 	private Double luxQueSube;

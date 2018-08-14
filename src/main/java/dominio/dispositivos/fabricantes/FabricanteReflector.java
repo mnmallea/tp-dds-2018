@@ -1,4 +1,4 @@
-package dominio;
+package dominio.dispositivos.fabricantes;
 
 public interface FabricanteReflector extends Fabricante {
 	

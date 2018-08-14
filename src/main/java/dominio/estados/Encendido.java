@@ -1,8 +1,9 @@
-package dominio;
+package dominio.estados;
+
+import dominio.dispositivos.DispositivoInteligente;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.Period;
 
 public class Encendido implements Estado {
 	private LocalDateTime horaALaQueSePrendio;
@@ -34,5 +35,15 @@ public class Encendido implements Estado {
 
 	public Boolean estaEncendido() {
 		return true;
+	}
+
+	@Override
+	public Boolean estaApagado() {
+		return false;
+	}
+
+	@Override
+	public Boolean estaAhorroEnergia() {
+		return false;
 	}
 }

@@ -1,7 +1,7 @@
 package simplex;
 
 import dominio.Cliente;
-import dominio.Dispositivo;
+import dominio.dispositivos.Dispositivo;
 import org.apache.commons.math3.optim.MaxIter;
 import org.apache.commons.math3.optim.OptimizationData;
 import org.apache.commons.math3.optim.PointValuePair;

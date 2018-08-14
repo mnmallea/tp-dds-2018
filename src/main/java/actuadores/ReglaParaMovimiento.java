@@ -2,7 +2,7 @@ package actuadores;
 
 import java.util.List;
 
-import dominio.DispositivoInteligente;
+import dominio.dispositivos.DispositivoInteligente;
 
 public class ReglaParaMovimiento implements ReglaParaMovimientoFabricante {
     private DispositivoInteligente dispositivo;
