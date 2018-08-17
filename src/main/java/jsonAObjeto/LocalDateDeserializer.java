@@ -16,7 +16,6 @@ public class LocalDateDeserializer implements JsonDeserializer<LocalDate>{
 	@Override
 	public LocalDate deserialize(JsonElement json, Type arg1, JsonDeserializationContext arg2)
 			throws JsonParseException {
-		// TODO Auto-generated method stub
 		return FORMATTER.parse(json.getAsString(), LocalDate::from);
 	}
 }

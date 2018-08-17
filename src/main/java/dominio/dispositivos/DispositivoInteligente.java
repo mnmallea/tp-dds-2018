@@ -118,4 +118,13 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
 		return this.horasUsoMes;
 	}
 
+	@Override
+	public void setHorasMinimas(Float horasMinimas) {
+		this.horasMinimas = horasMinimas;
+	}
+
+	@Override
+	public void setHorasMaximas(Float horasMaximas) {
+		this.horasMaximas = horasMaximas;
+	}
 }
