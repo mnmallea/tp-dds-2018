@@ -1,59 +1,17 @@
 package tests;
 
 import dominio.dispositivos.Dispositivo;
+import dominio.dispositivos.FabricaDeDispositivos;
+import dominio.dispositivos.fabricantes.Fabricante;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import simplex.OptimizadorHoras;
 import simplex.SolucionSimplex;
 
 import java.util.Arrays;
 import java.util.List;
-
-class DispositivoPrueba implements Dispositivo {
-	private Float potencia;
-	private Float horasMinimas;
-	private Float horasMaximas;
-
-	DispositivoPrueba(Float potencia, Float horasMinimas, Float horasMaximas) {
-		this.potencia = potencia;
-		this.horasMinimas = horasMinimas;
-		this.horasMaximas = horasMaximas;
-	}
-
-	@Override
-	public Float getConsumo() {
-		return potencia;
-	}
-
-	@Override
-	public Float getHorasMinimas() {
-		return horasMinimas;
-	}
-
-	@Override
-	public Float getHorasMaximas() {
-		return horasMaximas;
-	}
-
-	@Override
-	public Float getHorasUsoMes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void apagarse() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void ahorrarEnergia() {
-		// TODO Auto-generated method stub
-		
-	}
-}
 
 public class OptimizadorHorasTests {
 	private List<Dispositivo> dispositivos;
@@ -68,14 +26,15 @@ public class OptimizadorHorasTests {
 
 	@Before
 	public void setUp() {
-		d1 = new DispositivoPrueba(1.013f, 90.0f, 360.0f);
-		d2 = new DispositivoPrueba(0.011f, 90.0f, 360.0f);
-		d3 = new DispositivoPrueba(0.08f, 90.0f, 360.0f);
-		d4 = new DispositivoPrueba(0.4f, 60.0f, 360.0f);
-		d5 = new DispositivoPrueba(0.1275f, 6.0f, 30.0f);
-		d6 = new DispositivoPrueba(0.64f, 3.0f, 15.0f);
-		d7 = new DispositivoPrueba(0.75f, 3.0f, 30.0f);
-		d8 = new DispositivoPrueba(0.06f, 120.0f, 360.0f);
+		Fabricante fabricante = Mockito.mock(Fabricante.class);
+		d1 = FabricaDeDispositivos.crearAire2200("Aire", fabricante, 1L);
+		d2 = FabricaDeDispositivos.crearLampara11W("Lamparita", fabricante, 2L);
+		d3 = FabricaDeDispositivos.crearLED40("Tele", fabricante, 3L);
+		d4 = FabricaDeDispositivos.crearPCEscritorio("Compu", fabricante, 4L);
+		d5 = FabricaDeDispositivos.crearLavarropasSemiAutomatico5Kg("Lavarropas", 2f);
+		d6 = FabricaDeDispositivos.crearMicroondas("Microondas", 2f);
+		d7 = FabricaDeDispositivos.crearPlancha("Plancha", 1.5f);
+		d8 = FabricaDeDispositivos.crearVentiladorTecho("Ventilador", fabricante, 5L);
 
 		dispositivos = Arrays.asList(d1, d2, d3, d4, d5, d6, d7, d8);
 
@@ -85,7 +44,7 @@ public class OptimizadorHorasTests {
 	public void testPruebaSimplex1() {
 		OptimizadorHoras optimizadorHoras = new OptimizadorHoras();
 		List<SolucionSimplex> solucion = optimizadorHoras.optimizarHorasUso(dispositivos);
-		Assert.assertEquals(solucion.get(0).getHorasRecomendadas(),  360, 0.002);
+		Assert.assertEquals(solucion.get(0).getHorasRecomendadas(), 360, 0.002);
 	}
 
 	@Test
@@ -99,7 +58,7 @@ public class OptimizadorHorasTests {
 	}
 
 	@Test
-	public void hayTantosResultadosComoDispositivos(){
+	public void hayTantosResultadosComoDispositivos() {
 		List<Dispositivo> dispositivos = Arrays.asList(d1, d2, d3);
 		List<SolucionSimplex> soluciones = new OptimizadorHoras().optimizarHorasUso(dispositivos);
 

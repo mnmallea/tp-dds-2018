@@ -42,11 +42,18 @@ public class DispositivoEstandar implements Dispositivo {
 	public Float getHorasUsoMes() {
 		return this.horasDeUsoDiarias * 30;
 	}
-	public void apagarse() {
-		
+	public void setHorasMinimas(Float horasMinimas) {
+		this.horasMinimas = horasMinimas;
 	}
+	public void setHorasMaximas(Float horasMaximas) {
+		this.horasMaximas = horasMaximas;
+	}
+
 	public void ahorrarEnergia() {
-		
+
 	}
-	
+
+	public void apagarse() {
+
+	}
 }

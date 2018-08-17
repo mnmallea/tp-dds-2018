@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 public class SolucionSimplexTest {
 
     Fabricante fabricante = Mockito.mock(Fabricante.class);
-    DispositivoInteligente dispositivo = new DispositivoInteligente("tele", new Apagado(), 30f, fabricante, 1l);
+    DispositivoInteligente dispositivo = new DispositivoInteligente<>("tele", new Apagado(), 30f, fabricante, 1l);
 
     EfectoSimplex efectoSimplex = new ApagarSimplex();
     EfectoSimplex efectoSimplex2 = new AhorrarEnergiaSimplex();
