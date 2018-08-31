@@ -56,4 +56,7 @@ public class Zona {
 		return unPunto.distance(this.centro) <= radio;
 	}
 
+	public void setTransformadores(List<Transformador> transformadores) {
+		this.transformadores = transformadores;
+	}
 }

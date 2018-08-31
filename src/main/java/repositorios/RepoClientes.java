@@ -16,6 +16,10 @@ public class RepoClientes {
         return clientes;
     }
 
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
     public void agregarCliente(Cliente unCliente) {
         clientes.add(unCliente);
     }

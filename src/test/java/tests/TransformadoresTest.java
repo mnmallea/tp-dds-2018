@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import puntos.Point;
+import repositorios.RepoClientes;
 import repositorios.RepoTransformadores;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class TransformadoresTest {
     private Transformador transformador1 = new Transformador(new Point(1, 0));
     private Transformador transformador2 = new Transformador(new Point(50, 50));
     private List<Transformador> transformadores = new ArrayList<>();
+    private List<Cliente> clientes = new ArrayList<>();
 
     @Before
     public void setUp() {
@@ -31,18 +33,24 @@ public class TransformadoresTest {
         AdministradorClientes.instancia.agregarCliente(cliente2);
         transformadores.add(transformador1);
         transformadores.add(transformador2);
+        zona.setTransformadores(transformadores);
+        clientes.add(cliente);
+        clientes.add(cliente2);
+        transformador1.setClientes(clientes);
+        RepoClientes.instancia.setClientes(clientes);
         RepoTransformadores.instancia.setTransformadores(transformadores);
 
     }
-/*
+
     @After
     public void tearDown() {
-        Mapa.instancia.limpiarZonas();
-        AdministradorClientes.instancia.limpiarClientes();
+        RepoTransformadores.instancia.limpiarTransformadores();
+        RepoClientes.instancia.limpiarClientes();
    }
-*/
+
     @Test
     public void hayUnSoloTransformadorEnLaZonaYElConsumoDebeSer150() {
+        zona.consumoTotal();
         Assert.assertEquals(150.0, zona.consumoTotal(), 0.05);
     }
 
