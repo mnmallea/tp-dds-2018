@@ -14,8 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import puntos.Point;
-import repositorios.Mapa;
-import repositorios.RepoClientes;
+import dominio.AdministradorClientes;
 import repositorios.RepoTransformadores;
 
 public class TransformadoresTest {
@@ -36,8 +35,8 @@ public class TransformadoresTest {
 		Mockito.when(cliente2.getDireccion()).thenReturn(new Direccion(new Point(51,50), "Calle"));
 
 		Mapa.instancia.agregarZona(zona);
-		RepoClientes.instancia.agregarCliente(cliente);
-		RepoClientes.instancia.agregarCliente(cliente2);
+		AdministradorClientes.instancia.agregarCliente(cliente);
+		AdministradorClientes.instancia.agregarCliente(cliente2);
 		transformadores.add(transformador1);
 		transformadores.add(transformador2);
 		RepoTransformadores.instancia.setTransformadores(transformadores);
@@ -47,7 +46,7 @@ public class TransformadoresTest {
 	@After
 	public void tearDown() {
 		Mapa.instancia.limpiarZonas();
-		RepoClientes.instancia.limpiarClientes();
+		AdministradorClientes.instancia.limpiarClientes();
 	}
 
 	@Test
@@ -57,7 +56,7 @@ public class TransformadoresTest {
 	
 	@Test
 	public void alTransformador1LeCorresponden2Clientes() {
-		List<Cliente> clientes = RepoClientes.instancia.clientesDeTransformador(transformador1);
+		List<Cliente> clientes = AdministradorClientes.instancia.clientesDeTransformador(transformador1);
 		Assert.assertEquals(2, clientes.size());
 	}
 

@@ -5,7 +5,6 @@ import dominio.dispositivos.DispositivoEstandar;
 import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Apagado;
-import repositorios.Mapa;
 import simplex.EfectoSimplex;
 import simplex.SolucionSimplex;
 

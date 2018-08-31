@@ -1,7 +1,6 @@
 package dominio;
 
 import puntos.Point;
-import repositorios.RepoClientes;
 import repositorios.RepoTransformadores;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,7 @@ public class Zona {
 	}
 
 	public List<Cliente> getClientes() {
-		List<Cliente> clientes = RepoClientes.instancia.getClientes();
+		List<Cliente> clientes = AdministradorClientes.instancia.getClientes();
 		return clientes.stream().filter(cliente-> cliente.getZona().equals(this)).collect(Collectors.toList());
 	}
 

@@ -1,7 +1,6 @@
 package dominio;
 
 import puntos.Point;
-import repositorios.RepoClientes;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class Transformador {
 	}
 
 	private List<Cliente> getClientes() {
-		return RepoClientes.instancia.clientesDeTransformador(this);
+		return AdministradorClientes.instancia.clientesDeTransformador(this);
 	}
 
 	public Point getCoordenadas() {

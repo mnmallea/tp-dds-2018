@@ -12,10 +12,6 @@ public class RepoTransformadores {
     private RepoTransformadores() {
     }
 
-    public static RepoTransformadores getInstancia() {
-        return instancia;
-    }
-
     public List<Transformador> getTransformadores() {
         return transformadores;
     }
