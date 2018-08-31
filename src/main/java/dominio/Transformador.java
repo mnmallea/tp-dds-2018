@@ -5,22 +5,31 @@ import puntos.Point;
 import java.util.List;
 
 public class Transformador {
-	private Point coordenadas;
+    private Point coordenadas;
+    private List<Cliente> clientes;
 
-	public Transformador(Point coordenadas) {
-		this.coordenadas = coordenadas;
-	}
+    public Transformador(Point coordenadas) {
+        this.coordenadas = coordenadas;
+    }
 
-	public Double energiaSuministrada() {
-		return getClientes().stream().mapToDouble(Cliente::consumo).sum();
-	}
+    public Double energiaSuministrada() {
+        return getClientes().stream().mapToDouble(Cliente::consumo).sum();
+    }
 
-	private List<Cliente> getClientes() {
-		return AdministradorClientes.instancia.clientesDeTransformador(this);
-	}
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
 
-	public Point getCoordenadas() {
-		return coordenadas;
-	}
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public Point getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void agregarCliente(Cliente cliente) {
+        clientes.add(cliente);
+    }
 }
 

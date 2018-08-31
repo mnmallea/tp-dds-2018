@@ -139,9 +139,6 @@ public class Cliente {
         return direccion;
     }
 
-    public Transformador transformadorMasCercano() {
-        return Mapa.instancia.transformadorMasCercanoA(this.getDireccion().getCoordenada());
-    }
 
     public List<Dispositivo> getDispositivos() {
         return Stream.concat(this.dispositivosInteligentes.stream(), this.dispositivosEstandar.stream())

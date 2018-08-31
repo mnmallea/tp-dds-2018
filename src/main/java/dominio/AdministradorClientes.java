@@ -9,6 +9,11 @@ import java.util.List;
 public class AdministradorClientes {
     private List<Cliente> clientes = new ArrayList<Cliente>();
 
+    public static final AdministradorClientes instancia = new AdministradorClientes();
+
+    private AdministradorClientes() {
+    }
+
     public void agregarCliente(Cliente unCliente) {
         RepoClientes.instancia.agregarCliente(unCliente);
     }

@@ -1,68 +1,55 @@
 package tests;
 
-import dominio.Cliente;
-import dominio.Direccion;
-import dominio.Transformador;
-import dominio.Zona;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import dominio.*;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import puntos.Point;
-import dominio.AdministradorClientes;
 import repositorios.RepoTransformadores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TransformadoresTest {
-	private Zona zona = new Zona(6.0, new Point(0, 0));
-	private Transformador transformador1 = new Transformador(new Point(1, 0));
-	private Transformador transformador2 = new Transformador(new Point(50, 50));
-	Cliente cliente = Mockito.mock(Cliente.class);
-	Cliente cliente2 = Mockito.mock(Cliente.class);
-	private List<Transformador> transformadores = new ArrayList<>();
+    Cliente cliente = Mockito.mock(Cliente.class);
+    Cliente cliente2 = Mockito.mock(Cliente.class);
+    private Zona zona = new Zona(6.0, new Point(0, 0));
+    private Transformador transformador1 = new Transformador(new Point(1, 0));
+    private Transformador transformador2 = new Transformador(new Point(50, 50));
+    private List<Transformador> transformadores = new ArrayList<>();
 
-	@Before
-	public void setUp() {
-		Mockito.when(cliente.consumo()).thenReturn(100.0f);
-		Mockito.when(cliente2.consumo()).thenReturn(50.0f);
-		Mockito.when(cliente.transformadorMasCercano()).thenCallRealMethod();
-		Mockito.when(cliente2.transformadorMasCercano()).thenCallRealMethod();
-		Mockito.when(cliente.getDireccion()).thenReturn(new Direccion(new Point(0,0), "Calle"));
-		Mockito.when(cliente2.getDireccion()).thenReturn(new Direccion(new Point(51,50), "Calle"));
+    @Before
+    public void setUp() {
+        Mockito.when(cliente.consumo()).thenReturn(100.0f);
+        Mockito.when(cliente2.consumo()).thenReturn(50.0f);
+        Mockito.when(cliente.getDireccion()).thenReturn(new Direccion(new Point(0, 0), "Calle"));
+        Mockito.when(cliente2.getDireccion()).thenReturn(new Direccion(new Point(51, 50), "Calle"));
 
-		Mapa.instancia.agregarZona(zona);
-		AdministradorClientes.instancia.agregarCliente(cliente);
-		AdministradorClientes.instancia.agregarCliente(cliente2);
-		transformadores.add(transformador1);
-		transformadores.add(transformador2);
-		RepoTransformadores.instancia.setTransformadores(transformadores);
+        AdministradorClientes.instancia.agregarCliente(cliente);
+        AdministradorClientes.instancia.agregarCliente(cliente2);
+        transformadores.add(transformador1);
+        transformadores.add(transformador2);
+        RepoTransformadores.instancia.setTransformadores(transformadores);
 
-	}
+    }
+/*
+    @After
+    public void tearDown() {
+        Mapa.instancia.limpiarZonas();
+        AdministradorClientes.instancia.limpiarClientes();
+   }
+*/
+    @Test
+    public void hayUnSoloTransformadorEnLaZonaYElConsumoDebeSer150() {
+        Assert.assertEquals(150.0, zona.consumoTotal(), 0.05);
+    }
 
-	@After
-	public void tearDown() {
-		Mapa.instancia.limpiarZonas();
-		AdministradorClientes.instancia.limpiarClientes();
-	}
 
-	@Test
-	public void hayUnSoloTransformadorEnLaZonaYElConsumoDebeSer150(){
-		Assert.assertEquals(150.0, zona.consumoTotal(), 0.05);
-	}
-	
-	@Test
-	public void alTransformador1LeCorresponden2Clientes() {
-		List<Cliente> clientes = AdministradorClientes.instancia.clientesDeTransformador(transformador1);
-		Assert.assertEquals(2, clientes.size());
-	}
-
-	@Test
-	public void elConsumoDelTransformador1DebeSer150() {
-		Assert.assertEquals(150d, transformador1.energiaSuministrada(), 0.05);
-	}
+    @Test
+    public void elConsumoDelTransformador1DebeSer150() {
+        Assert.assertEquals(150d, transformador1.energiaSuministrada(), 0.05);
+    }
 
 }
