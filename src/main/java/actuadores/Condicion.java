@@ -1,5 +1,5 @@
 package actuadores;
 
 interface Condicion<T> {
-	boolean seCumple(T medicion);
+    boolean seCumple(T medicion);
 }

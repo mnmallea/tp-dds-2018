@@ -14,23 +14,23 @@ import java.lang.reflect.Type;
 
 public class EstadoDeserializer implements JsonDeserializer<Estado> {
 
-	private static final String AHORRO_ENERGIA = "AhorroEnergia";
-	private static final String ENCENDIDO = "Encendido";
-	private static final String APAGADO = "Apagado";
+    private static final String AHORRO_ENERGIA = "AhorroEnergia";
+    private static final String ENCENDIDO = "Encendido";
+    private static final String APAGADO = "Apagado";
 
-	@Override
-	public Estado deserialize(JsonElement json, Type arg1, JsonDeserializationContext arg2) throws JsonParseException {
-		String parsed = json.getAsString();
-		if (parsed.equals(AHORRO_ENERGIA)) {
-			return new AhorroEnergia();
-		}
-		if (parsed.equals(ENCENDIDO)) {
-			return new Encendido();
-		}
-		if (parsed.equals(APAGADO)) {
-			return new Apagado();
-		}
-		throw new ParserException("Estado invalido");
-	}
+    @Override
+    public Estado deserialize(JsonElement json, Type arg1, JsonDeserializationContext arg2) throws JsonParseException {
+        String parsed = json.getAsString();
+        if (parsed.equals(AHORRO_ENERGIA)) {
+            return new AhorroEnergia();
+        }
+        if (parsed.equals(ENCENDIDO)) {
+            return new Encendido();
+        }
+        if (parsed.equals(APAGADO)) {
+            return new Apagado();
+        }
+        throw new ParserException("Estado invalido");
+    }
 
 }

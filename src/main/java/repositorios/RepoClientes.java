@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepoClientes {
-    private List<Cliente> clientes = new ArrayList<Cliente>();
     public static final RepoClientes instancia = new RepoClientes();
+    private List<Cliente> clientes = new ArrayList<Cliente>();
 
     private RepoClientes() {
     }

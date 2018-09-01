@@ -1,8 +1,8 @@
 package actuadores;
 
-import java.util.List;
-
 import dominio.dispositivos.DispositivoInteligente;
+
+import java.util.List;
 
 public class ReglaParaMovimiento implements ReglaParaMovimientoFabricante {
     private DispositivoInteligente dispositivo;
@@ -13,7 +13,6 @@ public class ReglaParaMovimiento implements ReglaParaMovimientoFabricante {
         this.dispositivo = dispositivo;
         this.actuadores = actuadores;
     }
-
 
     @Override
     @SuppressWarnings("unchecked")

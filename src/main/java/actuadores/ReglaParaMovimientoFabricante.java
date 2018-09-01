@@ -1,6 +1,6 @@
 package actuadores;
 
 public interface ReglaParaMovimientoFabricante {
-	public void huboMovimiento();
+    void huboMovimiento();
 
 }

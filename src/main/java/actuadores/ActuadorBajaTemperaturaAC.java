@@ -3,15 +3,15 @@ package actuadores;
 import dominio.dispositivos.AireAcondicionadoInteligente;
 
 public class ActuadorBajaTemperaturaAC implements Actuador<AireAcondicionadoInteligente> {
-	private Integer gradosQueBaja;
+    private Integer gradosQueBaja;
 
-	public ActuadorBajaTemperaturaAC(Integer gradosQueBaja) {
-		this.gradosQueBaja = gradosQueBaja;
-	}
+    public ActuadorBajaTemperaturaAC(Integer gradosQueBaja) {
+        this.gradosQueBaja = gradosQueBaja;
+    }
 
-	@Override
-	public void actuaSobre(AireAcondicionadoInteligente unAire) {
-		unAire.bajarTemperatura(this.gradosQueBaja);
-	}
-	
+    @Override
+    public void actuaSobre(AireAcondicionadoInteligente unAire) {
+        unAire.bajarTemperatura(this.gradosQueBaja);
+    }
+
 }

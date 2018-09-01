@@ -4,30 +4,30 @@ import dominio.dispositivos.DispositivoInteligente;
 
 public class AhorroEnergia implements Estado {
 
-	public void apagarse(DispositivoInteligente dispositivo) {
-		dispositivo.apagarsePosta();
-		dispositivo.setEstado(new Apagado());
-	}
+    public void apagarse(DispositivoInteligente dispositivo) {
+        dispositivo.apagarsePosta();
+        dispositivo.setEstado(new Apagado());
+    }
 
-	public void encenderse(DispositivoInteligente dispositivo) {
-		dispositivo.encendersePosta();
-		dispositivo.setEstado(new Encendido());
-	}
+    public void encenderse(DispositivoInteligente dispositivo) {
+        dispositivo.encendersePosta();
+        dispositivo.setEstado(new Encendido());
+    }
 
-	public void ahorrarEnergia(DispositivoInteligente dispositivo) {
+    public void ahorrarEnergia(DispositivoInteligente dispositivo) {
 
-	}
+    }
 
-	public Boolean estaEncendido() {
-		return true;
-	}
+    public Boolean estaEncendido() {
+        return true;
+    }
 
-	public Boolean estaApagado(){
-		return false;
+    public Boolean estaApagado() {
+        return false;
 
-	}
+    }
 
-	public Boolean estaAhorroEnergia(){
-		return true;
-	}
+    public Boolean estaAhorroEnergia() {
+        return true;
+    }
 }

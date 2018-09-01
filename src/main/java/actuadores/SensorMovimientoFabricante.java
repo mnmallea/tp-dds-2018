@@ -1,5 +1,5 @@
 package actuadores;
 
-public interface SensorMovimientoFabricante{
-	public void seMovio();
+public interface SensorMovimientoFabricante {
+    void seMovio();
 }
