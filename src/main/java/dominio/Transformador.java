@@ -7,6 +7,7 @@ import java.util.List;
 public class Transformador {
     private Point coordenadas;
     private List<Cliente> clientes;
+    private Zona zona;
 
     public Transformador(Point coordenadas) {
         this.coordenadas = coordenadas;
@@ -30,6 +31,10 @@ public class Transformador {
 
     public void agregarCliente(Cliente cliente) {
         clientes.add(cliente);
+    }
+
+    public Zona getZona() {
+        return this.zona;
     }
 }
 

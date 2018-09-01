@@ -1,9 +1,11 @@
-package dominio;
+package repositorios;
 
-import repositorios.RepoTransformadores;
+import dominio.Transformador;
+import dominio.Zona;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdministradorTransformadores {
 
@@ -21,4 +23,8 @@ public class AdministradorTransformadores {
         return RepoTransformadores.instancia.getTransformadores();
     }
 
+    public List<Transformador> inicializarTransformadores(Zona zona) {
+        List<Transformador> transformadores = this.getTransformadores();
+        return transformadores.stream().filter(transformador -> transformador.getZona().equals(zona)).collect(Collectors.toList());
+    }
 }

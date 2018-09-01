@@ -1,6 +1,5 @@
 package repositorios;
 
-import dominio.AdministradorClientes;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 

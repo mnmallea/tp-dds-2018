@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import puntos.Point;
+import repositorios.AdministradorClientes;
 import repositorios.RepoClientes;
 import repositorios.RepoTransformadores;
 
