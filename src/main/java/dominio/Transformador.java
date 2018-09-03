@@ -15,24 +15,28 @@ public class Transformador {
         this.clientes = new ArrayList<>();
     }
 
-    public Double energiaSuministrada() {
-        return this.clientes.stream().mapToDouble(Cliente::consumo).sum();
-    }
+	public Point getCoordenadas() {
+		return coordenadas;
+	}
+
+	public Zona getZona() {
+		return this.zona;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
 
 	public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
-    }
+		this.clientes = clientes;
+	}
 
-    public Point getCoordenadas() {
-        return coordenadas;
-    }
+	public void agregarCliente(Cliente cliente) {
+		clientes.add(cliente);
+	}
 
-    public void agregarCliente(Cliente cliente) {
-        clientes.add(cliente);
-    }
-
-    public Zona getZona() {
-        return this.zona;
+    public Double energiaSuministrada() {
+        return this.clientes.stream().mapToDouble(Cliente::consumo).sum();
     }
 }
 
