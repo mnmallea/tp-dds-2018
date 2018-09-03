@@ -2,6 +2,7 @@ package dominio;
 
 import puntos.Point;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Transformador {
@@ -11,17 +12,14 @@ public class Transformador {
 
     public Transformador(Point coordenadas) {
         this.coordenadas = coordenadas;
+        this.clientes = new ArrayList<>();
     }
 
     public Double energiaSuministrada() {
-        return getClientes().stream().mapToDouble(Cliente::consumo).sum();
+        return this.clientes.stream().mapToDouble(Cliente::consumo).sum();
     }
 
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(List<Cliente> clientes) {
+	public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
 

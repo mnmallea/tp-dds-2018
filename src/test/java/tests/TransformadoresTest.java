@@ -51,7 +51,6 @@ public class TransformadoresTest {
 
     @Test
     public void hayUnSoloTransformadorEnLaZonaYElConsumoDebeSer150() {
-        zona.consumoTotal();
         Assert.assertEquals(150.0, zona.consumoTotal(), 0.05);
     }
 
