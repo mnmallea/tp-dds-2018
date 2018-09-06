@@ -4,12 +4,15 @@ import puntos.Point;
 import repositorios.AdministradorClientes;
 import repositorios.AdministradorTransformadores;
 
+import javax.persistence.*;
 import java.util.Comparator;
 import java.util.List;
 
+@Entity
 public class Zona {
 
     private List<Transformador> transformadores;
+    @OneToMany(mappedBy = "clientes")
     private List<Cliente> clientes;
     private Double radio;
     private Point centro;
@@ -19,6 +22,9 @@ public class Zona {
         this.radio = radio;
         this.centro = centro;
         this.clientes = AdministradorClientes.instancia.inicializarClientes(this);
+    }
+
+    public Zona() {
     }
 
     public Transformador transformadorMasCercanoA(Point coordenada) {
@@ -42,5 +48,17 @@ public class Zona {
 
     public void setTransformadores(List<Transformador> transformadores) {
         this.transformadores = transformadores;
+    }
+
+    @GeneratedValue
+    @Id
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

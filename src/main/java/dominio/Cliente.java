@@ -33,7 +33,9 @@ public class Cliente {
     private int puntos = 0;
     @Embedded
     private Direccion direccion;
+    @Transient//todo
     private EfectoSimplex efectoSimplex;
+
     private Zona zona;
 
     public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
