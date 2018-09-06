@@ -2,7 +2,12 @@ package dominio.estados;
 
 import dominio.dispositivos.DispositivoInteligente;
 
-public class AhorroEnergia implements Estado {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "AE")
+public class AhorroEnergia extends Estado {
 
     public void apagarse(DispositivoInteligente dispositivo) {
         dispositivo.apagarsePosta();

@@ -1,5 +1,10 @@
 package dominio;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Categoria {
     public Float cargoFijo;
     public Float cargoVariable;
@@ -13,6 +18,9 @@ public class Categoria {
         this.topeSuperior = topeSuperior;
     }
 
+    public Categoria() {
+    }
+
     public Float facturaEstimada(Float unConsumo) {
         return this.cargoFijo + unConsumo * this.cargoVariable;
     }
@@ -20,5 +28,16 @@ public class Categoria {
     public Boolean perteneceACategoria(Float unConsumo) {
         return unConsumo >= this.topeInferior && unConsumo < this.topeSuperior;
     }
+    @GeneratedValue
+    @Id
+    private String id;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

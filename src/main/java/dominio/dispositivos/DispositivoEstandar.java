@@ -1,6 +1,15 @@
 package dominio.dispositivos;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class DispositivoEstandar implements Dispositivo {
+
+    @GeneratedValue
+    @Id
+    private Long id;
     private String nombre;
     private Float consumoPorHora;
     private Float horasDeUsoDiarias;
@@ -12,6 +21,9 @@ public class DispositivoEstandar implements Dispositivo {
         this.nombre = nombre;
         this.consumoPorHora = consumoPorHora;
         this.horasDeUsoDiarias = horasDeUsoDiarias;
+    }
+
+    public DispositivoEstandar() {
     }
 
     public Float getConsumoPorHora() {

@@ -8,22 +8,30 @@ import dominio.estados.Apagado;
 import simplex.EfectoSimplex;
 import simplex.SolucionSimplex;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+@Entity
 public class Cliente {
+    @GeneratedValue
+    @Id
+    private Long id;
     private String nombre;
     private String apellido;
     private TipoDocumento tipoDocumento;
     private int nroDocumento;
     private Integer nroTelefono;
     private LocalDate fechaAlta;
+    @ManyToOne
     private Categoria categoria;
+    @OneToMany
     private List<DispositivoInteligente> dispositivosInteligentes;
+    @OneToMany
     private List<DispositivoEstandar> dispositivosEstandar;
     private int puntos = 0;
+    @Embedded
     private Direccion direccion;
     private EfectoSimplex efectoSimplex;
     private Zona zona;
@@ -43,6 +51,9 @@ public class Cliente {
         this.dispositivosInteligentes = dispositivosInteligentes;
         this.zona = zona;
 
+    }
+
+    public Cliente() {
     }
 
     public Zona getZona() {

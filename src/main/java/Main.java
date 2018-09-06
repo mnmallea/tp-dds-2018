@@ -4,8 +4,7 @@ import repositorios.QuartzJob;
 
 public class Main {
     public static void main(String[] args) throws SchedulerException {
-        JobDetail job = JobBuilder.newJob(QuartzJob.class)
-                .withIdentity("Job1", "group1").build();
+        JobDetail job = JobBuilder.newJob(QuartzJob.class).build();
 
         Trigger trigger = TriggerBuilder
                 .newTrigger()

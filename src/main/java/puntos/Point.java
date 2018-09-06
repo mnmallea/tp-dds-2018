@@ -1,5 +1,8 @@
 package puntos;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Point {
     private Double x;
     private Double y;
@@ -11,6 +14,17 @@ public class Point {
 
     public Point(double x, double y) {
         this.x = x;
+        this.y = y;
+    }
+
+    public Point() {
+    }
+
+    public void setX(Double x) {
+        this.x = x;
+    }
+
+    public void setY(Double y) {
         this.y = y;
     }
 

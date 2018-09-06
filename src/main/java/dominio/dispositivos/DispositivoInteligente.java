@@ -3,13 +3,19 @@ package dominio.dispositivos;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Estado;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.Period;
 
+@Entity
 public class DispositivoInteligente<T extends Fabricante> implements Dispositivo {
 
     protected T fabricante;
+    @Id
     protected Long idDeFabrica;
     private String nombre;
+    @OneToOne
     private Estado estado;
     private Float consumoPorHora;
     private Float horasMinimas;
@@ -23,6 +29,9 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         this.fabricante = fabricante;
         this.idDeFabrica = idDeFabrica;
         this.horasUsoMes = 0f;
+    }
+
+    public DispositivoInteligente() {
     }
 
     public T getFabricante() {

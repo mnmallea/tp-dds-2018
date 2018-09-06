@@ -2,12 +2,15 @@ package dominio.estados;
 
 import dominio.dispositivos.DispositivoInteligente;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Encendido implements Estado {
+@Entity
+@DiscriminatorValue(value = "E")
+public class Encendido extends Estado {
     private LocalDateTime horaALaQueSePrendio;
-
 
     public Encendido() {
         this.horaALaQueSePrendio = LocalDateTime.now();
