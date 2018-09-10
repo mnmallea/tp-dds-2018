@@ -20,6 +20,7 @@ public class Cliente {
     private Long id;
     private String nombre;
     private String apellido;
+    @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
     private int nroDocumento;
     private Integer nroTelefono;
