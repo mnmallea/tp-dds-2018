@@ -2,11 +2,19 @@ package actuadores;
 
 import dominio.dispositivos.ReflectorInteligente;
 
-public class ActuadorSubirIntensidadReflector implements Actuador<ReflectorInteligente> {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "SIR")
+public class ActuadorSubirIntensidadReflector extends Actuador<ReflectorInteligente> {
     private Double luxQueSube;
 
     public ActuadorSubirIntensidadReflector(Double luxQueSube) {
         this.luxQueSube = luxQueSube;
+    }
+
+    public ActuadorSubirIntensidadReflector() {
     }
 
     @Override

@@ -10,12 +10,18 @@ import java.util.List;
 
 @Entity
 public class Zona {
-
+    @OneToMany(mappedBy = "zona")
     private List<Transformador> transformadores;
-    @OneToMany(mappedBy = "clientes")
+
+    @OneToMany(mappedBy = "zona")
     private List<Cliente> clientes;
+
     private Double radio;
+    @Embedded
     private Point centro;
+    @GeneratedValue
+    @Id
+    private String id;
 
     public Zona(Double radio, Point centro) {
         this.transformadores = AdministradorTransformadores.instancia.inicializarTransformadores(this);
@@ -25,6 +31,38 @@ public class Zona {
     }
 
     public Zona() {
+    }
+
+    public List<Transformador> getTransformadores() {
+        return transformadores;
+    }
+
+    public void setTransformadores(List<Transformador> transformadores) {
+        this.transformadores = transformadores;
+    }
+
+    public Double getRadio() {
+        return radio;
+    }
+
+    public void setRadio(Double radio) {
+        this.radio = radio;
+    }
+
+    public Point getCentro() {
+        return centro;
+    }
+
+    public void setCentro(Point centro) {
+        this.centro = centro;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
 
     public Transformador transformadorMasCercanoA(Point coordenada) {
@@ -45,14 +83,6 @@ public class Zona {
     public Double consumoTotal() {
         return transformadores.stream().mapToDouble(Transformador::energiaSuministrada).sum();
     }
-
-    public void setTransformadores(List<Transformador> transformadores) {
-        this.transformadores = transformadores;
-    }
-
-    @GeneratedValue
-    @Id
-    private String id;
 
     public String getId() {
         return id;

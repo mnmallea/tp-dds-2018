@@ -2,7 +2,12 @@ package actuadores;
 
 import dominio.dispositivos.DispositivoInteligente;
 
-public class ActuadorEncenderDispositivo<T extends DispositivoInteligente> implements Actuador {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "E")
+public class ActuadorEncenderDispositivo<T extends DispositivoInteligente> extends Actuador {
 
     @Override
     public void actuaSobre(DispositivoInteligente unDispositivo) {

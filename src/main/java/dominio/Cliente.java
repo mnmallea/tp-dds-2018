@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 @Entity
 public class Cliente {
     @GeneratedValue
@@ -34,9 +35,9 @@ public class Cliente {
     private int puntos = 0;
     @Embedded
     private Direccion direccion;
-    @Transient//todo
+    @Enumerated(EnumType.STRING)
     private EfectoSimplex efectoSimplex;
-
+    @ManyToOne
     private Zona zona;
 
     public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
