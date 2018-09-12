@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipoRegla")
+@DiscriminatorColumn(name = "tipoReglas")
 public class Regla<T, D extends DispositivoInteligente<?>> {
 
     @GeneratedValue
@@ -15,6 +15,7 @@ public class Regla<T, D extends DispositivoInteligente<?>> {
     private Long id;
     @ManyToOne
     private Condicion<T> condicion;
+    @ManyToMany
     private List<Actuador<D>> actuadores;
     private D dispositivo;
 

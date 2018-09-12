@@ -2,19 +2,35 @@ package actuadores;
 
 import dominio.dispositivos.DispositivoInteligente;
 
-public class ReglaParaTemperatura implements ReglaParaTemperaturaFabricante {
-    private DispositivoInteligente dispositivo;
-    private Actuador actuador;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import java.util.List;
 
-    public ReglaParaTemperatura(DispositivoInteligente dispositivo, Actuador actuador) {
+@Entity
+@DiscriminatorValue(value = "RT")
+public class ReglaParaTemperatura extends Regla implements ReglaParaTemperaturaFabricante {
+
+    @ManyToOne
+    private DispositivoInteligente dispositivo;
+    @ManyToMany
+    private List<Actuador> actuadores;
+
+
+    public ReglaParaTemperatura(DispositivoInteligente dispositivo, List<Actuador> actuadores) {
         this.dispositivo = dispositivo;
-        this.actuador = actuador;
+        this.actuadores = actuadores;
+    }
+
+    public ReglaParaTemperatura() {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void temperaturaCambioA(Double temperatura) {
-        if (temperatura > 24) actuador.actuaSobre(dispositivo);
+        if (temperatura > 24) {
+            actuadores.forEach(ac -> ac.actuaSobre(dispositivo));
+        }
     }
 
 }

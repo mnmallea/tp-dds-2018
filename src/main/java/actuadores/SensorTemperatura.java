@@ -2,7 +2,7 @@ package actuadores;
 
 import java.util.List;
 
-public class SensorTemperatura implements SensorTemperaturaFabricante {
+public class SensorTemperatura extends Sensor implements SensorTemperaturaFabricante {
     private List<ReglaParaTemperatura> reglas;
 
     public SensorTemperatura(List<ReglaParaTemperatura> reglas) {

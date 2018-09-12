@@ -1,12 +1,18 @@
 package actuadores;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.List;
 
-public class SensorMovimiento implements SensorMovimientoFabricante {
-    private List<ReglaParaMovimiento> reglas;
+@Entity
+@DiscriminatorValue(value = "SM")
+public class SensorMovimiento extends Sensor implements SensorMovimientoFabricante {
 
     public SensorMovimiento(List<ReglaParaMovimiento> reglas) {
         this.reglas = reglas;
+    }
+
+    public SensorMovimiento() {
     }
 
     public void agregarRegla(ReglaParaMovimiento unaRegla) {
