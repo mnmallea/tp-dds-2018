@@ -1,12 +1,25 @@
 package actuadores;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipoSensor")
 public class Sensor<T> {
-    protected List<Regla<T, ?>> reglas;
+
+    @GeneratedValue
+    @Id
+    private Long id;
+
+    @ManyToMany
+    private List<Regla<T, ?>> reglas;
 
     public Sensor(List<Regla<T, ?>> reglas) {
         this.reglas = reglas;
+    }
+
+    public Sensor() {
     }
 
     public void agregarRegla(Regla<T, ?> unaRegla) {

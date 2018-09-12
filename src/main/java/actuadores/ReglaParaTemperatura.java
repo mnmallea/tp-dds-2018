@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue(value = "RT")
-public class ReglaParaTemperatura extends Regla<Double, > implements ReglaParaTemperaturaFabricante {
+public class ReglaParaTemperatura extends Regla implements ReglaParaTemperaturaFabricante {
 
     @ManyToOne
     private DispositivoInteligente dispositivo;

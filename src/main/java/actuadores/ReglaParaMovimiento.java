@@ -1,20 +1,29 @@
 package actuadores;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-
 import dominio.dispositivos.DispositivoInteligente;
 
-@SuppressWarnings("rawtypes")
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @DiscriminatorValue(value = "RM")
-public class ReglaParaMovimiento extends Regla<Boolean,DispositivoInteligente> implements ReglaParaMovimientoFabricante {
+public class ReglaParaMovimiento extends Regla implements ReglaParaMovimientoFabricante {
+
+    @ManyToOne
+    private DispositivoInteligente dispositivo;
+    @ManyToMany
+    private List<Actuador> actuadores;
+
+    public ReglaParaMovimiento(DispositivoInteligente dispositivo, List<Actuador> actuadores) {
+        this.dispositivo = dispositivo;
+        this.actuadores = actuadores;
+    }
 
     public ReglaParaMovimiento() {
     }
 
-	@Override
-	public void huboMovimiento() {
-		this.seTomoMedicion(true);
-	}
+    @Override
+    public void huboMovimiento() {
+        actuadores.forEach(actuador -> actuador.actuaSobre(dispositivo));
+    }
 }
