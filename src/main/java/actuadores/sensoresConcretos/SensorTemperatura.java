@@ -1,22 +1,24 @@
 package actuadores.sensoresConcretos;
 
-import actuadores.reglasConcretas.ReglaParaTemperatura;
+import actuadores.Regla;
+import actuadores.Sensor;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.List;
 
-public class SensorTemperatura {
-    private List<ReglaParaTemperatura> reglas;
-
-    public SensorTemperatura(List<ReglaParaTemperatura> reglas) {
-        this.reglas = reglas;
+@Entity
+@DiscriminatorValue(value = "ST")
+public class SensorTemperatura extends Sensor<Double> implements SensorTemperaturaFabricante  {
+    public SensorTemperatura(List<Regla<Double, ?>> reglas) {
+        super(reglas);
     }
 
-    public void agregarRegla(ReglaParaTemperatura unaRegla) {
-        reglas.add(unaRegla);
+    public SensorTemperatura() {
     }
 
+    @Override
     public void laTemperaturaCambioA(Double temperatura) {
-        reglas.forEach(regla -> regla.temperaturaCambioA(temperatura));
+        this.informarMedicion(temperatura);
     }
-
 }

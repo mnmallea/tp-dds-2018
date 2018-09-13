@@ -12,7 +12,7 @@ public abstract class Sensor<T> {
     private Long id;
 
     @ManyToMany(targetEntity = Regla.class)
-    private List<Regla<T, ?>> reglas;
+    protected List<Regla<T, ?>> reglas;
 
     protected Sensor() {
     }

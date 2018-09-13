@@ -39,8 +39,12 @@ public abstract class Regla<T, D extends DispositivoInteligente<?>> {
     }
 
     public void seTomoMedicion(T medicion) {
-        if (condicion.seCumple(medicion)) {
+        if (seCumpleCondicion(medicion)) {
             actuadores.forEach(actuador -> actuador.actuaSobre(dispositivo));
         }
+    }
+
+    protected boolean seCumpleCondicion(T medicion) {
+        return condicion.seCumple(medicion);
     }
 }

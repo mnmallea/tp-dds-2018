@@ -1,23 +1,32 @@
 package actuadores.reglasConcretas;
 
 import actuadores.Actuador;
+import actuadores.Condicion;
+import actuadores.Regla;
 import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.ReflectorInteligente;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.List;
 
-public class ReglaParaMovimiento implements ReglaParaMovimientoFabricante {
-    private DispositivoInteligente dispositivo;
-    private List<Actuador> actuadores;
+@Entity
+@DiscriminatorValue(value = "RPM")
+public class ReglaParaMovimiento extends Regla<Boolean, ReflectorInteligente> implements ReglaParaMovimientoFabricante {
+    public ReglaParaMovimiento(List<Actuador<ReflectorInteligente>> actuadores, ReflectorInteligente dispositivo) {
+        super(null, actuadores, dispositivo);
+    }
 
-
-    public ReglaParaMovimiento(DispositivoInteligente dispositivo, List<Actuador> actuadores) {
-        this.dispositivo = dispositivo;
-        this.actuadores = actuadores;
+    public ReglaParaMovimiento() {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void huboMovimiento() {
-        actuadores.forEach(actuador -> actuador.actuaSobre(dispositivo));
+        this.seTomoMedicion(true);
+    }
+
+    @Override
+    protected boolean seCumpleCondicion(Boolean medicion) {
+        return true;
     }
 }
