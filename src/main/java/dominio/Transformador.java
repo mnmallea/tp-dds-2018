@@ -16,7 +16,7 @@ public class Transformador {
     private Zona zona;
     @GeneratedValue
     @Id
-    private String id;
+    private Long id;
 
     public Transformador(Point coordenadas) {
         this.coordenadas = coordenadas;
@@ -58,11 +58,11 @@ public class Transformador {
         return this.clientes.stream().mapToDouble(Cliente::consumo).sum();
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

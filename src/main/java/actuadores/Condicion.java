@@ -9,15 +9,15 @@ public abstract class Condicion<T> {
 
     @GeneratedValue
     @Id
-    private String id;
+    private Long id;
 
     public abstract boolean seCumple(T medicion);
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

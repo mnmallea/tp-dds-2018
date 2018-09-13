@@ -21,7 +21,7 @@ public class Zona {
     private Point centro;
     @GeneratedValue
     @Id
-    private String id;
+    private Long id;
 
     public Zona(Double radio, Point centro) {
         this.transformadores = AdministradorTransformadores.instancia.inicializarTransformadores(this);
@@ -84,11 +84,11 @@ public class Zona {
         return transformadores.stream().mapToDouble(Transformador::energiaSuministrada).sum();
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
