@@ -3,13 +3,11 @@ package dominio.dispositivos;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Estado;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.Period;
 
 @Entity
+@DiscriminatorColumn(name = "tipoDI")
 public class DispositivoInteligente<T extends Fabricante> implements Dispositivo {
 
     @Transient //todo

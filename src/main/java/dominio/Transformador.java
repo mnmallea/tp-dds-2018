@@ -11,6 +11,7 @@ public class Transformador {
     @Embedded
     private Point coordenadas;
     @OneToMany
+    @JoinColumn(name = "transformador")
     private List<Cliente> clientes;
     @ManyToOne
     private Zona zona;

@@ -17,8 +17,10 @@ public class Zona {
     private List<Cliente> clientes;
 
     private Double radio;
+
     @Embedded
     private Point centro;
+
     @GeneratedValue
     @Id
     private Long id;

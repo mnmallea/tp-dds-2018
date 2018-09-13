@@ -29,8 +29,10 @@ public class Cliente {
     @ManyToOne
     private Categoria categoria;
     @OneToMany
+    @JoinColumn(name = "cliente")
     private List<DispositivoInteligente> dispositivosInteligentes;
     @OneToMany
+    @JoinColumn(name = "cliente")
     private List<DispositivoEstandar> dispositivosEstandar;
     private int puntos = 0;
     @Embedded

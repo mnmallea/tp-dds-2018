@@ -18,7 +18,8 @@ public abstract class Regla<T, D extends DispositivoInteligente<?>> {
     @ManyToMany(targetEntity = Actuador.class)
     private List<Actuador<D>> actuadores;
 
-    @Transient //todo
+    @ManyToOne
+    @JoinColumn(name = "dispositivo")
     private D dispositivo;
 
     public Regla(Condicion<T> condicion, List<Actuador<D>> actuadores, D dispositivo) {
