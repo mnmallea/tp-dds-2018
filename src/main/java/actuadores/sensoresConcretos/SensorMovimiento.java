@@ -1,8 +1,10 @@
-package actuadores;
+package actuadores.sensoresConcretos;
+
+import actuadores.reglasConcretas.ReglaParaMovimiento;
 
 import java.util.List;
 
-public class SensorMovimiento implements SensorMovimientoFabricante {
+public class SensorMovimiento {
     private List<ReglaParaMovimiento> reglas;
 
     public SensorMovimiento(List<ReglaParaMovimiento> reglas) {
@@ -13,7 +15,6 @@ public class SensorMovimiento implements SensorMovimientoFabricante {
         reglas.add(unaRegla);
     }
 
-    @Override
     public void seMovio() {
         reglas.forEach(ReglaParaMovimiento::huboMovimiento);
     }

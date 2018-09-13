@@ -8,9 +8,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import actuadores.Actuador;
-import actuadores.ActuadorEncenderDispositivo;
-import actuadores.ActuadorSubirIntensidadReflector;
-import actuadores.ReglaParaMovimiento;
+import actuadores.actuadoresConcretos.ActuadorEncenderDispositivo;
+import actuadores.actuadoresConcretos.ActuadorSubirIntensidadReflector;
+import actuadores.reglasConcretas.ReglaParaMovimiento;
 import actuadores.SensorMovimiento;
 import dominio.dispositivos.ReflectorInteligente;
 import dominio.estados.Apagado;

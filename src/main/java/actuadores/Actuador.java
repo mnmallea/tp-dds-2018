@@ -12,7 +12,7 @@ public abstract class Actuador<T extends DispositivoInteligente<?>> {
     @Id
     private String id;
 
-    abstract void actuaSobre(T unDispositivo);
+    public abstract void actuaSobre(T unDispositivo);
 
     public String getId() {
         return id;

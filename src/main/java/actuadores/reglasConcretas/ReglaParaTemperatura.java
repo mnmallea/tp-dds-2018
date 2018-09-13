@@ -1,5 +1,6 @@
-package actuadores;
+package actuadores.reglasConcretas;
 
+import actuadores.Actuador;
 import dominio.dispositivos.DispositivoInteligente;
 
 public class ReglaParaTemperatura implements ReglaParaTemperaturaFabricante {

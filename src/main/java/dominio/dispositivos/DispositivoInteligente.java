@@ -6,11 +6,13 @@ import dominio.estados.Estado;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import java.time.Period;
 
 @Entity
 public class DispositivoInteligente<T extends Fabricante> implements Dispositivo {
 
+    @Transient //todo
     protected T fabricante;
     @Id
     protected Long idDeFabrica;

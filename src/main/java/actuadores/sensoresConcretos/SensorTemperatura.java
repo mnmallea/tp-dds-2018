@@ -1,8 +1,10 @@
-package actuadores;
+package actuadores.sensoresConcretos;
+
+import actuadores.reglasConcretas.ReglaParaTemperatura;
 
 import java.util.List;
 
-public class SensorTemperatura implements SensorTemperaturaFabricante {
+public class SensorTemperatura {
     private List<ReglaParaTemperatura> reglas;
 
     public SensorTemperatura(List<ReglaParaTemperatura> reglas) {
@@ -13,7 +15,6 @@ public class SensorTemperatura implements SensorTemperaturaFabricante {
         reglas.add(unaRegla);
     }
 
-    @Override
     public void laTemperaturaCambioA(Double temperatura) {
         reglas.forEach(regla -> regla.temperaturaCambioA(temperatura));
     }

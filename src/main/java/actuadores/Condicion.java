@@ -11,7 +11,7 @@ public abstract class Condicion<T> {
     @Id
     private String id;
 
-    abstract boolean seCumple(T medicion);
+    public abstract boolean seCumple(T medicion);
 
     public String getId() {
         return id;

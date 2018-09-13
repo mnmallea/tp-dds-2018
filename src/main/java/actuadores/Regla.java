@@ -8,14 +8,17 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipoRegla")
-public class Regla<T, D extends DispositivoInteligente<?>> {
+public abstract class Regla<T, D extends DispositivoInteligente<?>> {
 
     @GeneratedValue
     @Id
     private Long id;
-    @ManyToOne
+    @ManyToOne(targetEntity = Condicion.class)
     private Condicion<T> condicion;
+    @ManyToMany(targetEntity = Actuador.class)
     private List<Actuador<D>> actuadores;
+
+    @Transient //todo
     private D dispositivo;
 
     public Regla(Condicion<T> condicion, List<Actuador<D>> actuadores, D dispositivo) {
