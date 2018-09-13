@@ -4,20 +4,20 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "condicion")
+@DiscriminatorColumn(name = "tipoCondicion")
 public abstract class Condicion<T> {
 
     @GeneratedValue
     @Id
-    private String id;
+    private Long id;
 
-    abstract boolean seCumple(T medicion);
+    public abstract boolean seCumple(T medicion);
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

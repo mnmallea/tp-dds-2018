@@ -1,5 +1,6 @@
-package actuadores;
+package actuadores.actuadoresConcretos;
 
+import actuadores.Actuador;
 import dominio.dispositivos.AireAcondicionadoInteligente;
 
 import javax.persistence.DiscriminatorValue;

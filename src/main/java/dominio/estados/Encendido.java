@@ -1,6 +1,7 @@
 package dominio.estados;
 
 import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.PeriodoEncendido;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ public class Encendido extends Estado {
     public void apagarse(DispositivoInteligente dispositivo) {
         dispositivo.apagarsePosta();
         dispositivo.setEstado(new Apagado());
+        dispositivo.agregarPeriodo(new PeriodoEncendido(this.horaALaQueSePrendio, LocalDateTime.now()));
         dispositivo.aumentarHorasPrendido(this.horasPrendido());
     }
 

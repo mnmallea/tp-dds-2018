@@ -7,40 +7,45 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipoReglas")
-public class Regla<TipoCondicion, TipoDispositivo extends DispositivoInteligente<?>> {
+@DiscriminatorColumn(name = "tipoRegla")
+public abstract class Regla<T, D extends DispositivoInteligente<?>> {
 
-	@GeneratedValue
-	@Id
-	private Long id;
-	@ManyToOne
-	private Condicion<TipoCondicion> condicion;
-	@ManyToMany
-	private List<Actuador<TipoDispositivo>> actuadores;
-	@ManyToOne
-	private TipoDispositivo dispositivo;
+    @GeneratedValue
+    @Id
+    private Long id;
+    @ManyToOne(targetEntity = Condicion.class, cascade = CascadeType.ALL)
+    private Condicion<T> condicion;
+    @ManyToMany(targetEntity = Actuador.class)
+    private List<Actuador<D>> actuadores;
 
-	public Regla(Condicion<TipoCondicion> condicion, List<Actuador<TipoDispositivo>> actuadores,
-			TipoDispositivo dispositivo) {
-		this.condicion = condicion;
-		this.actuadores = actuadores;
-		this.dispositivo = dispositivo;
-	}
+    @ManyToOne
+    @JoinColumn(name = "dispositivo")
+    private D dispositivo;
 
-	public Regla() {
-	}
+    public Regla(Condicion<T> condicion, List<Actuador<D>> actuadores, D dispositivo) {
+        this.condicion = condicion;
+        this.actuadores = actuadores;
+        this.dispositivo = dispositivo;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Regla() {
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void seTomoMedicion(TipoCondicion medicion) {
-		if (condicion.seCumple(medicion)) {
-			actuadores.forEach(actuador -> actuador.actuaSobre(dispositivo));
-		}
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void seTomoMedicion(T medicion) {
+        if (seCumpleCondicion(medicion)) {
+            actuadores.forEach(actuador -> actuador.actuaSobre(dispositivo));
+        }
+    }
+
+    protected boolean seCumpleCondicion(T medicion) {
+        return condicion.seCumple(medicion);
+    }
 }

@@ -3,14 +3,16 @@ package dominio.dispositivos;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Estado;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@DiscriminatorColumn(name = "tipoDI")
 public class DispositivoInteligente<T extends Fabricante> implements Dispositivo {
 
+    @Transient
     protected T fabricante;
     @Id
     protected Long idDeFabrica;
@@ -21,6 +23,9 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     private Float horasMinimas;
     private Float horasMaximas;
     private Float horasUsoMes;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dispositivo")
+    private List<PeriodoEncendido> periodosEncendido;
 
     public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante, Long idDeFabrica) {
         this.nombre = nombre;
@@ -29,9 +34,14 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         this.fabricante = fabricante;
         this.idDeFabrica = idDeFabrica;
         this.horasUsoMes = 0f;
+        this.periodosEncendido = new ArrayList<>();
     }
 
     public DispositivoInteligente() {
+    }
+
+    public void agregarPeriodo(PeriodoEncendido periodoEncendido){
+        periodosEncendido.add(periodoEncendido);
     }
 
     public T getFabricante() {

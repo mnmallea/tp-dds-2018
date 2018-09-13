@@ -14,6 +14,5 @@ public class Main {
         Scheduler scheduler = new StdSchedulerFactory().getScheduler();
         scheduler.start();
         scheduler.scheduleJob(job, trigger);
-
     }
 }

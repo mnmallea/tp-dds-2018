@@ -11,7 +11,7 @@ public abstract class Estado {
 
     @GeneratedValue
     @Id
-    private String id;
+    private Long id;
 
     public abstract void apagarse(DispositivoInteligente dispositivo);
 
@@ -25,11 +25,11 @@ public abstract class Estado {
 
     public abstract Boolean estaAhorroEnergia();
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

@@ -1,4 +1,6 @@
-package actuadores;
+package actuadores.condicionesConcretas;
+
+import actuadores.Condicion;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

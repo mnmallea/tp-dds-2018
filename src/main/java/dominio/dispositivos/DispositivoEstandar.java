@@ -1,10 +1,9 @@
 package dominio.dispositivos;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class DispositivoEstandar implements Dispositivo {
 
     @GeneratedValue
