@@ -13,7 +13,7 @@ public abstract class Regla<T, D extends DispositivoInteligente<?>> {
     @GeneratedValue
     @Id
     private Long id;
-    @ManyToOne(targetEntity = Condicion.class)
+    @ManyToOne(targetEntity = Condicion.class, cascade = CascadeType.ALL)
     private Condicion<T> condicion;
     @ManyToMany(targetEntity = Actuador.class)
     private List<Actuador<D>> actuadores;

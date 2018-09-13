@@ -1,23 +1,24 @@
 package actuadores.sensoresConcretos;
 
+import actuadores.Regla;
 import actuadores.Sensor;
-import actuadores.reglasConcretas.ReglaParaMovimiento;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.List;
 
+@Entity
+@DiscriminatorValue(value = "SM")
 public class SensorMovimiento extends Sensor<Boolean> implements SensorMovimientoFabricante{
-    private List<ReglaParaMovimiento> reglas;
-
-    public SensorMovimiento(List<ReglaParaMovimiento> reglas) {
-        this.reglas = reglas;
+    public SensorMovimiento(List<Regla<Boolean, ?>> reglas) {
+        super(reglas);
     }
 
-    public void agregarRegla(ReglaParaMovimiento unaRegla) {
-        reglas.add(unaRegla);
+    public SensorMovimiento() {
     }
 
     public void seMovio() {
-        reglas.forEach(ReglaParaMovimiento::huboMovimiento);
+        this.informarMedicion(true);
     }
 
 
