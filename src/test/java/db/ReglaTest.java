@@ -50,6 +50,7 @@ public class ReglaTest {
 
     @After
     public void after() {
+        ac.apagarse();
         entityTransaction.rollback();
     }
 
@@ -65,9 +66,13 @@ public class ReglaTest {
 
     @Test
     public void modificarCondicion() {
-
+        Regla reglaPersistida = em.find(Regla.class, 1L);
         regla.setCondicion(new TemperaturaMayorA(30d));
 
-        Assert.assertEquals();
+        Assert.assertEquals(regla.getCondicion(), reglaPersistida.getCondicion());
+
+        reglaPersistida.seTomoMedicion(25d);
+
+        Assert.assertEquals(Apagado.class, ac.getEstado().getClass());
     }
 }
