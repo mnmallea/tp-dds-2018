@@ -34,6 +34,9 @@ public class ClienteTest {
                 new Direccion(new Point(2.0, 3.0), "Calle 5"), Categorizador.instancia.getR1(), new ArrayList<>(), new ArrayList<>(),
                 LocalDate.now(), zona1);
         cliente.setId(1L);
+        em.persist(zona1);
+        em.persist(zona2);
+        em.persist(cliente);
 
     }
 
@@ -44,24 +47,13 @@ public class ClienteTest {
 
     @Test
     public void crearYRecuperarNuevoUsuario() {
-        //persitimos cliente
-        em.persist(zona1);
-        em.persist(cliente);
-
-        //recuperamos Cliente
         Assert.assertEquals(cliente, em.find(Cliente.class, 1L));
     }
 
     @Test
     public void cambiarGeoposicionamientoYRecuperar() {
-
-        //persitimos cliente
-        em.persist(zona1);
-        em.persist(zona2);
-        em.persist(cliente);
         cliente.setZona(zona2);
 
-        //recuperamos Cliente
         Assert.assertEquals(zona2, em.find(Cliente.class, 1L).getZona());
     }
 }

@@ -10,9 +10,17 @@ import java.util.List;
 @DiscriminatorColumn(name = "tipoRegla")
 public abstract class Regla<T, D extends DispositivoInteligente<?>> {
 
-    @GeneratedValue
     @Id
     private Long id;
+
+    public Condicion<T> getCondicion() {
+        return condicion;
+    }
+
+    public void setCondicion(Condicion<T> condicion) {
+        this.condicion = condicion;
+    }
+
     @ManyToOne(targetEntity = Condicion.class, cascade = CascadeType.ALL)
     private Condicion<T> condicion;
     @ManyToMany(targetEntity = Actuador.class)
