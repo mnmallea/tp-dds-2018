@@ -52,7 +52,7 @@ public class ZonaJSONTests {
 	@Test
 	public void seRecuperanLosTransformadoresDesdeJSONYLasZonasDesdeLaDB() {
 		List<Transformador> transformadores = Arrays.asList(ParserTransformadores.obtenerTransformadores("src/main/resources/transformadores.json"));
-		transformadores.forEach(t -> RepoTransformadores.persistirSiDebe(t));
+		transformadores.forEach(RepoTransformadores::persistirSiDebe);
 		transformadores.forEach(t -> System.out.println(t.getZona().getId()));
 		
 		Assert.assertEquals(zona1, transformadores.get(0).getZona());

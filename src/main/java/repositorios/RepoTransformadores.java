@@ -36,9 +36,8 @@ public class RepoTransformadores {
 	public static void persistirSiDebe(Transformador t) {
 		
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		Transformador transformador = em.find(Transformador.class, t.getId());
-		
-		List<Transformador> transformadoresRecuperados = em.createQuery("select trans from Transformadores trans").getResultList();
+
+		List<Transformador> transformadoresRecuperados = em.createQuery("select trans from Transformador trans").getResultList();
 		
 		if (!transformadoresRecuperados.stream().anyMatch(tr -> tr.getId().equals(t.getId())))
 		{
