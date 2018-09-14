@@ -1,0 +1,18 @@
+[
+{
+  "coordenadas":{"x":"100","y":"150"}
+  "zona": 1
+},
+{
+  "coordenadas":{"x":"100","y":"125"}
+  "zona": 1
+},
+{
+  "coordenadas":{"x":"10","y":"125"}
+  "zona": 2
+},
+{
+  "coordenadas":{"x":"10","y":"15"}
+  "zona": 3
+}
+]
