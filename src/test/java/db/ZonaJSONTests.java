@@ -16,6 +16,7 @@ import dominio.Transformador;
 import dominio.Zona;
 import jsonAObjeto.ParserTransformadores;
 import puntos.Point;
+import repositorios.RepoTransformadores;
 
 public class ZonaJSONTests {
 
@@ -50,9 +51,8 @@ public class ZonaJSONTests {
 
 	@Test
 	public void seRecuperanLosTransformadoresDesdeJSONYLasZonasDesdeLaDB() {
-		List<Transformador> transformadores = Arrays
-				.asList(ParserTransformadores.obtenerTransformadores("src/main/resources/transformadores.json"));
-		transformadores.forEach(t -> em.persist(t));
+		List<Transformador> transformadores = Arrays.asList(ParserTransformadores.obtenerTransformadores("src/main/resources/transformadores.json"));
+		transformadores.forEach(t -> RepoTransformadores.persistirSiDebe(t));
 		transformadores.forEach(t -> System.out.println(t.getZona().getId()));
 		
 		Assert.assertEquals(zona1, transformadores.get(0).getZona());
