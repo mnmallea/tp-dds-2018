@@ -10,12 +10,11 @@ import java.util.List;
 public class Transformador {
     @Embedded
     private Point coordenadas;
-    @OneToMany
+	@OneToMany
     @JoinColumn(name = "transformador")
     private List<Cliente> clientes;
     @ManyToOne
     private Zona zona;
-    @GeneratedValue
     @Id
     private Long id;
 
