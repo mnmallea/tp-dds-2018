@@ -1,5 +1,6 @@
 package dominio;
 
+import dominio.dispositivos.PeriodoEncendido;
 import puntos.Point;
 
 import javax.persistence.*;
@@ -15,7 +16,6 @@ public class Transformador {
     private List<Cliente> clientes;
     @ManyToOne
     private Zona zona;
-    @GeneratedValue
     @Id
     private Long id;
 
@@ -65,6 +65,10 @@ public class Transformador {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Double consumoTotal(PeriodoEncendido pe) {
+        return clientes.stream().mapToDouble(c -> c.consumoDeDispositivosInteligentesEnPeriodo(pe)).sum();
     }
 }
 

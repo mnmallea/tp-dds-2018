@@ -3,6 +3,7 @@ package dominio;
 import dominio.dispositivos.Dispositivo;
 import dominio.dispositivos.DispositivoEstandar;
 import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.PeriodoEncendido;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Apagado;
 import simplex.EfectoSimplex;
@@ -169,5 +170,10 @@ public class Cliente {
 
     public void notificarResultadoSimplex(List<SolucionSimplex> soluciones) {
         soluciones.forEach(solucion -> solucion.aplicarEfectoSiDebe(this.efectoSimplex));
+    }
+
+    public Double consumoDeDispositivosInteligentesEnPeriodo(PeriodoEncendido periodoEncendido){
+        return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(periodoEncendido)).sum();
+
     }
 }

@@ -7,6 +7,8 @@ import javax.persistence.*;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Entity
 @DiscriminatorColumn(name = "tipoDI")
@@ -98,8 +100,12 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         return !estado.estaEncendido();
     }
 
-    public Float consumoEnPeriodo(Period periodo) {
-        return fabricante.consumoEnPeriodo(periodo, this.idDeFabrica);
+    public Float consumoEnPeriodo(PeriodoEncendido periodo) {
+        return periodo.enHoras() * this.consumoPorHora;
+    }
+
+    public Double consumoTotal(){
+        return periodosEncendido.stream().mapToDouble(p -> this.consumoEnPeriodo(p)).sum();
     }
 
     public Float consumoEnUltimasHoras(int unasHoras) {

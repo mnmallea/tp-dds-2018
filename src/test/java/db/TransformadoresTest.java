@@ -27,8 +27,11 @@ public class TransformadoresTest {
         entityTransaction.begin();
 
         transformador1 = new Transformador(new Point(0.00, 9.00));
+        transformador1.setId(1L);
         transformador2 = new Transformador(new Point(10.00, 0.00));
+        transformador2.setId(2L);
         transformador3 = new Transformador(new Point(-4.00, 9.00));
+        transformador3.setId(3L);
 
         em.persist(transformador1);
         em.persist(transformador2);

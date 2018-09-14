@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity(name = "HistorialEncendidos")
 public class PeriodoEncendido {
@@ -19,6 +20,10 @@ public class PeriodoEncendido {
     }
 
     public PeriodoEncendido() {
+    }
+
+    public Long enHoras(){
+        return ChronoUnit.HOURS.between(inicio, fin);
     }
 
     public Long getId() {
