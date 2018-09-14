@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 
 @Entity
 public class Cliente {
-    @GeneratedValue
     @Id
     private Long id;
     private String nombre;
@@ -41,7 +40,6 @@ public class Cliente {
     private EfectoSimplex efectoSimplex;
     @ManyToOne
     private Zona zona;
-
     public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
                    Integer nroTelefono, Direccion direccion, Categoria categoria,
                    List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
@@ -58,8 +56,15 @@ public class Cliente {
         this.zona = zona;
 
     }
-
     public Cliente() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Zona getZona() {

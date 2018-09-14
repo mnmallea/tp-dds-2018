@@ -26,7 +26,6 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "dispositivo")
     private List<PeriodoEncendido> periodosEncendido;
-
     public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante, Long idDeFabrica) {
         this.nombre = nombre;
         this.estado = estado;
@@ -36,11 +35,22 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         this.horasUsoMes = 0f;
         this.periodosEncendido = new ArrayList<>();
     }
-
     public DispositivoInteligente() {
     }
 
-    public void agregarPeriodo(PeriodoEncendido periodoEncendido){
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<PeriodoEncendido> getPeriodosEncendido() {
+        return periodosEncendido;
+    }
+
+    public void agregarPeriodo(PeriodoEncendido periodoEncendido) {
         periodosEncendido.add(periodoEncendido);
     }
 
