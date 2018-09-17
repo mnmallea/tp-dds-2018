@@ -36,7 +36,7 @@ public class DispositivoTest {
         em = PerThreadEntityManagers.getEntityManager();
         entityTransaction = em.getTransaction();
         entityTransaction.begin();
-        dispositivoInteligente = (DispositivoInteligente) FabricaDeDispositivos.crearLED40("Led40", null, 1L);
+        dispositivoInteligente = FabricaDeDispositivos.crearLED40("Led40", null, 1L);
         dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha1,fecha2));
         dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha3,fecha4));
         dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha5,fecha6));

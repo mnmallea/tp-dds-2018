@@ -46,9 +46,9 @@ public class ConsumoTest {
         zona1 = new Zona(45.0, new Point(0.0, 0.0));
         zona1.setId(1L);
 
-        unDispositivoInteligente = (DispositivoInteligente) FabricaDeDispositivos.
+        unDispositivoInteligente = FabricaDeDispositivos.
                 crearLED40("LED", null, 1L);
-        otroDispositivoInteligente = (DispositivoInteligente) FabricaDeDispositivos.
+        otroDispositivoInteligente = FabricaDeDispositivos.
                 crearAire2200("AIRE", null, 2L);
 
         fecha1 = LocalDateTime.of(2018, 9, 1, 0, 0);
