@@ -2,34 +2,19 @@ package dominio.estados;
 
 import dominio.dispositivos.DispositivoInteligente;
 
-import javax.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipoEstado")
-public abstract class Estado {
+public interface Estado {
 
-    @GeneratedValue
-    @Id
-    private Long id;
+    void apagarse(DispositivoInteligente dispositivo);
 
-    public abstract void apagarse(DispositivoInteligente dispositivo);
+    void encenderse(DispositivoInteligente dispositivo);
 
-    public abstract void encenderse(DispositivoInteligente dispositivo);
+    void ahorrarEnergia(DispositivoInteligente dispositivo);
 
-    public abstract void ahorrarEnergia(DispositivoInteligente dispositivo);
+    Boolean estaEncendido();
 
-    public abstract Boolean estaEncendido();
+    Boolean estaApagado();
 
-    public abstract Boolean estaApagado();
+    Boolean estaAhorroEnergia();
 
-    public abstract Boolean estaAhorroEnergia();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

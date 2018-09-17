@@ -1,5 +1,6 @@
 package dominio.dispositivos;
 
+import converter.EstadoConverter;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Estado;
 
@@ -18,7 +19,7 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     @Id
     protected Long idDeFabrica;
     private String nombre;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @Convert(converter = EstadoConverter.class)
     private Estado estado;
     private Float consumoPorHora;
     private Float horasMinimas;

@@ -2,12 +2,8 @@ package dominio.estados;
 
 import dominio.dispositivos.DispositivoInteligente;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 
-@Entity
-@DiscriminatorValue(value = "E")
-public class Encendido extends Estado {
+public class Encendido implements Estado {
 
     public void encenderse(DispositivoInteligente dispositivo) {
 

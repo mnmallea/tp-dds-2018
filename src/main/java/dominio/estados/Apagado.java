@@ -2,13 +2,10 @@ package dominio.estados;
 
 import dominio.dispositivos.DispositivoInteligente;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
-@Entity
-@DiscriminatorValue(value = "A")
-public class Apagado extends Estado {
+
+public class Apagado implements Estado {
 
     public void apagarse(DispositivoInteligente dispositivo) {
 
