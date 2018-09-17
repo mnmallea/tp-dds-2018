@@ -4,6 +4,7 @@ import dominio.dispositivos.DispositivoInteligente;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.time.LocalDateTime;
 
 @Entity
 @DiscriminatorValue(value = "AE")
@@ -17,6 +18,7 @@ public class AhorroEnergia extends Estado {
     public void encenderse(DispositivoInteligente dispositivo) {
         dispositivo.encendersePosta();
         dispositivo.setEstado(new Encendido());
+        dispositivo.setUltimaHoraDeEncendido(LocalDateTime.now());
     }
 
     public void ahorrarEnergia(DispositivoInteligente dispositivo) {
@@ -29,7 +31,6 @@ public class AhorroEnergia extends Estado {
 
     public Boolean estaApagado() {
         return false;
-
     }
 
     public Boolean estaAhorroEnergia() {

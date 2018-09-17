@@ -4,11 +4,10 @@ import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Estado;
 
 import javax.persistence.*;
-import java.time.Period;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @Entity
 @DiscriminatorColumn(name = "tipoDI")
@@ -19,7 +18,7 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     @Id
     protected Long idDeFabrica;
     private String nombre;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Estado estado;
     private Float consumoPorHora;
     private Float horasMinimas;
@@ -28,6 +27,8 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "dispositivo")
     private List<PeriodoEncendido> periodosEncendido;
+    private LocalDateTime ultimaHoraDeEncendido;
+
     public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante, Long idDeFabrica) {
         this.nombre = nombre;
         this.estado = estado;
@@ -37,7 +38,12 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         this.horasUsoMes = 0f;
         this.periodosEncendido = new ArrayList<>();
     }
+
     public DispositivoInteligente() {
+    }
+
+    public void setUltimaHoraDeEncendido(LocalDateTime ultimaHoraDeEncendido) {
+        this.ultimaHoraDeEncendido = ultimaHoraDeEncendido;
     }
 
     public String getNombre() {
@@ -104,8 +110,8 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         return periodo.enHoras() * this.consumoPorHora;
     }
 
-    public Double consumoTotal(){
-        return periodosEncendido.stream().mapToDouble(p -> this.consumoEnPeriodo(p)).sum();
+    public Double consumoTotal() {
+        return periodosEncendido.stream().mapToDouble(this::consumoEnPeriodo).sum();
     }
 
     public Float consumoEnUltimasHoras(int unasHoras) {
@@ -154,12 +160,19 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         this.horasMaximas = horasMaximas;
     }
 
-    public void aumentarHorasPrendido(Float horasPrendido) {
-        horasUsoMes += horasPrendido;
+    public void aumentarHorasPrendido(Float unasHoras) {
+        horasUsoMes += unasHoras;
     }
 
     @Override
     public Float getHorasUsoMes() {
         return this.horasUsoMes;
+    }
+
+    public void completarPeriodoEncendido() {
+        final LocalDateTime NOW = LocalDateTime.now();
+        Float horasPrendido = Duration.between(ultimaHoraDeEncendido, NOW).getSeconds() / 3600f;
+        this.aumentarHorasPrendido(horasPrendido);
+        this.agregarPeriodo(new PeriodoEncendido(this.ultimaHoraDeEncendido, NOW));
     }
 }
