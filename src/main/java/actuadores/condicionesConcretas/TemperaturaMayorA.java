@@ -1,17 +1,17 @@
 package actuadores.condicionesConcretas;
 
-import actuadores.Condicion;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import actuadores.condicionesAbstractas.CondicionDouble;
+
 @Entity
-@DiscriminatorValue(value = "TMA")
-public class TemperaturaMayorA extends Condicion<Double> {
-    private Double temperatura;
+@DiscriminatorValue(value = "TemperaturaMayorA")
+public class TemperaturaMayorA extends CondicionDouble {
+    private Double valorDouble;
 
     public TemperaturaMayorA(Double temperatura) {
-        this.temperatura = temperatura;
+        this.valorDouble= temperatura;
     }
 
     public TemperaturaMayorA() {
@@ -19,6 +19,6 @@ public class TemperaturaMayorA extends Condicion<Double> {
 
     @Override
     public boolean seCumple(Double medicion) {
-        return medicion > this.temperatura;
+        return medicion > this.valorDouble;
     }
 }
