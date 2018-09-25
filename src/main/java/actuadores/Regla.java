@@ -26,7 +26,7 @@ public abstract class Regla<T, D extends DispositivoInteligente<?>> {
     @ManyToMany(targetEntity = Actuador.class)
     private List<Actuador<D>> actuadores;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = DispositivoInteligente.class)
     @JoinColumn(name = "dispositivo")
     private D dispositivo;
 

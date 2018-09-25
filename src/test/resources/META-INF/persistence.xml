@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!--actuadores-->
+        <class>actuadores.Actuador</class>
+        <class>actuadores.Condicion</class>
+        <class>actuadores.Regla</class>
+        <class>actuadores.Sensor</class>
+
+        <!--actuadores.actuadoresConcretos-->
+        <class>actuadores.actuadoresConcretos.ActuadorApagarDispositivo</class>
+        <class>actuadores.actuadoresConcretos.ActuadorBajaTemperaturaAC</class>
+        <class>actuadores.actuadoresConcretos.ActuadorEncenderDispositivo</class>
+        <class>actuadores.actuadoresConcretos.ActuadorSubirIntensidadReflector</class>
+
+        <!--acutadores.condicionesAbstractas-->
+        <class>actuadores.condicionesAbstractas.CondicionBool</class>
+        <class>actuadores.condicionesAbstractas.CondicionDouble</class>
+        <class>actuadores.condicionesAbstractas.CondicionInteger</class>
+
+        <!--actuadores.condicionesConcretas-->
+        <class>actuadores.condicionesConcretas.SeMovio</class>
+        <class>actuadores.condicionesConcretas.TemperaturaMayorA</class>
+        <class>actuadores.condicionesConcretas.TemperaturaMenorA</class>
+
+        <!--actuadores.reglasConcretas-->
+        <class>actuadores.reglasConcretas.ReglaBajaTemperatura</class>
+        <class>actuadores.reglasConcretas.ReglaEnciendeAire</class>
+        <class>actuadores.reglasConcretas.ReglaParaMovimiento</class>
+        <class>actuadores.reglasConcretas.ReglaParaTemperatura</class>
+
+        <!--actuadores.sensoresConcretos-->
+        <class>actuadores.sensoresConcretos.SensorMovimiento</class>
+        <class>actuadores.sensoresConcretos.SensorTemperatura</class>
+
+        <!--dominio-->
+        <class>dominio.Categoria</class>
+        <class>dominio.Cliente</class>
+        <class>dominio.Transformador</class>
+        <class>dominio.Zona</class>
+
+        <!--dominio.dispositivos-->
+        <class>dominio.dispositivos.AireAcondicionadoInteligente</class>
+        <class>dominio.dispositivos.DispositivoEstandar</class>
+        <class>dominio.dispositivos.DispositivoInteligente</class>
+        <class>dominio.dispositivos.PeriodoEncendido</class>
+        <class>dominio.dispositivos.ReflectorInteligente</class>
+
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class"/>
+
+            <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+            <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
+            <property name="hibernate.connection.username" value="sa"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+
+    </persistence-unit>
+
+</persistence> 
