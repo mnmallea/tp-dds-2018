@@ -2,18 +2,30 @@ package dominio.dispositivos.fabricantes;
 
 import java.time.Period;
 
-public interface Fabricante {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-    Float consumoEnPeriodo(Period periodo, Long idDeFabrica);
+@Entity
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+public abstract class Fabricante {
 
-    Float consumoEnUltimasHoras(int unasHoras, Long idDeFabrica);
+	@GeneratedValue
+	@Id
+    private Long id;
+	
+    public abstract Float consumoEnPeriodo(Period periodo, Long idDeFabrica);
 
-    void apagarDispositivo(Long idDeFabrica);
+    public abstract Float consumoEnUltimasHoras(int unasHoras, Long idDeFabrica);
 
-    void encenderDispositivo(Long idDeFabrica);
+    public abstract void apagarDispositivo(Long idDeFabrica);
 
-    void ahorrarEnergia(Long idDeFabrica);
+    public abstract void encenderDispositivo(Long idDeFabrica);
 
-    Float consumoUltimoMes(Long idDeFabrica);
+    public abstract void ahorrarEnergia(Long idDeFabrica);
+
+    public abstract Float consumoUltimoMes(Long idDeFabrica);
 
 }

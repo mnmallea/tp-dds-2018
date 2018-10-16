@@ -52,6 +52,11 @@
         <class>dominio.dispositivos.DispositivoInteligente</class>
         <class>dominio.dispositivos.PeriodoEncendido</class>
         <class>dominio.dispositivos.ReflectorInteligente</class>
+        
+        <!-- dominio.dispositivos.fabricantes -->
+        <class>dominio.dispositivos.fabricantes.Fabricante</class>
+        <class>dominio.dispositivos.fabricantes.FabricanteAireAcondicionado</class>
+        <class>dominio.dispositivos.fabricantes.FabricanteReflector</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
