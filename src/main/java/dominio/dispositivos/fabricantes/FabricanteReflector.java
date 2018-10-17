@@ -1,8 +1,11 @@
 package dominio.dispositivos.fabricantes;
 
-public interface FabricanteReflector extends Fabricante {
+import javax.persistence.Entity;
+
+@Entity
+public abstract class FabricanteReflector extends Fabricante {
 	
-	void aumentarIntensidad(Long idDeFabrica, Double unosLux);
+	public abstract void aumentarIntensidad(Long idDeFabrica, Double unosLux);
 	
-	void disminuirIntensidad(Long idDeFabrica, Double unosLux);
+	public abstract void disminuirIntensidad(Long idDeFabrica, Double unosLux);
 }

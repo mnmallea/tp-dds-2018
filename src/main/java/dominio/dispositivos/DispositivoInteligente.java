@@ -14,8 +14,8 @@ import java.util.List;
 @DiscriminatorColumn(name = "tipoDI")
 public class DispositivoInteligente<T extends Fabricante> implements Dispositivo {
 
-    @Transient
-    protected T fabricante;
+	@ManyToOne
+	protected T fabricante;
     @Id
     protected Long idDeFabrica;
     private String nombre;

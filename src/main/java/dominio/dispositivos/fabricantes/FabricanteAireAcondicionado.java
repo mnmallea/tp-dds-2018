@@ -1,8 +1,12 @@
 package dominio.dispositivos.fabricantes;
+import javax.persistence.Entity;
 
-public interface FabricanteAireAcondicionado extends Fabricante {
+import dominio.dispositivos.fabricantes.Fabricante;
 
-    void subirTemperatura(Long idDeFabrica, Integer unosGrados);
+@Entity
+public abstract class FabricanteAireAcondicionado extends Fabricante {
 
-    void bajarTemperatura(Long idDeFabrica, Integer unosGrados);
+    public abstract void subirTemperatura(Long idDeFabrica, Integer unosGrados);
+
+    public abstract void bajarTemperatura(Long idDeFabrica, Integer unosGrados);
 }
