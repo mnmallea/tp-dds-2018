@@ -1,12 +1,13 @@
 package repositorios;
 
-import dominio.Cliente;
-import dominio.Zona;
-import simplex.OptimizadorHoras;
-
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import dominio.Cliente;
+import dominio.Transformador;
+import simplex.OptimizadorHoras;
 
 public class AdministradorClientes {
     public static final AdministradorClientes instancia = new AdministradorClientes();
@@ -31,9 +32,16 @@ public class AdministradorClientes {
         new OptimizadorHoras().optimizarCliente(cliente);
     }
 
-    public List<Cliente> inicializarClientes(Zona zona) {
+    public List<Cliente> inicializarClientes(Transformador transformador) {
         List<Cliente> clientes = AdministradorClientes.instancia.getClientes();
-        return clientes.stream().filter(cliente -> cliente.getZona().equals(zona)).collect(Collectors.toList());
+        List<Transformador> transformadores = AdministradorTransformadores.instancia.getTransformadores();
+        
+        
+        return clientes.stream().filter(cliente -> (
+        	transformadores.stream()
+        	.min(Comparator.comparingDouble(
+        	tran -> cliente.getDireccion().getCoordenada().distance(tran.getCoordenadas())))
+        	.get().equals(transformador)
+        )).collect(Collectors.toList()); 
     }
-
 }

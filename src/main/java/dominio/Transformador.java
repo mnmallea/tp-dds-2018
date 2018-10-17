@@ -1,11 +1,17 @@
 package dominio;
 
+import java.util.List;
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import dominio.dispositivos.PeriodoEncendido;
 import puntos.Point;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import repositorios.AdministradorClientes;
 
 @Entity
 public class Transformador {
@@ -14,8 +20,7 @@ public class Transformador {
     @OneToMany
     @JoinColumn(name = "transformador")
     private List<Cliente> clientes;
-    @ManyToOne
-    private Zona zona;
+
     @GeneratedValue
     @Id
     private Long id;
@@ -23,7 +28,7 @@ public class Transformador {
 
     public Transformador(Point coordenadas) {
         this.coordenadas = coordenadas;
-        this.clientes = new ArrayList<>();
+        this.clientes = AdministradorClientes.instancia.inicializarClientes(this);
     }
 
     public Transformador() {
@@ -39,14 +44,6 @@ public class Transformador {
 
     public void setCoordenadas(Point coordenadas) {
         this.coordenadas = coordenadas;
-    }
-
-    public Zona getZona() {
-        return this.zona;
-    }
-
-    public void setZona(Zona zona) {
-        this.zona = zona;
     }
 
     public List<Cliente> getClientes() {
