@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 public class Zona {
-    @OneToMany(mappedBy = "zona")
+    @OneToMany
     private List<Transformador> transformadores;
 
 //    @OneToMany(mappedBy = "zona")
