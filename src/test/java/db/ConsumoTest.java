@@ -96,15 +96,14 @@ public class ConsumoTest {
     }
 
     @Test
-    public void mostrarConsumoTotalDispositivo() {
-        double consumoPromedio = unDispositivoInteligente.consumoTotal() / unDispositivoInteligente.getPeriodosEncendido().size();
+    public void mostrarConsumoPromedioDispositivo() {
         System.out.println("Consumo promedio del dispositivo " + unDispositivoInteligente.getNombre()
-                + ": " + consumoPromedio);
+                + ": " + unDispositivoInteligente.consumoPromedio());
     }
 
     @Test
-    public void consumoTotalTransformadores() {
-        System.out.println("Consumo promedio para el transformador: " + transformador1.consumoTotal(periodoA) / transformador1.getClientes().size());
+    public void consumoPromedioTransformadores() {
+        System.out.println("Consumo promedio para el transformador en un Perioodo: " + transformador1.consumoPromedioEnPeriodo(periodoA));
     }
 
     @Test
@@ -116,7 +115,8 @@ public class ConsumoTest {
         Double consumoInicial = dispositivoInteligente.consumoTotal();
         dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(LocalDateTime.of(2018, 9, 2, 23, 0),
         LocalDateTime.of(2018, 9, 4, 14, 0)));
-
+        System.out.println("Consumo inicial: "+ consumoInicial);
+        System.out.println("Dispositivo inteligente, consumo total: "+ dispositivoInteligente.consumoTotal());
         Assert.assertTrue(consumoInicial < dispositivoInteligente.consumoTotal());
     }
 

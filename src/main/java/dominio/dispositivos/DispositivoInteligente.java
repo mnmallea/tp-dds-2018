@@ -122,6 +122,10 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     public void apagarsePosta() {
         fabricante.apagarDispositivo(this.idDeFabrica);
     }
+    
+    public Double consumoPromedio() {
+    	return this.consumoTotal() / this.getPeriodosEncendido().size();
+    }
 
     public void encendersePosta() {
         fabricante.encenderDispositivo(this.idDeFabrica);

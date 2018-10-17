@@ -76,5 +76,9 @@ public class Transformador {
     public Double consumoTotal(PeriodoEncendido pe) {
         return clientes.stream().mapToDouble(c -> c.consumoDeDispositivosInteligentesEnPeriodo(pe)).sum();
     }
+    
+    public Double consumoPromedioEnPeriodo(PeriodoEncendido unPeriodo) {
+    	return this.consumoTotal(unPeriodo) / this.getClientes().size();
+    }
 }
 
