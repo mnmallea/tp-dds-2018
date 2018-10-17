@@ -9,7 +9,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipoRegla")
 public abstract class Regla<T, D extends DispositivoInteligente<?>> {
-
+    @GeneratedValue
     @Id
     private Long id;
 

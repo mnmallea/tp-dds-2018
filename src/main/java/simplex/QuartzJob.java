@@ -1,7 +1,8 @@
-package repositorios;
+package simplex;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
+import repositorios.AdministradorClientes;
 
 public class QuartzJob implements Job {
 

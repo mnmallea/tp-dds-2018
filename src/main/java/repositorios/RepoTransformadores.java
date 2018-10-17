@@ -1,49 +1,40 @@
 package repositorios;
 
 import dominio.Transformador;
-import dominio.Zona;
+import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-
-public class RepoTransformadores {
+public class RepoTransformadores implements WithGlobalEntityManager, EntityManagerOps {
     public static final RepoTransformadores instancia = new RepoTransformadores();
-    private List<Transformador> transformadores = new ArrayList<>();
 
     private RepoTransformadores() {
     }
 
     public List<Transformador> getTransformadores() {
-        return transformadores;
+        return entityManager().createQuery("from Transformador").getResultList();
     }
 
-    public void setTransformadores(List<Transformador> transformadores) {
-        this.transformadores = transformadores;
+    public void agregarTransformadores(List<Transformador> transformadores) {
+        transformadores.forEach(this::agregarTransformador);
     }
 
     public void agregarTransformador(Transformador unTransformador) {
-        transformadores.add(unTransformador);
+        entityManager().persist(unTransformador);
     }
 
-    public void limpiarTransformadores() {
-        transformadores = new ArrayList<>();
+    public void persistirSiDebe(List<Transformador> transformadores) {
+
+        List<Transformador> transformadoresRecuperados = this.getTransformadores();
+        transformadores.forEach(t -> {
+
+                    if (transformadoresRecuperados.stream().noneMatch(tr -> tr.getIdEnre().equals(t.getIdEnre()))) {
+                        entityManager().persist(t);
+                    }
+                }
+        );
     }
-
-	public static void persistirSiDebe(Transformador t) {
-		
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-
-		List<Transformador> transformadoresRecuperados = em.createQuery("select trans from Transformador trans").getResultList();
-		
-		if (!transformadoresRecuperados.stream().anyMatch(tr -> tr.getId().equals(t.getId())))
-		{
-			em.persist(t);
-		}
-	}
 
 
 }

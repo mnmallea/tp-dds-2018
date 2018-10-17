@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 
 @Entity
 public class Cliente {
+    @GeneratedValue
     @Id
     private Long id;
     private String nombre;

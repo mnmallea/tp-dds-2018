@@ -1,7 +1,9 @@
 package tests;
 
-import dominio.*;
-import org.junit.After;
+import dominio.Cliente;
+import dominio.Direccion;
+import dominio.Transformador;
+import dominio.Zona;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,16 +40,11 @@ public class TransformadoresTest {
         clientes.add(cliente);
         clientes.add(cliente2);
         transformador1.setClientes(clientes);
-        RepoClientes.instancia.setClientes(clientes);
-        RepoTransformadores.instancia.setTransformadores(transformadores);
+        RepoClientes.instancia.agregarClientes(clientes);
+        RepoTransformadores.instancia.agregarTransformadores(transformadores);
 
     }
 
-    @After
-    public void tearDown() {
-        RepoTransformadores.instancia.limpiarTransformadores();
-        RepoClientes.instancia.limpiarClientes();
-   }
 
     @Test
     public void hayUnSoloTransformadorEnLaZonaYElConsumoDebeSer150() {

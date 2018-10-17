@@ -7,7 +7,7 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
-import repositorios.QuartzJob;
+import simplex.QuartzJob;
 
 public class Main {
     public static void main(String[] args) throws SchedulerException {

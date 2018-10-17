@@ -1,12 +1,9 @@
 package repositorios;
 
-import javax.persistence.EntityManager;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-
 import dominio.Zona;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-public class RepoZonas {
+public class RepoZonas implements WithGlobalEntityManager {
 
 	public static RepoZonas instance = new RepoZonas();
 	
@@ -15,9 +12,7 @@ public class RepoZonas {
 	}
 
 	public Zona getZonaPorID(Long idZona) {
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
-		Zona zona = em.find(Zona.class, idZona);
-		return zona;
+		return entityManager().find(Zona.class, idZona);
 	}
 
 }

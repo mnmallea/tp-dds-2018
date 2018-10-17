@@ -1,21 +1,21 @@
 [
 {
-  "id":1,
+  "idEnre":1,
   "coordenadas":{"x":100,"y":150},
   "zona": 1
 },
 {
-  "id":2,
+  "idEnre":2,
   "coordenadas":{"x":100,"y":125},
   "zona": 1
 },
 {
-  "id":3,
+  "idEnre":3,
   "coordenadas":{"x":10,"y":125},
   "zona": 2
 },
 {
-  "id":4,
+  "idEnre":4,
   "coordenadas":{"x":50,"y":25},
   "zona": 3
 }

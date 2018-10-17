@@ -1,30 +1,30 @@
 package repositorios;
 
 import dominio.Cliente;
+import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class RepoClientes {
+public class RepoClientes implements WithGlobalEntityManager, EntityManagerOps {
     public static final RepoClientes instancia = new RepoClientes();
-    private List<Cliente> clientes = new ArrayList<Cliente>();
 
     private RepoClientes() {
     }
 
     public List<Cliente> getClientes() {
-        return clientes;
+        return entityManager().createQuery("from Cliente").getResultList();
     }
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public void agregarClientes(List<Cliente> clientes) {
+        clientes.forEach(this::guardarCliente);
     }
 
-    public void agregarCliente(Cliente unCliente) {
-        clientes.add(unCliente);
+    public void guardarCliente(Cliente cliente) {
+        entityManager().persist(cliente);
     }
 
-    public void limpiarClientes() {
-        clientes = new ArrayList<>();
+    public Cliente buscarClientePorId(Long id) {
+        return entityManager().find(Cliente.class, id);
     }
 }

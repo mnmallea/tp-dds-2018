@@ -20,7 +20,7 @@ public class Zona {
 
     @Embedded
     private Point centro;
-
+    @GeneratedValue
     @Id
     private Long id;
 

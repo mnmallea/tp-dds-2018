@@ -16,7 +16,7 @@ public class AdministradorClientes {
     }
 
     public void agregarCliente(Cliente unCliente) {
-        RepoClientes.instancia.agregarCliente(unCliente);
+        RepoClientes.instancia.guardarCliente(unCliente);
     }
 
     public List<Cliente> getClientes() {
