@@ -21,7 +21,7 @@ public class AdministradorClientes {
     }
 
     public List<Cliente> getClientes() {
-        return RepoClientes.instancia.getClientes();
+    	return RepoClientes.instancia.getClientes();
     }
 
     public void simplexarClientes() {
@@ -31,17 +31,20 @@ public class AdministradorClientes {
     public void realizarSimplex(Cliente cliente) {
         new OptimizadorHoras().optimizarCliente(cliente);
     }
+    
+    public Transformador transformadorMasCercano(Cliente cliente,List<Transformador> transformadores) {
+    	return transformadores.stream()
+    	.min(Comparator.comparingDouble(tran -> cliente.getDireccion().getCoordenada().distance(tran.getCoordenadas())))
+    	.get();
+    }
+    
 
     public List<Cliente> inicializarClientes(Transformador transformador) {
         List<Cliente> clientes = AdministradorClientes.instancia.getClientes();
         List<Transformador> transformadores = AdministradorTransformadores.instancia.getTransformadores();
         
         
-        return clientes.stream().filter(cliente -> (
-        	transformadores.stream()
-        	.min(Comparator.comparingDouble(
-        	tran -> cliente.getDireccion().getCoordenada().distance(tran.getCoordenadas())))
-        	.get().equals(transformador)
-        )).collect(Collectors.toList()); 
+        return clientes.stream().filter(cliente -> this.transformadorMasCercano(cliente, transformadores).equals(transformador))
+        		.collect(Collectors.toList()); 
     }
 }

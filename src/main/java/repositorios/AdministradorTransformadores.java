@@ -10,6 +10,7 @@ public class AdministradorTransformadores {
 
     public static final AdministradorTransformadores instancia = new AdministradorTransformadores();
 
+
     private AdministradorTransformadores() {
     }
 
