@@ -11,6 +11,7 @@ import simplex.SolucionSimplex;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -175,6 +176,8 @@ public class Cliente {
 
     public Double consumoDeDispositivosInteligentesEnPeriodo(PeriodoEncendido periodoEncendido){
         return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(periodoEncendido)).sum();
-
+    }
+    public Double consumoDeDispositivosInteligentesEnPeriodo(LocalDateTime inicio, LocalDateTime fin){
+        return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(inicio, fin)).sum();
     }
 }

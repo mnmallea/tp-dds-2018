@@ -1,5 +1,6 @@
 package dominio;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Embedded;
@@ -70,12 +71,12 @@ public class Transformador {
         this.id = id;
     }
 
-    public Double consumoTotal(PeriodoEncendido pe) {
-        return clientes.stream().mapToDouble(c -> c.consumoDeDispositivosInteligentesEnPeriodo(pe)).sum();
+    public Double consumoTotal(LocalDateTime inicio, LocalDateTime fin) {
+        return clientes.stream().mapToDouble(c -> c.consumoDeDispositivosInteligentesEnPeriodo(inicio, fin)).sum();
     }
     
-    public Double consumoPromedioEnPeriodo(PeriodoEncendido unPeriodo) {
-    	return this.consumoTotal(unPeriodo) / this.getClientes().size();
+    public Double consumoPromedioEnPeriodo(LocalDateTime inicio, LocalDateTime fin) {
+    	return this.consumoTotal(inicio, fin) / this.getClientes().size();
     }
 }
 

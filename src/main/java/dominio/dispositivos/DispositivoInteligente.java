@@ -110,6 +110,9 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     public Float consumoEnPeriodo(PeriodoEncendido periodo) {
         return periodo.enHoras() * this.consumoPorHora;
     }
+    public double consumoEnPeriodo(LocalDateTime inicio, LocalDateTime fin) {
+        return periodosEncendido.stream().filter(p->p.incluidoEn(inicio,fin)).mapToDouble(p->p.enHoras()).sum()*this.consumoPorHora;
+    }
 
     public Double consumoTotal() {
         return periodosEncendido.stream().mapToDouble(this::consumoEnPeriodo).sum();
@@ -180,4 +183,6 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         this.aumentarHorasPrendido(horasPrendido);
         this.agregarPeriodo(new PeriodoEncendido(this.ultimaHoraDeEncendido, NOW));
     }
+
+
 }

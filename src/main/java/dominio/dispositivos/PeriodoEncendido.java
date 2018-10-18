@@ -38,4 +38,8 @@ public class PeriodoEncendido {
     public String toString() {
         return "Inicio: " + this.inicio + "; Fin: " + this.fin;
     }
+
+    public boolean incluidoEn(LocalDateTime inicio, LocalDateTime fin) {
+        return (inicio.isBefore(this.inicio) && fin.isAfter(this.fin));
+    }
 }
