@@ -9,7 +9,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import puntos.Point;
+import repositorios.RepoTransformadores;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -18,12 +21,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsumoTest {
+public class ConsumoTest  extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
-
-    public static final long ID_TRANSFORMADOR1 = 1L;
-    private EntityManager em;
-    private EntityTransaction entityTransaction;
     private Zona zona1;
     private Cliente cliente;
     private LocalDateTime fecha1;
@@ -37,11 +36,8 @@ public class ConsumoTest {
     private Transformador transformador1;
 
 
-    @Before
-    public void before() {
-        em = PerThreadEntityManagers.getEntityManager();
-        entityTransaction = em.getTransaction();
-        entityTransaction.begin();
+    public void setup() {
+        super.setup();
 
         zona1 = new Zona(45.0, new Point(0.0, 0.0));
         zona1.setId(1L);
@@ -74,20 +70,10 @@ public class ConsumoTest {
                 LocalDate.now(), zona1);
 
         transformador1 = new Transformador(new Point(0.00, 9.00));
-        transformador1.setId(ID_TRANSFORMADOR1);
         transformador1.agregarCliente(cliente);
-
-        cliente.setId(1L);
-        em.persist(zona1);
-        em.persist(cliente);
-        em.persist(transformador1);
-
+        RepoTransformadores.instancia.agregarTransformador(transformador1);
     }
 
-    @After
-    public void after() {
-        entityTransaction.rollback();
-    }
 
     @Test
     public void mostrarConsumoTotalCliente() {
@@ -103,12 +89,12 @@ public class ConsumoTest {
 
     @Test
     public void consumoPromedioTransformadores() {
-        System.out.println("Consumo promedio para el transformador en un Perioodo: " + transformador1.consumoPromedioEnPeriodo(periodoA));
+        System.out.println("Consumo promedio para el transformador en un Perioodo: " + transformador1.consumoPromedioEnPeriodo(fecha1, fecha2));
     }
 
     @Test
     public void recuperarDispositivoAsociado() {
-        Transformador transformadorRecuperado = em.find(Transformador.class, ID_TRANSFORMADOR1);
+        Transformador transformadorRecuperado = RepoTransformadores.instancia.buscarPorID(transformador1.getId());
         Cliente unCliente = transformadorRecuperado.getClientes().get(0);
         DispositivoInteligente dispositivoInteligente = unCliente.getDispositivosInteligentes().get(0);
 

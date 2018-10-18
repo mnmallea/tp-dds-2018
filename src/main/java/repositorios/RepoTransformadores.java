@@ -36,5 +36,8 @@ public class RepoTransformadores implements WithGlobalEntityManager, EntityManag
         );
     }
 
+    public Transformador buscarPorID(Long id){
+        return entityManager().find(Transformador.class, id);
+    }
 
 }

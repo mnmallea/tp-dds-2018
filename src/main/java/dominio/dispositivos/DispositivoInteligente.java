@@ -16,7 +16,9 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
 
 	@ManyToOne
 	protected T fabricante;
+	@GeneratedValue
     @Id
+    private Long id;
     protected Long idDeFabrica;
     private String nombre;
     @Convert(converter = EstadoConverter.class)
@@ -185,4 +187,7 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     }
 
 
+    public Long getId() {
+        return id;
+    }
 }
