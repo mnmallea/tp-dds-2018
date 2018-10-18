@@ -1,5 +1,14 @@
 package db;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
+
 import actuadores.Actuador;
 import actuadores.Regla;
 import actuadores.actuadoresConcretos.ActuadorEncenderDispositivo;
@@ -9,23 +18,7 @@ import dominio.dispositivos.AireAcondicionadoInteligente;
 import dominio.dispositivos.fabricantes.FabricanteAireAcondicionado;
 import dominio.estados.Apagado;
 import dominio.estados.Encendido;
-import org.apache.commons.math3.analysis.function.Abs;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import repositorios.RepoReglas;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReglaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
