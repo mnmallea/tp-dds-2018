@@ -9,12 +9,17 @@ import dominio.dispositivos.AireAcondicionadoInteligente;
 import dominio.dispositivos.fabricantes.FabricanteAireAcondicionado;
 import dominio.estados.Apagado;
 import dominio.estados.Encendido;
+import org.apache.commons.math3.analysis.function.Abs;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import repositorios.RepoReglas;
 
 import javax.persistence.EntityManager;
@@ -22,16 +27,15 @@ import javax.persistence.EntityTransaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReglaTest {
+public class ReglaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
     private Regla regla;
     private Actuador actuadorEncenderDispositivo;
     private List<Actuador<AireAcondicionadoInteligente>> actuadores = new ArrayList<>();
     private AireAcondicionadoInteligente ac;
 
-    @Before
-    public void before() {
-
+    public void setup() {
+        super.setup();
         actuadorEncenderDispositivo = new ActuadorEncenderDispositivo();
         actuadores.add(actuadorEncenderDispositivo);
 
@@ -39,7 +43,9 @@ public class ReglaTest {
         ac = new AireAcondicionadoInteligente("MyAC", new Apagado(), 32f, fabricanteAireAcondicionado, 1L);
 
         regla = new ReglaEnciendeAire(new TemperaturaMayorA(24d), actuadores, ac);
+
         RepoReglas.instancia.agregarRegla(regla);
+        entityManager().persist(ac);//TODO reemplazar por Repo
     }
 
     @Test

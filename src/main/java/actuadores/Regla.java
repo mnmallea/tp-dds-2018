@@ -23,7 +23,7 @@ public abstract class Regla<T, D extends DispositivoInteligente<?>> {
 
     @ManyToOne(targetEntity = Condicion.class, cascade = CascadeType.ALL)
     private Condicion<T> condicion;
-    @ManyToMany(targetEntity = Actuador.class)
+    @ManyToMany(targetEntity = Actuador.class, cascade = CascadeType.PERSIST)
     private List<Actuador<D>> actuadores;
 
     @ManyToOne(targetEntity = DispositivoInteligente.class)
