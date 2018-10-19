@@ -41,8 +41,7 @@ public class ClienteTest {
         List<DispositivoInteligente> dispositivosInteligentes = Arrays.asList(microondas, lavavajillas);
 
         cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, new Direccion(new Point(40, 20), "Calle falsa 123"),
-                Categorizador.instancia.getR1(), dispositivosInteligentes, dispositivosEstandar, LocalDate.now(), new Zona(0d, new Point(0, 0))); // categoria
-        // R1
+                Categorizador.instancia.getR1(), dispositivosInteligentes, dispositivosEstandar, LocalDate.now());
     }
 
     @Test

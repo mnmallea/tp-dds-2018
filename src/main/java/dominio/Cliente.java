@@ -18,7 +18,8 @@ import java.util.stream.Stream;
 
 @Entity
 public class Cliente {
-    @GeneratedValue
+    
+	@GeneratedValue
     @Id
     private Long id;
     private String nombre;
@@ -41,12 +42,12 @@ public class Cliente {
     private Direccion direccion;
     @Enumerated(EnumType.STRING)
     private EfectoSimplex efectoSimplex;
-    @ManyToOne
-    private Zona zona;
+//    @ManyToOne
+//    private Zona zona;
     public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
                    Integer nroTelefono, Direccion direccion, Categoria categoria,
                    List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
-                   LocalDate fechaAlta, Zona zona) {
+                   LocalDate fechaAlta) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.tipoDocumento = tipoDocumento;
@@ -56,7 +57,7 @@ public class Cliente {
         this.fechaAlta = fechaAlta;
         this.dispositivosEstandar = dispositivosEstandar;
         this.dispositivosInteligentes = dispositivosInteligentes;
-        this.zona = zona;
+//        this.zona = zona;
 
     }
     public Cliente() {
@@ -70,13 +71,13 @@ public class Cliente {
         this.id = id;
     }
 
-    public Zona getZona() {
-        return zona;
-    }
-
-    public void setZona(Zona zona) {
-        this.zona = zona;
-    }
+//    public Zona getZona() {
+//        return zona;
+//    }
+//
+//    public void setZona(Zona zona) {
+//        this.zona = zona;
+//    }
 
     public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
@@ -164,6 +165,9 @@ public class Cliente {
         return direccion;
     }
 
+    public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
 
     public List<Dispositivo> getDispositivos() {
         return Stream.concat(this.dispositivosInteligentes.stream(), this.dispositivosEstandar.stream())
@@ -180,4 +184,13 @@ public class Cliente {
     public Double consumoDeDispositivosInteligentesEnPeriodo(LocalDateTime inicio, LocalDateTime fin){
         return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(inicio, fin)).sum();
     }
+    
+    public Double consumoTotalEnPeriodo(PeriodoEncendido periodo) {
+    	return this.consumoDeDispositivosInteligentesEnPeriodo(periodo) + this.consumoDispositivosEstandares() * periodo.enHoras();
+    }
+    
+    public Float  consumoPromedioPorDispositivo() {
+    	return this.consumo() / this.cantidadDeDispositivos();
+    }
+    
 }
