@@ -14,7 +14,7 @@ import java.util.List;
 @DiscriminatorColumn(name = "tipoDI")
 public class DispositivoInteligente<T extends Fabricante> implements Dispositivo {
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	protected T fabricante;
 	@GeneratedValue
     @Id

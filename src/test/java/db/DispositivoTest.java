@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-import repositorios.RepoDispositivos;
+import repositorios.RepoDispositivosInteligentes;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -38,12 +38,12 @@ public class DispositivoTest extends AbstractPersistenceTest implements WithGlob
         dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha1,fecha2));
         dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha3,fecha4));
         dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha5,fecha6));
-        RepoDispositivos.instancia.agregarDispositivoInteligente(dispositivoInteligente);
+        RepoDispositivosInteligentes.instancia.agregarDispositivoInteligente(dispositivoInteligente);
     }
 
     @Test
     public void mostrarIntervalos() {
-        DispositivoInteligente di = RepoDispositivos.instancia.buscarPorId(dispositivoInteligente.getId());
+        DispositivoInteligente di = RepoDispositivosInteligentes.instancia.buscarPorId(dispositivoInteligente.getId());
         di.getPeriodosEncendido().forEach(p -> System.out.println(p));
 
     }
@@ -54,7 +54,7 @@ public class DispositivoTest extends AbstractPersistenceTest implements WithGlob
         String nombreNuevo = "MyBigLedTV";
         dispositivoInteligente.setNombre(nombreNuevo);
 
-        Assert.assertEquals(nombreNuevo, RepoDispositivos.instancia.buscarPorId(dispositivoInteligente.getId()).getNombre());
+        Assert.assertEquals(nombreNuevo, RepoDispositivosInteligentes.instancia.buscarPorId(dispositivoInteligente.getId()).getNombre());
     }
 
 }

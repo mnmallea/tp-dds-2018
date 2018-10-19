@@ -103,7 +103,7 @@ public class Cliente {
         return nombre;
     }
 
-    public Float consumo() { // Es la suma de cada uno de los consumos de sus dispositivos
+    public Float consumo() { 
         return (float) (this.consumoDispositivosEstandares() + this.consumoDispositivosInteligentes());
     }
 
