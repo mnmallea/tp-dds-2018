@@ -74,9 +74,14 @@ public class Transformador {
     public Double consumoTotal(LocalDateTime inicio, LocalDateTime fin) {
         return clientes.stream().mapToDouble(c -> c.consumoDeDispositivosInteligentesEnPeriodo(inicio, fin)).sum();
     }
-    
+
     public Double consumoPromedioEnPeriodo(LocalDateTime inicio, LocalDateTime fin) {
-    	return this.consumoTotal(inicio, fin) / this.getClientes().size();
+        return this.consumoTotal(inicio, fin) / this.getClientes().size();
+    }
+
+    @Override
+    public String toString() {
+        return "Transformador(id = " + this.id + ", idEnre = " + this.idEnre + ", posicion = " + this.coordenadas + ")";
     }
 }
 
