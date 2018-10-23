@@ -6,6 +6,7 @@ import spark.debug.DebugScreen;
 public class Runner {
     public static void main(String[] args) throws SchedulerException {
         SimplexJob.init();
+        Spark.ipAddress("0.0.0.0");
         Spark.port(9000);
         DebugScreen.enableDebugScreen();
         Routes.configure();

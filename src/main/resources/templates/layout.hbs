@@ -1,34 +1,40 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
-	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  	<link rel="stylesheet"  href="main.css">
+    <title>Sistema de Gestión Energética</title>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
+
 <body>
-
-
-<nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand"href="/">Consultorea.me</a>
-      </div>
-      <div>
-        <ul class="nav navbar-nav">
-          <li><a href="/consultoras">Consultoras</a></li>
-          <li><a href="/proyectos">Proyectos</a></li>
+<section class="section">
+    <header class="header">
+        <h1 class="sge_name">S.G.E.</h1>
+    </header>
+    <nav>
+        <ul class="navbar">
+            <li>
+                <a class="nav-links" href="/">Home</a>
+            </li>
+            <li>
+                <a class="nav-links" href="/">Otro link</a>
+            </li>
         </ul>
-      </div>
+    </nav>
+    <div class="container">
+        {{#block "contenido"}}
+        {{/block}}
     </div>
-  </nav>
+    <footer class="footer">
+        <p class="text-center">
+            &copy; 2018 sge.com
+        </p>
+    </footer>
+</section>
 
-<div class="container">
-	{{#block "contenido"}}
-	{{/block}}
-</div>
 
-<footer class="footer">
-    <p class="text-center">
-      &copy; 2018 sge.com
-    </p>
-</footer>
 </body>
 </html>

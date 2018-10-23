@@ -1,5 +1,6 @@
 import controllers.HomeController;
 import controllers.LoginController;
+import controllers.LoginValidator;
 import exception.UnloggedException;
 import handlebarsUtils.BooleanHelper;
 import handlebarsUtils.HandlebarsTemplateEngineBuilder;
@@ -22,6 +23,8 @@ public class Routes {
         exception(UnloggedException.class, (exception, request, response) -> {
             response.redirect("/login");
         });
+
+        before(LoginValidator::validate);
 
         get("/", HomeController::show, engine);
         get("/login", LoginController::show, engine);

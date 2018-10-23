@@ -2,11 +2,11 @@ package controllers;
 
 import exception.UnloggedException;
 import spark.Request;
+import spark.Response;
 
-public class BaseController {
-    public static final BaseController instancia = new BaseController();
+public class LoginValidator{
 
-    public void loginValidation(Request request) {
+    public static void validate(Request request, Response response) {
         if (request.session().isNew()) {
             throw new UnloggedException();
         }
