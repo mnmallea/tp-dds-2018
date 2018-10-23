@@ -20,14 +20,13 @@ public class Routes {
 
         Spark.staticFiles.location("/public");
 
-        exception(UnloggedException.class, (exception, request, response) -> {
-            response.redirect("/login");
-        });
-
-        before(LoginValidator::validate);
-
-        get("/", HomeController::show, engine);
         get("/login", LoginController::show, engine);
+        post("/login", LoginController::login);
+
+        before("/", LoginValidator::validate);
+        get("/", HomeController::show, engine);
+        before("/transformadores", LoginValidator::validate);
         get("/transformadores", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
+        get("/logout", LoginValidator::removeAuthenticatedUser);
     }
 }

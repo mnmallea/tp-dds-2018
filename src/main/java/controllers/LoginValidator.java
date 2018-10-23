@@ -1,14 +1,30 @@
 package controllers;
 
-import exception.UnloggedException;
 import spark.Request;
 import spark.Response;
 
-public class LoginValidator{
+public class LoginValidator {
+
+    public static final String USER_SESSION_ID = "user_id";
 
     public static void validate(Request request, Response response) {
-        if (request.session().isNew()) {
-            throw new UnloggedException();
+        String user = getAuthenticatedUser(request);
+        if (user == null) {
+            response.redirect("/login");
         }
+    }
+
+    public static String getAuthenticatedUser(Request request) {
+        return request.session().attribute(USER_SESSION_ID);
+    }
+
+    public static void addAuthenticatedUser(Request request, String u) {
+        request.session().attribute(USER_SESSION_ID, u);
+    }
+
+    public static Void removeAuthenticatedUser(Request request, Response response) {
+        request.session().removeAttribute(USER_SESSION_ID);
+        response.redirect("/");
+        return null;
     }
 }
