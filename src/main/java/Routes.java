@@ -19,13 +19,8 @@ public class Routes {
 
         Spark.staticFiles.location("/public");
 
-        initExceptionHandler(e -> {
-            if (e instanceof UnloggedException) {
-                //hacer redirect a login
-                // redirect a GET to "/fromPath" to "/toPath"
-                redirect.get("/*", "/login");
-            }
-            throw new RuntimeException(e);
+        exception(UnloggedException.class, (exception, request, response) -> {
+            response.redirect("/login");
         });
 
         get("/", HomeController::show, engine);
