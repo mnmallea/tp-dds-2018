@@ -1,16 +1,11 @@
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SimpleScheduleBuilder;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
-import org.quartz.impl.StdSchedulerFactory;
+package simplex;
 
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import simplex.QuartzJob;
 
-public class Main {
-    public static void main(String[] args) throws SchedulerException {
+public class SimplexJob {
+    public static void init() throws SchedulerException {
         JobDetail job = JobBuilder.newJob(QuartzJob.class).build();
 
         Trigger trigger = TriggerBuilder
