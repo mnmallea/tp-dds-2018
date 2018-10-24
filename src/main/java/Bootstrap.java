@@ -18,7 +18,7 @@ public class Bootstrap implements WithGlobalEntityManager, TransactionalOps, Ent
     }
 
     public Bootstrap() {
-        init();
+        new Bootstrap().init();
     }
 
     public void init() {
