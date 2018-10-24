@@ -6,6 +6,7 @@ import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.PeriodoEncendido;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Apagado;
+import puntos.Point;
 import simplex.EfectoSimplex;
 import simplex.SolucionSimplex;
 
@@ -187,6 +188,10 @@ public class Cliente {
     
     public Float  consumoPromedioPorDispositivo() {
     	return this.consumo() / this.cantidadDeDispositivos();
+    }
+
+    public Double distanciaA(Point unPunto){
+        return getDireccion().getCoordenada().distance(unPunto);
     }
     
 }

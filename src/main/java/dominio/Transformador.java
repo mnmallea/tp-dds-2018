@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import dominio.dispositivos.PeriodoEncendido;
 import puntos.Point;
 import repositorios.AdministradorClientes;
 
@@ -30,8 +29,7 @@ public class Transformador {
 
     public Transformador(Point coordenadas) {
         this.coordenadas = coordenadas;
-        this.clientes = new ArrayList<>();
-//         TODO \(T_T)/       AdministradorClientes.instancia.inicializarClientes(this);
+        this.clientes = AdministradorClientes.instancia.obtenerClientesDeTransformador(this);
     }
 
     public Transformador() {

@@ -1,8 +1,6 @@
 package repositorios;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import dominio.Cliente;
@@ -11,7 +9,6 @@ import simplex.OptimizadorHoras;
 
 public class AdministradorClientes {
     public static final AdministradorClientes instancia = new AdministradorClientes();
-    private List<Cliente> clientes = new ArrayList<Cliente>();
 
     private AdministradorClientes() {
     }
@@ -21,30 +18,32 @@ public class AdministradorClientes {
     }
 
     public List<Cliente> getClientes() {
-    	return RepoClientes.instancia.getClientes();
+        return RepoClientes.instancia.getClientes();
     }
 
     public void simplexarClientes() {
-        this.clientes.forEach(cliente -> this.realizarSimplex(cliente));
+        this.getClientes().forEach(this::realizarSimplex);
     }
 
     public void realizarSimplex(Cliente cliente) {
         new OptimizadorHoras().optimizarCliente(cliente);
     }
-    
-    public Transformador transformadorMasCercano(Cliente cliente,List<Transformador> transformadores) {
-    	return transformadores.stream()
-    	.min(Comparator.comparingDouble(tran -> cliente.getDireccion().getCoordenada().distance(tran.getCoordenadas())))
-    	.get();
-    }
-    
 
-    public List<Cliente> inicializarClientes(Transformador transformador) {
-        List<Cliente> clientes = AdministradorClientes.instancia.getClientes();
+    public Optional<Transformador> transformadorMasCercano(Cliente cliente) {
         List<Transformador> transformadores = AdministradorTransformadores.instancia.getTransformadores();
-        
-        
-        return clientes.stream().filter(cliente -> this.transformadorMasCercano(cliente, transformadores).equals(transformador))
-        		.collect(Collectors.toList()); 
+        return transformadores.stream()
+                .min(Comparator.comparingDouble(transformador -> cliente.distanciaA(transformador.getCoordenadas())));
+    }
+
+    public Boolean esElTransformadorMasCercanoA(Cliente cliente, Transformador transformador) {
+        return transformadorMasCercano(cliente).orElse(transformador).equals(transformador);
+    }
+
+
+    public List<Cliente> obtenerClientesDeTransformador(Transformador transformador) {
+        List<Cliente> clientes = this.getClientes();
+
+        return clientes.stream().filter(cliente -> this.esElTransformadorMasCercanoA(cliente, transformador))
+                .collect(Collectors.toList());
     }
 }

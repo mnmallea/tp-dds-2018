@@ -97,8 +97,8 @@ public class TransformadoresTest extends AbstractPersistenceTest implements With
 		RepoClientes.instancia.guardarCliente(cliente);
 		RepoClientes.instancia.guardarCliente(cliente2);
 
-		transformador1.setClientes(AdministradorClientes.instancia.inicializarClientes(transformador1));
-		transformador2.setClientes(AdministradorClientes.instancia.inicializarClientes(transformador2));
+		transformador1.setClientes(AdministradorClientes.instancia.obtenerClientesDeTransformador(transformador1));
+		transformador2.setClientes(AdministradorClientes.instancia.obtenerClientesDeTransformador(transformador2));
 		unaZona.setTransformadores(AdministradorTransformadores.instancia.inicializarTransformadores(unaZona));
 
 	}

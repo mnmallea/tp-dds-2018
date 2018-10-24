@@ -79,7 +79,7 @@ public class ReportesTest  extends AbstractPersistenceTest implements WithGlobal
         AdministradorClientes.instancia.agregarCliente(cliente);
         AdministradorTransformadores.instancia.agregarTransformador(transformador1);
         
-        transformador1.setClientes(AdministradorClientes.instancia.inicializarClientes(transformador1));
+        transformador1.setClientes(AdministradorClientes.instancia.obtenerClientesDeTransformador(transformador1));
     }
 
 
