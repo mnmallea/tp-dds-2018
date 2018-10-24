@@ -59,6 +59,14 @@ public class Cliente {
     public Cliente() {
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public int getNroDocumento() {
+        return nroDocumento;
+    }
+
     public Long getId() {
         return id;
     }

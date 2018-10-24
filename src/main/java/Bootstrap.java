@@ -25,7 +25,7 @@ public class Bootstrap implements WithGlobalEntityManager, TransactionalOps, Ent
         List<Transformador> transformadores = Arrays.asList(new Transformador(new Point(10, 20)), new Transformador(new Point(-10, 40)), new Transformador(new Point(100, 121.5)));
         withTransaction(() -> {
             RepoTransformadores.instancia.agregarTransformadores(transformadores);
-            RepoUsuarios.instancia.guardar(new Usuario(1234L,"belen", TipoUsuario.ADMINISTRADOR ));
+            RepoUsuarios.instancia.guardar(new Usuario(1234L, "belen", TipoUsuario.ADMINISTRADOR));
 
         });
     }
