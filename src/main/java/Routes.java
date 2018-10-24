@@ -1,14 +1,16 @@
+import static spark.Spark.before;
+import static spark.Spark.get;
+import static spark.Spark.post;
+
+import controllers.AdministradorController;
 import controllers.HomeController;
 import controllers.LoginController;
 import controllers.LoginValidator;
-import exception.UnloggedException;
 import handlebarsUtils.BooleanHelper;
 import handlebarsUtils.HandlebarsTemplateEngineBuilder;
 import repositorios.RepoTransformadores;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-
-import static spark.Spark.*;
 
 public class Routes {
     public static void configure() {
@@ -25,8 +27,8 @@ public class Routes {
 
         before("/", LoginValidator::validate);
         get("/", HomeController::show, engine);
-        before("/transformadores", LoginValidator::validate);
-        get("/transformadores", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
+        get("/administradores/:id/*", AdministradorController::show);
+        get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
         get("/logout", LoginValidator::removeAuthenticatedUser);
     }
 }

@@ -2,10 +2,11 @@ package controllers;
 
 import spark.Request;
 import spark.Response;
+import spark.Spark;
 
 public class LoginValidator {
 
-    public static final String USER_SESSION_ID = "user_id";
+    public static final String USER_SESSION_ID = "JSESSIONID";
 
     public static void validate(Request request, Response response) {
         String user = getAuthenticatedUser(request);

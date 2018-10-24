@@ -42,8 +42,6 @@ public class Cliente {
     private Direccion direccion;
     @Enumerated(EnumType.STRING)
     private EfectoSimplex efectoSimplex;
-//    @ManyToOne
-//    private Zona zona;
     public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
                    Integer nroTelefono, Direccion direccion, Categoria categoria,
                    List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
@@ -57,8 +55,6 @@ public class Cliente {
         this.fechaAlta = fechaAlta;
         this.dispositivosEstandar = dispositivosEstandar;
         this.dispositivosInteligentes = dispositivosInteligentes;
-//        this.zona = zona;
-
     }
     public Cliente() {
     }
@@ -70,14 +66,6 @@ public class Cliente {
     public void setId(Long id) {
         this.id = id;
     }
-
-//    public Zona getZona() {
-//        return zona;
-//    }
-//
-//    public void setZona(Zona zona) {
-//        this.zona = zona;
-//    }
 
     public TipoDocumento getTipoDocumento() {
         return tipoDocumento;

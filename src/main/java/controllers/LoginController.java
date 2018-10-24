@@ -1,5 +1,9 @@
 package controllers;
 
+import org.eclipse.jetty.util.security.Credential.MD5;
+
+import dominio.TipoUsuario;
+import repositorios.RepoUsuarios;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -12,15 +16,30 @@ public class LoginController {
     }
 
     public static ModelAndView login(Request req, Response res) {
-        String username = req.queryParams("username");
-        String password = req.queryParams("password");
-        /*
-        Hace el hash md5 y valida como la gente que esté to do piola
-         */
+        Long username = Long.parseLong(req.queryParams("username"));
+        
+        String password = MD5.digest(req.queryParams("password"));
+        
+        TipoUsuario usuarioPersistido = RepoUsuarios.instancia.tipoDeUsuario(username);
+        
+        switch (usuarioPersistido) {
+		case ADMINISTRADOR:
+			res.redirect("/administradores/"+username);
+			
+			break;
+
+		case CLIENTE:
+			res.redirect("/clientes/"+username);
+			
+			break;
+
+		default:
+			break;
+		}
+        
         req.session().attribute(LoginValidator.USER_SESSION_ID, username);
+        res.cookie(username.toString(),password);
         res.redirect("/");
         return null;
     }
-
-
 }
