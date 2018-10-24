@@ -14,10 +14,6 @@ import java.util.List;
 public class Bootstrap implements WithGlobalEntityManager, TransactionalOps, EntityManagerOps {
 
     public static void main(String[] args) {
-        new Bootstrap();
-    }
-
-    public Bootstrap() {
         new Bootstrap().init();
     }
 

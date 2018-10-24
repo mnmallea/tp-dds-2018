@@ -1,6 +1,7 @@
 package dominio;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Embedded;
@@ -29,7 +30,8 @@ public class Transformador {
 
     public Transformador(Point coordenadas) {
         this.coordenadas = coordenadas;
-        this.clientes = AdministradorClientes.instancia.inicializarClientes(this);
+        this.clientes = new ArrayList<>();
+//         TODO \(T_T)/       AdministradorClientes.instancia.inicializarClientes(this);
     }
 
     public Transformador() {
