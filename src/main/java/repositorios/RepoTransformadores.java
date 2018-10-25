@@ -4,6 +4,7 @@ import dominio.Transformador;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import javax.persistence.Query;
 import java.util.List;
 
 public class RepoTransformadores implements WithGlobalEntityManager, EntityManagerOps {
@@ -12,6 +13,7 @@ public class RepoTransformadores implements WithGlobalEntityManager, EntityManag
     private RepoTransformadores() {
     }
 
+    @SuppressWarnings("unchecked")
     public List<Transformador> getTransformadores() {
         return entityManager().createQuery("from Transformador").getResultList();
     }
@@ -38,6 +40,23 @@ public class RepoTransformadores implements WithGlobalEntityManager, EntityManag
 
     public Transformador buscarPorID(Long id){
         return entityManager().find(Transformador.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Transformador> getPaginaTransformadores(int pageNumber, int pageSize){
+        Query query = entityManager().createQuery("from Transformador t order by t.id");
+        query.setFirstResult((pageNumber - 1) * pageSize);
+        query.setMaxResults(pageSize);
+        return query.getResultList();
+    }
+
+    public Long cantidadDeTransformadores() {
+        Query queryTotal = entityManager().createQuery("Select count(t.id) from Transformador t");
+        return (long) queryTotal.getSingleResult();
+    }
+
+    public Integer cantidadDePaginas(Integer pageSize) {
+        return (int) Math.ceil(((double) cantidadDeTransformadores()) / pageSize);
     }
 
 }

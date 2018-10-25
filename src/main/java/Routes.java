@@ -4,6 +4,7 @@ import dominio.Cliente;
 import exception.UnauthorizedException;
 import handlebarsUtils.BooleanHelper;
 import handlebarsUtils.HandlebarsTemplateEngineBuilder;
+import handlebarsUtils.IsNumberHelper;
 import repositorios.RepoTransformadores;
 import spark.ModelAndView;
 import spark.Spark;
@@ -17,6 +18,7 @@ public class Routes {
                 .create()
                 .withDefaultHelpers()
                 .withHelper("isTrue", BooleanHelper.isTrue)
+                .withHelper("isNumber", new IsNumberHelper())
                 .build();
 
         staticFiles.location("/public");
@@ -42,6 +44,7 @@ public class Routes {
                 return "Logeaste como un administrador: " + administrador.getNombre() + "  Fecha de alta: " + administrador.getFechaAlta();
             }));
             get("/hogares", HogaresController::show, engine);
+            get("/transformadores", TransformadoresController::show, engine);
         });
 
         path("/cliente", () -> {
