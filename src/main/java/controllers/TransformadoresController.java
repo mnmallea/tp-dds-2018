@@ -19,8 +19,17 @@ public class TransformadoresController {
 
     public static ModelAndView show(Request request, Response response) {
         Integer page = PageUtils.getPageRequested(request);
-        LocalDateTime fin = LocalDateTime.now();
-        LocalDateTime inicio = fin.minusMonths(1);
+        String endTime = request.queryParams("end-time");
+        String startTime = request.queryParams("start-time");
+        LocalDateTime fin;
+        LocalDateTime inicio;
+        try {
+            fin = LocalDateTime.parse(endTime);
+            inicio = LocalDateTime.parse(startTime);
+        } catch (Exception ex){
+            fin = LocalDateTime.now();
+            inicio = fin.minusMonths(1);
+        }
         List<ReporteTransformador> reportes = Reportes.comsumoTransformadoresEnPeriodo(inicio, fin, page, PAGE_SIZE);
         HashMap<String, Object> viewModel = new HashMap<>();
         viewModel.put("reportes", reportes);

@@ -1,6 +1,31 @@
 {{#partial "contenido"}}
     <h1>Transformadores</h1>
 
+    <form method="get" action="/administrador/transformadores">
+        <fieldset>
+            <legend>Filtros</legend>
+
+            <div>
+                <label for="start-time">Fecha de inicio:</label>
+                <input type="datetime-local" id="start-time" name="start-time">
+            </div>
+
+            <div>
+                <label for="end-time">Fecha de inicio:</label>
+                <input type="datetime-local" id="end-time" name="end-time">
+            </div>
+
+            <!--
+                        <label for="dress-code">Dress code:</label>
+                        <select id="dress-code">
+                            <option value="fancy">Fancy</option>
+                            <option value="casual">Casual</option>
+                            <option value="pirate">Pirate</option>
+                        </select>-->
+            <div><input type="submit"></div>
+
+        </fieldset>
+    </form>
     <table class="table">
         <tbody>
 
@@ -25,14 +50,16 @@
                 <a class="page-link" href="/administrador/transformadores">Principio</a>
             </li>
             {{#unless isFirst}}
-                <li class="page-item"><a class="page-link" href="/administrador/transformadores?page={{previousPage}}">{{previousPage}}</a>
+                <li class="page-item"><a class="page-link" href="/administrador/transformadores?page={{previousPage}}
+                    ">{{previousPage}}</a>
                 </li>
             {{/unless}}
             <li class="page-item active">
                 <a class="page-link" href="#">{{currentPage}}<span class="sr-only">{{currentPage}}</span></a>
             </li>
             {{#unless isLast}}
-                <li class="page-item"><a class="page-link" href="/administrador/transformadores?page={{nextPage}}">{{nextPage}}</a></li>
+                <li class="page-item"><a class="page-link" href="/administrador/transformadores?page={{nextPage}}
+                    ">{{nextPage}}</a></li>
             {{/unless}}
             <li class="{{#if isLast}}page-item disabled{{else}}page-item{{/if}}">
                 <a class="page-link" href="/administrador/transformadores?page={{lastPage}}">Última página</a>
