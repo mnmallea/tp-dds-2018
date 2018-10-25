@@ -25,6 +25,7 @@ public class Routes {
             ModelAndView modelAndView = new ModelAndView(null, "errors/unauthorized.hbs");
             String render = engine.render(modelAndView);
             response.body(render);
+            response.status(401);
         }));
 
         before("/", LoginValidator::validate);
