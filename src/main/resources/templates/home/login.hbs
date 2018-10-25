@@ -1,6 +1,11 @@
 {{#partial "contenido"}}
 
     <form method="post" action="/login">
+        {{#if invalid}}
+            <div class="alert alert-danger">
+                El Usuario o la Contraseña son incorrectos
+            </div>
+        {{/if}}
         <div>
             <label for="username">Usuario</label>
             <input type="text" name="username"/>

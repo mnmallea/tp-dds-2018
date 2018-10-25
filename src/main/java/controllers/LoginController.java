@@ -1,10 +1,5 @@
 package controllers;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import javax.xml.bind.DatatypeConverter;
-
 import dominio.Administrador;
 import dominio.Cliente;
 import dominio.TipoUsuario;
@@ -14,12 +9,19 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import static spark.Spark.halt;
+import javax.xml.bind.DatatypeConverter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 
 public class LoginController {
 
+    @SuppressWarnings("unchecked")
     public static ModelAndView show(Request req, Response res) {
-        return new ModelAndView(null, "home/login.hbs");
+        String invalid = req.queryParams("invalid");
+        HashMap<String, Object> viewModel = new HashMap();
+        viewModel.put("invalid", "true".equals(invalid));
+        return new ModelAndView(viewModel, "home/login.hbs");
     }
 
     // tengo dudas sobre el noSuchAlgorithmException pero no me deja no ponerlo
@@ -30,21 +32,16 @@ public class LoginController {
 
         Usuario usuario = RepoUsuarios.instancia.findUsuarioByUsername(usernameReq);
 
-        if(usuario == null){
+        if (usuario == null) {
             System.out.println("No existe el usuario ingresado");
-            res.redirect("/login");
+            res.redirect("/login?invalid=true");
         }
-
-
-//		TipoUsuario usuarioPersistido = RepoUsuarios.instancia.tipoDeUsuario(usernameReq);
-//		String hashPasswordAlmacenada = RepoUsuarios.instancia.hashDePassword(usernameReq);
-//
 
         if (PasswordUtil.verifyPassword(password, usuario.getHashedPassword()))
             System.out.println("La password esta bien"); // y corresponde a ese usuario, o sea aca ya esta perfectamente logueado
-        else{
+        else {
             System.out.println("Contraseña incorrecta");
-            halt(401);
+            res.redirect("/login?invalid=true");
         }
 
         TipoUsuario tipoUsuario = null;
@@ -59,6 +56,7 @@ public class LoginController {
 
         req.session().attribute(LoginValidator.USER_SESSION_ID, usuario.getId());
         req.session().attribute(LoginValidator.USER_TYPE, tipoUsuario);
+        req.session().attribute(LoginValidator.USER_INSTANCE, usuario);
 
         res.redirect("/");
         return null;

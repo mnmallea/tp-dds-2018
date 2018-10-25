@@ -1,23 +1,29 @@
 package controllers;
 
 import dominio.TipoUsuario;
+import dominio.Usuario;
+import exception.UnauthorizedException;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
+
+import static spark.Spark.halt;
 
 public class LoginValidator {
 
     public static final String USER_SESSION_ID = "user_id";
     public static final String USER_TYPE = "user_type";
+    public static final String USER_INSTANCE = "user_instance";
 
     public static void validate(Request request, Response response) {
-        String user = getAuthenticatedUser(request);
+        Long user = getAuthenticatedUser(request);
         if (user == null) {
             response.redirect("/login");
+            halt();
         }
     }
 
-    public static String getAuthenticatedUser(Request request) {
+    public static Long getAuthenticatedUser(Request request) {
         return request.session().attribute(USER_SESSION_ID);
     }
 
@@ -29,5 +35,24 @@ public class LoginValidator {
         request.session().removeAttribute(USER_SESSION_ID);
         response.redirect("/");
         return null;
+    }
+
+    public static void validateAdmin(Request request, Response response) {
+        validate(request, response);
+        if (request.session().attribute(USER_TYPE) != TipoUsuario.ADMINISTRADOR) {
+            throw new UnauthorizedException();
+        }
+    }
+
+
+    public static void validateCliente(Request request, Response response) {
+        validate(request, response);
+        if (request.session().attribute(USER_TYPE) != TipoUsuario.CLIENTE) {
+            throw new UnauthorizedException();
+        }
+    }
+
+    public static Usuario getUsuario(Request request) {
+        return request.session().attribute(USER_INSTANCE);
     }
 }
