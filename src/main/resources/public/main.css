@@ -28,7 +28,7 @@ body {
 .sge_name {
     color: white;
     font-family: Lucida Handwriting, Arial, sans-serif;
-    font-size: 3.5em;
+    font-size: 4em;
 }
 
 .navbar {
@@ -68,7 +68,7 @@ Desde aca copie las cosas de la pag de mozilla dev
 form {
     /* Sólo para centrar el formulario a la página */
     margin: 0 auto;
-    width: 400px;
+    width: 335px;
     /* Para ver el borde del formulario */
     padding: 1em;
     border: 1px solid #CCC;
