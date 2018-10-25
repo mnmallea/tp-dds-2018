@@ -1,12 +1,16 @@
 package dominio;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Administrador {
+@Entity
+public class Administrador extends Usuario{
     private String nombre;
     private String apellido;
     private LocalDate fechaAlta;
+    @Column(unique = true)
     private Integer nroIdentificacion;
 
     public Administrador(String nombre, String apellido, LocalDate fechaAlta, Integer nroIdentificacion) {
@@ -14,6 +18,9 @@ public class Administrador {
         this.apellido = apellido;
         this.fechaAlta = fechaAlta;
         this.nroIdentificacion = nroIdentificacion;
+    }
+
+    public Administrador() {
     }
 
     public int mesesDeAdministrador() {

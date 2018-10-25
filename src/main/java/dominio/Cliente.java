@@ -18,11 +18,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Entity
-public class Cliente {
+public class Cliente extends Usuario{
     
-	@GeneratedValue
-    @Id
-    private Long id;
     private String nombre;
     private String apellido;
     @Enumerated(EnumType.STRING)
@@ -66,14 +63,6 @@ public class Cliente {
 
     public int getNroDocumento() {
         return nroDocumento;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public TipoDocumento getTipoDocumento() {
