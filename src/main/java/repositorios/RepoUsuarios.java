@@ -23,8 +23,11 @@ public class RepoUsuarios implements WithGlobalEntityManager, EntityManagerOps {
 
     public TipoUsuario tipoDeUsuario(Long user) {
         //TODO fijarnos que no esto no reviente por null pointer exception
-        System.out.println(entityManager().find(Usuario.class, user));
         return entityManager().find(Usuario.class, user).getTipoUsuario();
+    }
+    
+    public String hashDePassword(Long user) {
+    	return entityManager().find(Usuario.class, user).getPassword();
     }
 
     public void guardar(Usuario usuario) {
