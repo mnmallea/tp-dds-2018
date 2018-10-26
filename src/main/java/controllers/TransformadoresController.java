@@ -12,6 +12,7 @@ import spark.Request;
 import spark.Response;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +34,9 @@ public class TransformadoresController {
             inicio = fin.minusMonths(1);
         }
         HashMap<String, Object> viewModel = new HashMap<>();
+
+        viewModel.put("fechaInicio", inicio.truncatedTo(ChronoUnit.MINUTES));
+        viewModel.put("fechaFin", fin.truncatedTo(ChronoUnit.MINUTES));
 
         Long idZona;
         try {
