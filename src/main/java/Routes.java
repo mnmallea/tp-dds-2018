@@ -41,10 +41,11 @@ public class Routes {
         path("/administrador", () -> {
             before("", LoginValidator::validateAdmin);
             before("/*", LoginValidator::validateAdmin);
-            get("", ((request, response) -> {
-                Administrador administrador = (Administrador) LoginValidator.getUsuario(request);
-                return "Logeaste como un administrador: " + administrador.getNombre() + "  Fecha de alta: " + administrador.getFechaAlta();
-            }));
+
+            get("", ((request, response) -> "<a href=\"administrador/hogares/seleccion\">Consumo dispositivos</a>"));
+            get("/hogares/:id/dispositivos", DispositivosController::showConsumos, engine);
+            get("/hogares/seleccion", HogaresController::seleccionarDispositivos, engine);
+
             get("/hogares", HogaresController::show, engine);
             get("/transformadores", TransformadoresController::show, engine);
         });
@@ -58,7 +59,7 @@ public class Routes {
             }));
         });
 
-        get("/administradores/:id/*", AdministradorController::show);
-        get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
+//        get("/administradores/:id/*", AdministradorController::show);
+//        get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
     }
 }

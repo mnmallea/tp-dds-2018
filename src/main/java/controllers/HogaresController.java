@@ -8,6 +8,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class HogaresController {
         Integer page = PageUtils.getPageRequested(request);
 
         List<Cliente> clientes = RepoClientes.instancia.getPaginaClientes(page);
-        HashMap model = new HashMap();
+        HashMap<String, Object> model = new HashMap<>();
         model.put("clientes", clientes);
         PagingViewModel pagingViewModel = new PagingViewModel(page, RepoClientes.instancia.cantidadDePaginas());
         model.put("page", pagingViewModel);
@@ -24,4 +25,13 @@ public class HogaresController {
     }
 
 
+    public static ModelAndView seleccionarDispositivos(Request request, Response response) {
+        HashMap<String, Object> model = new HashMap<>();
+
+        List<Cliente> clientes = RepoClientes.instancia.getClientes();
+
+        model.put("clientes", clientes);
+
+        return new ModelAndView(model, "reportes/dispositivos.hbs");
+    }
 }

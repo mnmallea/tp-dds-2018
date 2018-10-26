@@ -40,7 +40,7 @@ public class RepoUsuarios implements WithGlobalEntityManager, EntityManagerOps {
         try {
             result = query.getSingleResult();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return result;
     }
