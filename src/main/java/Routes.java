@@ -3,6 +3,7 @@ import dominio.Administrador;
 import dominio.Cliente;
 import exception.UnauthorizedException;
 import handlebarsUtils.BooleanHelper;
+import handlebarsUtils.EqualityHelper;
 import handlebarsUtils.HandlebarsTemplateEngineBuilder;
 import handlebarsUtils.IsNumberHelper;
 import repositorios.RepoTransformadores;
@@ -19,6 +20,7 @@ public class Routes {
                 .withDefaultHelpers()
                 .withHelper("isTrue", BooleanHelper.isTrue)
                 .withHelper("isNumber", new IsNumberHelper())
+                .withHelper("equals", new EqualityHelper())
                 .build();
 
         staticFiles.location("/public");

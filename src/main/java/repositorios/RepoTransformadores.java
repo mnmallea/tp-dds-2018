@@ -1,10 +1,12 @@
 package repositorios;
 
 import dominio.Transformador;
+import dominio.Zona;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class RepoTransformadores implements WithGlobalEntityManager, EntityManagerOps {
@@ -38,13 +40,21 @@ public class RepoTransformadores implements WithGlobalEntityManager, EntityManag
         );
     }
 
-    public Transformador buscarPorID(Long id){
+    public Transformador buscarPorID(Long id) {
         return entityManager().find(Transformador.class, id);
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Transformador> getPaginaTransformadores(int pageNumber, int pageSize){
-        Query query = entityManager().createQuery("from Transformador t order by t.id");
+    public List<Transformador> getPaginaTransformadores(int pageNumber, int pageSize) {
+        TypedQuery<Transformador> query = entityManager().createQuery("from Transformador t order by t.id", Transformador.class);
+        query.setFirstResult((pageNumber - 1) * pageSize);
+        query.setMaxResults(pageSize);
+        return query.getResultList();
+    }
+
+
+    public List<Transformador> getPaginaTransformadoresDeZona(int pageNumber, int pageSize, Long idZona) {
+        TypedQuery<Transformador> query= entityManager().createQuery("from Transformador t where t.zona_id = :id order by t.id", Transformador.class)
+                .setParameter("id", idZona);
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
         return query.getResultList();
