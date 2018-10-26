@@ -12,7 +12,7 @@
         {{#each consumos}}
             <tr>
                 <td>{{nombreDispositivo}}</td>
-                <td>{{consumoPromedio}}</td>
+                <td>{{isNumber consumoPromedio "No disponible"}}</td>
             </tr>
         {{/each}}
         </tbody>

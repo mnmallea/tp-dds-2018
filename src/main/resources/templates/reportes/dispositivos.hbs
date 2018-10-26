@@ -1,15 +1,17 @@
 {{#partial "contenido"}}
     <h1>Consumo de dispositivos</h1>
+
     <fieldset>
         <p>Selección de Hogar</p>
         <div>
             <label for="cliente-choice">Elije un cliente:</label>
-            <input list="clientes" id="cliente-choice" name="cliente-choice">
-            <datalist id="clientes">
+            <select class="selectpicker" data-live-search="true" id="cliente-choice" name="cliente-choice"
+                    onchange="actualizarReporte(this.value)">
+                <option selected hidden disabled>Cliente</option>
                 {{#each clientes}}
                     <option value="{{id}}">{{nombre}} {{apellido}}</option>
                 {{/each}}
-            </datalist>
+            </select>
         </div>
     </fieldset>
 
@@ -18,19 +20,8 @@
             No hay ningún cliente seleccionado
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script>
-        var inp = document.querySelector('#cliente-choice');
-        inp.addEventListener('change', function() {
-            var value = this.value;
-            var opt = [].find.call(this.list.options, function(option) {
-                return option.value === value;
-            });
-            if(opt) {
-                actualizarReporte(value);
-                this.value = opt.textContent;
-            }
-        });
 
         function actualizarReporte(idToSend) {
             console.log(idToSend);
