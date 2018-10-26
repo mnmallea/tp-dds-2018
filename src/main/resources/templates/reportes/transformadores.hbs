@@ -1,4 +1,14 @@
 {{#partial "contenido"}}
+    <script>
+        function irAPagina(nro) {
+            var start = document.querySelector("#start-time").value;
+            var end = document.querySelector("#start-time").value;
+            var zona = document.querySelector('#zona').value;
+            var path = '/administrador/transformadores?start-time' + start + '&end=' + end + '&page=' + nro + '&zona=' + zona;
+            window.location.href = path;
+        }
+    </script>
+
     <h1>Transformadores</h1>
 
     <form method="get" action="/administrador/transformadores">
@@ -50,10 +60,10 @@
     {{#with page}}
         <ul class="pagination justify-content-center">
             <li class="{{#if isFirst}}page-item disabled{{else}}page-item{{/if}}">
-                <a class="page-link" href="/administrador/transformadores">Principio</a>
+                <a class="page-link" href="javascript:irAPagina(0)">Principio</a>
             </li>
             {{#unless isFirst}}
-                <li class="page-item"><a class="page-link" href="/administrador/transformadores?page={{previousPage}}
+                <li class="page-item"><a class="page-link" href="javascript:irAPagina({{previousPage}})
                     ">{{previousPage}}</a>
                 </li>
             {{/unless}}
@@ -61,11 +71,10 @@
                 <a class="page-link" href="#">{{currentPage}}<span class="sr-only">{{currentPage}}</span></a>
             </li>
             {{#unless isLast}}
-                <li class="page-item"><a class="page-link" href="/administrador/transformadores?page={{nextPage}}
-                    ">{{nextPage}}</a></li>
+                <li class="page-item"><a class="page-link" href="javascript:irAPagina({{nextPage}})">{{nextPage}}</a></li>
             {{/unless}}
             <li class="{{#if isLast}}page-item disabled{{else}}page-item{{/if}}">
-                <a class="page-link" href="/administrador/transformadores?page={{lastPage}}">Última página</a>
+                <a class="page-link" href="javascript:irAPagina({{lastPage}})">Última página</a>
             </li>
         </ul>
     {{/with}}
