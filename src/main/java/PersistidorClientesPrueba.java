@@ -28,7 +28,7 @@ public class PersistidorClientesPrueba implements WithGlobalEntityManager, Trans
             Categorizador.instancia.getR1(), new ArrayList<>(), new ArrayList<>(), LocalDate.now());
 
     Cliente cliente4 = new Cliente("Belén", "Trípodi", TipoDocumento.DNI, 123, 123, otraDireccion,
-            Categorizador.instancia.getR1(), Arrays.asList(FabricaDeDispositivos.crearHeladeraConFreezer("heladera con Freezer", null, 1L)), new ArrayList<>(), LocalDate.now());
+            Categorizador.instancia.getR1(), Arrays.asList(FabricaDeDispositivos.crearAire2200("Aire2200", null, 123L)), new ArrayList<>(), LocalDate.now());
 
     Cliente cliente5 = new Cliente("Franco", "Curi", TipoDocumento.DNI, 123, 123, unaDireccion,
             Categorizador.instancia.getR1(), new ArrayList<>(), new ArrayList<>(), LocalDate.now());

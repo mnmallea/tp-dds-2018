@@ -1,13 +1,16 @@
 package controllers;
 
-import dominio.Cliente;
-import dominio.dispositivos.DispositivoInteligente;
-import dominio.dispositivos.PeriodoEncendido;
-import spark.ModelAndView;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+
+import dominio.Cliente;
+import dominio.dispositivos.Dispositivo;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.PeriodoEncendido;
+import simplex.OptimizadorHoras;
+import simplex.SolucionSimplex;
+import spark.ModelAndView;
 
 public class ClienteController {
     public static ModelAndView home(Cliente cliente){
@@ -21,7 +24,17 @@ public class ClienteController {
         return new ModelAndView(model, "cliente/hogar.hbs");
     }
 
-    public static ModelAndView consumos(Cliente cliente){
-
+//    public static ModelAndView consumos(Cliente cliente){
+//
+//    }
+    
+    public static ModelAndView simplex(Cliente cliente){
+    	HashMap model = new HashMap();
+    	List<Dispositivo> dispositivos = cliente.getDispositivos();
+    	OptimizadorHoras optimizador = new OptimizadorHoras();
+    	List<SolucionSimplex> solucionesSimplex = optimizador.optimizarHorasUso(dispositivos);
+    	model.put("dispositivos", dispositivos);
+    	model.put("solucionesSimplex", solucionesSimplex);
+    	return new ModelAndView(model, "cliente/simplex.hbs");
     }
 }

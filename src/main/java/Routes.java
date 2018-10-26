@@ -57,6 +57,10 @@ public class Routes {
                 return ClienteController.home(cliente);
             }), engine);
 
+            get("/simplex", ((request, response) -> {
+                Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
+                return ClienteController.simplex(cliente);
+            }), engine);
         });
 
     }

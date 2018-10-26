@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class DispositivoEstandar implements Dispositivo {
+public class DispositivoEstandar extends Dispositivo {
 
     @GeneratedValue
     @Id
@@ -29,7 +29,7 @@ public class DispositivoEstandar implements Dispositivo {
         return this.consumoPorHora;
     }
 
-    public Float getConsumo() {
+    public Float consumoTotal() {
         return this.consumoPorHora * this.horasDeUsoDiarias * 30;
     }
 

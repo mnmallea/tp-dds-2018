@@ -20,7 +20,7 @@ public class SolucionSimplex {
     }
 
     public double getConsumoQueProvocaria() {
-        return this.horasRecomendadas * this.dispositivo.getConsumo();
+        return this.horasRecomendadas * this.dispositivo.consumoTotal();
     }
 
     public boolean estuvoPrendidoMuchasHoras() {

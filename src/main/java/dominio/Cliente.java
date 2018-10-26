@@ -29,7 +29,7 @@ public class Cliente extends Usuario{
     private LocalDate fechaAlta;
     @ManyToOne
     private Categoria categoria;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "cliente")
     private List<DispositivoInteligente> dispositivosInteligentes;
     @OneToMany
@@ -95,11 +95,11 @@ public class Cliente extends Usuario{
     }
 
     public Double consumoDispositivosInteligentes() {
-        return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+        return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.consumoTotal()).sum();
     }
 
     public Double consumoDispositivosEstandares() {
-        return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+        return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.consumoTotal()).sum();
     }
 
     public void categorizar() {
