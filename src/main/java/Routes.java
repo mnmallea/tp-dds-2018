@@ -44,16 +44,20 @@ public class Routes {
             get("/hogares", HogaresController::show, engine);
         });
 
-        path("/cliente", () -> {
+        path("/clientes/:id", () -> {
             before("", LoginValidator::validateCliente);
             before("/*", LoginValidator::validateCliente);
-            get("", ((request, response) -> {
+            get("/hogar", ((request, response) -> {
                 Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
-                return "Logeaste como un cliente:" + cliente.getNombre() + "!!!  Vivis en: " + cliente.getDireccion();
-            }));
+                return ClienteController.home(cliente);
+            }), engine);
+
+            get("/consumos", ((request, response) -> {
+                Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
+                return ClienteController.home(cliente);
+            }), engine);
+
         });
 
-        get("/administradores/:id/*", AdministradorController::show);
-        get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
     }
 }

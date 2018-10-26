@@ -11,6 +11,10 @@ public class Apagado implements Estado {
 
     }
 
+    public String toString(){
+        return "Apagado";
+    }
+
     public void encenderse(DispositivoInteligente dispositivo) {
         dispositivo.encendersePosta();
         dispositivo.setEstado(new Encendido());

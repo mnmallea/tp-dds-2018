@@ -49,7 +49,7 @@ public class LoginController {
             res.redirect("/administrador");
             tipoUsuario = TipoUsuario.ADMINISTRADOR;
         } else if (usuario instanceof Cliente) {
-            res.redirect("/cliente");
+            res.redirect("/clientes/" + usuario.getId() + "/hogar");
             tipoUsuario = TipoUsuario.CLIENTE;
         }
 
