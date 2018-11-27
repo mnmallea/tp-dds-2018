@@ -1,0 +1,20 @@
+{{#partial "contenido"}}
+
+    <div class="page-content">
+        <nav class="sidebar-sge">
+            <a class="nav-link side-link-sge active" href="/administrador/hogares">Hogares</a>
+            <a class="nav-link side-link-sge" href="/administrador/transformadores">Transformadores</a>
+            <a class="nav-link side-link-sge" href="/administrador/dispositivos">Dispositivos</a>
+            <a class="nav-link side-link-sge disabled" href="#">Disabled</a>
+        </nav>
+
+
+        <div class="container">
+            {{#block "contenido-admin"}}
+            {{/block}}
+        </div>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}

@@ -60,6 +60,6 @@ public class TransformadoresController {
 
         PagingViewModel pagingViewModel = new PagingViewModel(page, RepoTransformadores.instancia.cantidadDePaginas(5));
         viewModel.put("page", pagingViewModel);
-        return new ModelAndView(viewModel, "reportes/transformadores.hbs");
+        return new ModelAndView(viewModel, "administrador/reportes/transformadores.hbs");
     }
 }

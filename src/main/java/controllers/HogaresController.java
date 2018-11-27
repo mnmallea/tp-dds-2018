@@ -21,7 +21,7 @@ public class HogaresController {
         model.put("clientes", clientes);
         PagingViewModel pagingViewModel = new PagingViewModel(page, RepoClientes.instancia.cantidadDePaginas());
         model.put("page", pagingViewModel);
-        return new ModelAndView(model, "reportes/hogares.hbs");
+        return new ModelAndView(model, "administrador/reportes/hogares.hbs");
     }
 
 
@@ -32,6 +32,6 @@ public class HogaresController {
 
         model.put("clientes", clientes);
 
-        return new ModelAndView(model, "reportes/dispositivos.hbs");
+        return new ModelAndView(model, "administrador/reportes/dispositivos.hbs");
     }
 }

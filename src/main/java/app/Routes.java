@@ -44,7 +44,7 @@ public class Routes {
             before("", LoginValidator::validateAdmin);
             before("/*", LoginValidator::validateAdmin);
 
-            get("", ((request, response) -> "<a href=\"administrador/hogares/seleccion\">Consumo dispositivos</a>"));
+            get("", HomeController::show, engine);
             get("/hogares/:id/dispositivos", DispositivosController::showConsumos, engine);
             get("/hogares/seleccion", HogaresController::seleccionarDispositivos, engine);
 
@@ -61,7 +61,5 @@ public class Routes {
             }));
         });
 
-//        get("/administradores/:id/*", AdministradorController::show);
-//        get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
     }
 }

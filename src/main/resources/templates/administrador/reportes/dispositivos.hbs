@@ -1,11 +1,11 @@
-{{#partial "contenido"}}
+{{#partial "contenido-admin"}}
     <h1>Consumo de dispositivos</h1>
 
-    <fieldset>
-        <p>Selección de Hogar</p>
+    <fieldset class="alert sge-input-group">
+        <h3>Selección de Hogar</h3>
         <div>
             <label for="cliente-choice">Elije un cliente:</label>
-            <select class="selectpicker" data-live-search="true" id="cliente-choice" name="cliente-choice"
+            <select class="selectpicker form-control" data-live-search="true" id="cliente-choice" name="cliente-choice"
                     onchange="actualizarReporte(this.value)">
                 <option selected hidden disabled>Cliente</option>
                 {{#each clientes}}
@@ -24,7 +24,6 @@
     <script>
 
         function actualizarReporte(idToSend) {
-            console.log(idToSend);
             $.ajax({
                 type: "GET",
                 url: "/administrador/hogares/" + idToSend + "/dispositivos",
@@ -39,4 +38,4 @@
 
 
 {{/partial}}
-{{>layout.hbs}}
+{{>administrador/adminlayout.hbs}}

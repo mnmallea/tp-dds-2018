@@ -1,11 +1,25 @@
-html {
-    position: relative;
-    min-height: 100%;
+html, body {
+    width: 100%;
+    height: 100%;
 }
 
 body {
     margin: 0;
     padding: 0;
+}
+
+.article {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+header, main, footer {
+    flex-shrink: 0;
 }
 
 .section {
@@ -23,6 +37,12 @@ body {
 .container {
     display: flex;
     flex-direction: column;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
 }
 
 .sge_name {
@@ -44,13 +64,18 @@ body {
 }
 
 .footer {
+    display: flex;
     bottom: 0;
     width: 100%;
-    height: 60px;
+    height: 2.5em;
     color: white;
     background-color: midnightblue;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+}
+
+.footer p {
+    margin: 0;
 }
 
 .nav-links {
@@ -61,10 +86,20 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/*
-Desde aca copie las cosas de la pag de mozilla dev
- */
-form {
+.side-link-sge {
+
+}
+
+.sidebar-sge {
+    display: flex;
+    flex-direction: column;
+    background: #e2e3e5;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: .55rem;
+}
+
+.form {
     /* Sólo para centrar el formulario a la página */
     margin: 0 auto;
     width: 335px;
@@ -72,17 +107,19 @@ form {
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
+    background-color: #1A3A92;
 }
 
-form div + div {
+.form div + div {
     margin-top: 1em;
 }
 
-label {
-    /* Para asegurarse que todos los labels tienen el mismo tamaño y están alineados correctamente */
-    display: inline-block;
-    width: 90px;
-    text-align: left;
+.sge-input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    background-color: #e2e3e5;
 }
 
 input, textarea {
@@ -120,6 +157,7 @@ textarea {
     /* Para posicionar los botones a la misma posición que los campos de texto */
     padding-left: 90px; /* mismo tamaño a todos los elementos label */
 }
+
 button {
     /* Este margen extra representa aproximadamente el mismo espacio que el espacio
        entre los labels y sus campos de texto */

@@ -5,7 +5,6 @@ import dominio.Usuario;
 import exception.UnauthorizedException;
 import spark.Request;
 import spark.Response;
-import spark.Spark;
 
 import static spark.Spark.halt;
 
@@ -39,15 +38,19 @@ public class LoginValidator {
 
     public static void validateAdmin(Request request, Response response) {
         validate(request, response);
-        if (request.session().attribute(USER_TYPE) != TipoUsuario.ADMINISTRADOR) {
+        if (!esUsuarioDeTipo(request, TipoUsuario.ADMINISTRADOR)) {
             throw new UnauthorizedException();
         }
+    }
+
+    public static boolean esUsuarioDeTipo(Request request, TipoUsuario tipoUsuario) {
+        return request.session().attribute(USER_TYPE) == tipoUsuario;
     }
 
 
     public static void validateCliente(Request request, Response response) {
         validate(request, response);
-        if (request.session().attribute(USER_TYPE) != TipoUsuario.CLIENTE) {
+        if (!esUsuarioDeTipo(request, TipoUsuario.CLIENTE)) {
             throw new UnauthorizedException();
         }
     }

@@ -24,12 +24,12 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.3/js/bootstrap-select.min.js"></script>
 
-<section class="section">
+<article class="article">
     <header class="header">
         <img src="https://i.imgur.com/YKhpgAF.png" alt="sge logo" class="sge-logo" height="125px">
         <h1 class="sge_name">S.G.E.</h1>
     </header>
-    <nav>
+    <main>
         <ul class="navbar">
             <li>
                 <a class="nav-links" href="/">Home</a>
@@ -41,17 +41,17 @@
                 <a class="nav-links" href="/logout">Cerrar sesión</a>
             </li>
         </ul>
-    </nav>
-    <div class="container">
-        {{#block "contenido"}}
-        {{/block}}
-    </div>
+        <div class="container">
+            {{#block "contenido"}}
+            {{/block}}
+        </div>
+    </main>
     <footer class="footer">
-        <p class="text-center">
+        <p>
             &copy; 2018 sge.com
         </p>
     </footer>
-</section>
+</article>
 
 
 </body>
