@@ -1,0 +1,42 @@
+{{#partial "contenido"}}
+    <h1>Consumo de dispositivos</h1>
+
+    <fieldset>
+        <p>Selección de Hogar</p>
+        <div>
+            <label for="cliente-choice">Elije un cliente:</label>
+            <select class="selectpicker" data-live-search="true" id="cliente-choice" name="cliente-choice"
+                    onchange="actualizarReporte(this.value)">
+                <option selected hidden disabled>Cliente</option>
+                {{#each clientes}}
+                    <option value="{{id}}">{{nombre}} {{apellido}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </fieldset>
+
+    <div id="reportes-list">
+        <div class="alert alert-secondary" role="alert">
+            No hay ningún cliente seleccionado
+        </div>
+    </div>
+
+    <script>
+
+        function actualizarReporte(idToSend) {
+            console.log(idToSend);
+            $.ajax({
+                type: "GET",
+                url: "/administrador/hogares/" + idToSend + "/dispositivos",
+                dataType: "html",
+                success: function (res) {
+                    var reportes = document.getElementById("reportes-list");
+                    reportes.innerHTML = res;
+                }
+            });
+        }
+    </script>
+
+
+{{/partial}}
+{{>layout.hbs}}
