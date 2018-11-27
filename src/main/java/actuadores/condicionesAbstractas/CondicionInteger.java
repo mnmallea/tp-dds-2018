@@ -1,8 +1,8 @@
 package actuadores.condicionesAbstractas;
 
-import javax.persistence.Entity;
-
 import actuadores.Condicion;
+
+import javax.persistence.Entity;
 
 @Entity
 public abstract class CondicionInteger extends Condicion<Integer>{

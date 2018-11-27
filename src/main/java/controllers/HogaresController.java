@@ -8,7 +8,6 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 

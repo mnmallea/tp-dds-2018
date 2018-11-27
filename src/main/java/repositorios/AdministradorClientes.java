@@ -1,11 +1,13 @@
 package repositorios;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 import dominio.Cliente;
 import dominio.Transformador;
 import simplex.OptimizadorHoras;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AdministradorClientes {
     public static final AdministradorClientes instancia = new AdministradorClientes();

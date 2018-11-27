@@ -6,6 +6,7 @@ import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.PeriodoEncendido;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Apagado;
+import org.hibernate.annotations.Type;
 import puntos.Point;
 import simplex.EfectoSimplex;
 import simplex.SolucionSimplex;
@@ -19,8 +20,10 @@ import java.util.stream.Stream;
 
 @Entity
 public class Cliente extends Usuario{
-    
+
+    @Type(type="org.hibernate.type.StringNVarcharType")
     private String nombre;
+    @Type(type="org.hibernate.type.StringNVarcharType")
     private String apellido;
     @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;

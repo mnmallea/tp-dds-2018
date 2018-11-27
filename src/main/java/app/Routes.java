@@ -1,16 +1,13 @@
 package app;
 
 import controllers.*;
-import dominio.Administrador;
 import dominio.Cliente;
 import exception.UnauthorizedException;
 import handlebarsUtils.BooleanHelper;
 import handlebarsUtils.EqualityHelper;
 import handlebarsUtils.HandlebarsTemplateEngineBuilder;
 import handlebarsUtils.IsNumberHelper;
-import repositorios.RepoTransformadores;
 import spark.ModelAndView;
-import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import static spark.Spark.*;

@@ -1,10 +1,6 @@
 package dominio;
 
 import puntos.Point;
-
-import java.lang.Math;
-
-import repositorios.AdministradorClientes;
 import repositorios.AdministradorTransformadores;
 
 import javax.persistence.*;

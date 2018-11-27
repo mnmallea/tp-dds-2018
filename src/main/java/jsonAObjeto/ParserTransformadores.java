@@ -1,13 +1,12 @@
 package jsonAObjeto;
 
-import java.io.Reader;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import dominio.Transformador;
 import dominio.Zona;
 import exception.ParserException;
+
+import java.io.Reader;
 
 public class ParserTransformadores {
 

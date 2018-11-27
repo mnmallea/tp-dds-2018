@@ -1,11 +1,11 @@
 package tests;
 
-import java.time.LocalDate;
+import dominio.Administrador;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import dominio.Administrador;
+import java.time.LocalDate;
 
 public class AdministradorTests {
 	public Administrador administrador, administradorNuevo;

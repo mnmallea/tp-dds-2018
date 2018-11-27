@@ -1,17 +1,16 @@
 package tests;
 
+import dominio.Cliente;
+import dominio.TipoDocumento;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.fabricantes.Fabricante;
+import exception.ArchivoNoEncontradoException;
+import exception.ParserException;
+import jsonAObjeto.ParserCliente;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import dominio.Cliente;
-import dominio.dispositivos.DispositivoInteligente;
-import dominio.dispositivos.fabricantes.Fabricante;
-import dominio.TipoDocumento;
-import exception.ArchivoNoEncontradoException;
-import exception.ParserException;
-import jsonAObjeto.ParserCliente;
 
 public class ParserClienteTests {
 

@@ -1,29 +1,23 @@
 package db;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
+import dominio.*;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.FabricaDeDispositivos;
+import dominio.dispositivos.PeriodoEncendido;
 import org.junit.Assert;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-
-import dominio.Categorizador;
-import dominio.Cliente;
-import dominio.Direccion;
-import dominio.TipoDocumento;
-import dominio.Transformador;
-import dominio.Zona;
-import dominio.dispositivos.DispositivoInteligente;
-import dominio.dispositivos.FabricaDeDispositivos;
-import dominio.dispositivos.PeriodoEncendido;
 import puntos.Point;
 import repositorios.AdministradorClientes;
 import repositorios.AdministradorTransformadores;
 import repositorios.RepoDispositivosInteligentes;
 import repositorios.RepoTransformadores;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReportesTest  extends AbstractPersistenceTest implements WithGlobalEntityManager {
 

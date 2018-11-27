@@ -1,7 +1,6 @@
 package repositorios;
 
 import dominio.Transformador;
-import dominio.Zona;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
