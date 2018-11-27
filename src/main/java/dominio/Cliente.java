@@ -29,7 +29,7 @@ public class Cliente extends Usuario{
     private LocalDate fechaAlta;
     @ManyToOne
     private Categoria categoria;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cliente")
     private List<DispositivoInteligente> dispositivosInteligentes;
     @OneToMany
