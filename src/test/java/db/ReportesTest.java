@@ -3,7 +3,7 @@ package db;
 import dominio.*;
 import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.FabricaDeDispositivos;
-import dominio.dispositivos.PeriodoEncendido;
+import dominio.dispositivos.Periodo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -29,8 +29,8 @@ public class ReportesTest  extends AbstractPersistenceTest implements WithGlobal
     private LocalDateTime fecha4;
     private DispositivoInteligente unDispositivoInteligente;
     private DispositivoInteligente otroDispositivoInteligente;
-    private PeriodoEncendido periodoA;
-    private PeriodoEncendido periodoB;
+    private Periodo periodoA;
+    private Periodo periodoB;
     private Transformador transformador1;
 
 
@@ -50,8 +50,8 @@ public class ReportesTest  extends AbstractPersistenceTest implements WithGlobal
         fecha3 = LocalDateTime.of(2018, 9, 2, 0, 0);
         fecha4 = LocalDateTime.of(2018, 9, 2, 14, 0);
 
-        periodoA = new PeriodoEncendido(fecha1.plusHours(1), fecha2.minusHours(1));
-        periodoB = new PeriodoEncendido(fecha3, fecha4);
+        periodoA = new Periodo(fecha1.plusHours(1), fecha2.minusHours(1));
+        periodoB = new Periodo(fecha3, fecha4);
 
         unDispositivoInteligente.agregarPeriodo(periodoA);
         unDispositivoInteligente.agregarPeriodo(periodoB);

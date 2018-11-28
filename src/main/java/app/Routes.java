@@ -37,16 +37,18 @@ public class Routes {
         post("/login", LoginController::login);
         get("/logout", LoginValidator::removeAuthenticatedUser);
 
+        before("/reportes/*", LoginValidator::validateAdmin);
+        get("/reportes/transformadores/consumos", TransformadoresController::show, engine);
+        get("/reportes/usuarios", HogaresController::seleccionarDispositivos, engine);
+        get("/reportes/usuarios/:id/promedios", DispositivosController::showConsumos, engine);
+        get("/reportes/hogares/consumos", HogaresController::consumosPorPeriodo, engine);
+
         path("/administrador", () -> {
             before("", LoginValidator::validateAdmin);
             before("/*", LoginValidator::validateAdmin);
 
             get("", HomeController::show, engine);
-            get("/hogares/:id/dispositivos", DispositivosController::showConsumos, engine);
-            get("/hogares/seleccion", HogaresController::seleccionarDispositivos, engine);
-
             get("/hogares", HogaresController::show, engine);
-            get("/transformadores", TransformadoresController::show, engine);
         });
 
         path("/cliente", () -> {

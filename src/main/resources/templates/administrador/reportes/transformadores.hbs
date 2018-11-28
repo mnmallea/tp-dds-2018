@@ -4,14 +4,14 @@
             var start = document.querySelector("#start-time").value;
             var end = document.querySelector("#start-time").value;
             var zona = document.querySelector('#zona').value;
-            var path = '/administrador/transformadores?start-time' + start + '&end=' + end + '&page=' + nro + '&zona=' + zona;
+            var path = '/reportes/transformadores/consumos?start-time' + start + '&end=' + end + '&page=' + nro + '&zona=' + zona;
             window.location.href = path;
         }
     </script>
 
     <h1>Transformadores</h1>
 
-    <form method="get" action="/administrador/transformadores" class="alert sge-input-group">
+    <form method="get" action="/reportes/transformadores/consumos" class="alert sge-input-group">
         <div>
             <h3>
                 Filtros

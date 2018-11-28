@@ -22,6 +22,6 @@ public class DispositivosController {
         viewModel.put("consumos", consumos);
         boolean hayDispositivos = !dispositivos.isEmpty();
         viewModel.put("hayDispositivos", hayDispositivos);
-        return new ModelAndView(viewModel, "reportes/reporteDispositivos.hbs");
+        return new ModelAndView(viewModel, "administrador/reportes/reporteDispositivos.hbs");
     }
 }

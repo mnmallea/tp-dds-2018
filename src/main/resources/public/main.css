@@ -42,7 +42,7 @@ header, main, footer {
 .page-content {
     display: flex;
     flex-direction: row;
-    align-content: center;
+    align-items: center;
 }
 
 .sge_name {
@@ -86,8 +86,8 @@ header, main, footer {
     font-family: Arial, sans-serif;
 }
 
-.side-link-sge {
-
+.sidebar-sge ul{
+    list-style-type: none;
 }
 
 .sidebar-sge {

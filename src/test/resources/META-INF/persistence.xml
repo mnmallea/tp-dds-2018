@@ -50,7 +50,7 @@
         <class>dominio.dispositivos.AireAcondicionadoInteligente</class>
         <class>dominio.dispositivos.DispositivoEstandar</class>
         <class>dominio.dispositivos.DispositivoInteligente</class>
-        <class>dominio.dispositivos.PeriodoEncendido</class>
+        <class>dominio.dispositivos.Periodo</class>
         <class>dominio.dispositivos.ReflectorInteligente</class>
         
         <!-- dominio.dispositivos.fabricantes -->

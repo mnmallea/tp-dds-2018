@@ -13,7 +13,6 @@ public class RepoClientes implements WithGlobalEntityManager, EntityManagerOps {
     public static final RepoClientes instancia = new RepoClientes();
 
     private CriteriaBuilder criteriaBuilder;
-    private int pageSize = 5;
 
     private RepoClientes() {
     }
@@ -34,7 +33,7 @@ public class RepoClientes implements WithGlobalEntityManager, EntityManagerOps {
         return entityManager().find(Cliente.class, id);
     }
 
-    public List<Cliente> getPaginaClientes(int pageNumber) {
+    public List<Cliente> getPaginaClientes(int pageNumber, int pageSize) {
         Query clientesQuery = entityManager().createQuery("from Cliente c order by c.id");
         clientesQuery.setFirstResult((pageNumber - 1) * pageSize);
         clientesQuery.setMaxResults(pageSize);
@@ -47,7 +46,7 @@ public class RepoClientes implements WithGlobalEntityManager, EntityManagerOps {
         return countResult;
     }
 
-    public Integer cantidadDePaginas() {
+    public Integer cantidadDePaginas(int pageSize) {
         return (int) Math.ceil(((double) cantidadDeClientes()) / pageSize);
     }
 }

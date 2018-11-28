@@ -7,19 +7,27 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Entity(name = "HistorialEncendidos")
-public class PeriodoEncendido {
+public class Periodo {
     private LocalDateTime inicio;
     private LocalDateTime fin;
     @Id
     @GeneratedValue
     private Long id;
 
-    public PeriodoEncendido(LocalDateTime inicio, LocalDateTime fin) {
+    public Periodo(LocalDateTime inicio, LocalDateTime fin) {
         this.inicio = inicio;
         this.fin = fin;
     }
 
-    public PeriodoEncendido() {
+    public Periodo() {
+    }
+
+    public LocalDateTime getInicio() {
+        return inicio;
+    }
+
+    public LocalDateTime getFin() {
+        return fin;
     }
 
     public Long enHoras(){

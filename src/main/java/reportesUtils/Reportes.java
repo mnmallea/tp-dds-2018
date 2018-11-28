@@ -1,7 +1,10 @@
 package reportesUtils;
 
+import dominio.Cliente;
 import dominio.Transformador;
 import dominio.Zona;
+import dominio.dispositivos.Periodo;
+import repositorios.RepoClientes;
 import repositorios.RepoTransformadores;
 import repositorios.RepoZonas;
 
@@ -29,5 +32,10 @@ public class Reportes {
         List<Transformador> transformadores = zona.getTransformadores();
         int fromIndex = (page - 1) * pageSize;
         return getReporteTransformadores(inicio, fin, transformadores.subList(fromIndex, Math.min(fromIndex + pageSize, transformadores.size())));
+    }
+
+    public static List<ReporteConsumoPeriodo> consumoDeClientesEnPeriodo(Periodo periodo, int page, int pageSize) {
+        List<Cliente> clientes = RepoClientes.instancia.getPaginaClientes(page, pageSize);
+        return clientes.stream().map(cliente -> ReporteConsumoPeriodo.generarReporteDe(cliente, periodo)).collect(Collectors.toList());
     }
 }
