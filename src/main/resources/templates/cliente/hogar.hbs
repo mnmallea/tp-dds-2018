@@ -1,0 +1,55 @@
+{{#partial "contenido"}}
+    <h1 style="padding: 25px">Mis consumos</h1>
+    <div class="cliente">
+        <div>
+            <nav>
+                <ul>
+                    <li>
+                        <a class="nav-links-cliente" href="hogar">Estado actual</a>
+                    </li>
+                    <li>
+                        <a class="nav-links-cliente" href="consumos">Consumo por periodo</a>
+                    </li>
+                    <li>
+                        <a class="nav-links-cliente" href="/">Simplex</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="consumos">
+            <h5>Consumos</h5>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Octubre</td>
+                    <td>{{ultimoConsumo}}kwh</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="dispositivos">
+            <h5>Dispositivos</h5>
+            <table class="table">
+                <tbody>
+
+                <tr>
+                    <th>Dispositivo</th>
+                    <th>Estado</th>
+                </tr>
+
+                {{#each dispositivos}}
+                    <tr>
+                        <td>{{nombre}}</td>
+                        <td>{{estado}}</td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{{/partial}}
+
+{{>layout.hbs}}

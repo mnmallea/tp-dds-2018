@@ -1,0 +1,47 @@
+{{#partial "contenido"}}
+    <h1 style="padding: 25px">Mis consumos</h1>
+    <div class="cliente">
+        <div>
+            <nav>
+                <ul>
+                    <li>
+                        <a class="nav-links-cliente" href="hogar">Estado actual</a>
+                    </li>
+                    <li>
+                        <a class="nav-links-cliente" href="consumos">Consumo por periodo</a>
+                    </li>
+                    <li>
+                        <a class="nav-links-cliente" href="/">Simplex</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div>
+            <form>
+            <fieldset>
+
+                <div>
+                    <label for="start-time">Fecha de inicio:</label>
+                    <input type="datetime-local" id="start-time" name="start-time">
+                </div>
+
+                <div>
+                    <label for="end-time">Fecha de finalización:</label>
+                    <input type="datetime-local" id="end-time" name="end-time">
+                </div>
+
+                <div><a  href="consumos?">hola</a></div> al darle click quiero que me refreshee
+
+            </fieldset>
+            </form>
+        </div>
+        <div>
+            <legend >hola: {{ultimoConsumo}}</legend>esto en el controller tengo esto
+        </div>
+    </div>
+
+
+{{/partial}}
+
+{{>layout.hbs}}
