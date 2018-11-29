@@ -122,6 +122,19 @@ header, main, footer {
     background-color: #e2e3e5;
 }
 
+.cliente{
+    display: flex;
+    justify-content: space-around;
+}
+
+.consumos{
+    width: 400px;
+}
+
+.dispositivos{
+    width: 300px;
+}
+
 input, textarea {
     /* Para asegurarse de que todos los campos de texto tienen las mismas propiedades de fuente
        Por defecto, las areas de texto tienen una fuente con monospace */

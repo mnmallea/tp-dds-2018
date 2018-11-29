@@ -19,25 +19,25 @@
         </div>
         <div>
             <form>
-            <fieldset>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="start-time">Fecha de inicio:</label>
+                        <input type="datetime-local" id="start-time" name="start-time" class="form-control"
+                               value="{{fechaInicio}}">
+                    </div>
 
-                <div>
-                    <label for="start-time">Fecha de inicio:</label>
-                    <input type="datetime-local" id="start-time" name="start-time">
+                    <div class="form-group col-md-6">
+                        <label for="end-time">Fecha de fin:</label>
+                        <input type="datetime-local" id="end-time" name="end-time" class="form-control"
+                               value="{{fechaFin}}">
+                    </div>
                 </div>
-
-                <div>
-                    <label for="end-time">Fecha de finalización:</label>
-                    <input type="datetime-local" id="end-time" name="end-time">
-                </div>
-
-                <div><a  href="consumos?">hola</a></div> al darle click quiero que me refreshee
-
-            </fieldset>
             </form>
+
+            <button type="submit" name="submit">Buscar</button>
         </div>
         <div>
-            <legend >hola: {{ultimoConsumo}}</legend>esto en el controller tengo esto
+            <legend >Total: {{ultimoConsumo}}</legend>
         </div>
     </div>
 
