@@ -33,4 +33,9 @@ public class AhorroEnergia implements Estado {
     public Boolean estaAhorroEnergia() {
         return true;
     }
+
+    @Override
+    public String toString(){
+        return "Ahorro energia";
+    }
 }

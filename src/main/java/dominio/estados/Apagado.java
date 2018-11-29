@@ -33,4 +33,9 @@ public class Apagado implements Estado {
     public Boolean estaAhorroEnergia() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Apagado";
+    }
 }

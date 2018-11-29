@@ -190,4 +190,9 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     public Long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "";
+    }
 }
