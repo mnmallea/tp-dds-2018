@@ -1,9 +1,8 @@
 package tests;
 
+import dominio.Categorizador;
 import org.junit.Assert;
 import org.junit.Test;
-
-import dominio.Categorizador;
 
 public class CategorizadorTests {
 

@@ -1,5 +1,6 @@
 package dominio;
 
+import org.hibernate.annotations.Type;
 import puntos.Point;
 
 import javax.persistence.Embeddable;
@@ -23,6 +24,7 @@ public class Direccion {
         this.domicilio = domicilio;
     }
 
+    @Type(type="org.hibernate.type.StringNVarcharType")
     private String domicilio;
 
     public Direccion(Point coordenada, String domicilio) {

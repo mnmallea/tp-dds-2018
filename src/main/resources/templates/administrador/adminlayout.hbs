@@ -1,0 +1,36 @@
+{{#partial "contenido"}}
+
+    <div class="page-content">
+        <nav class="sidebar-sge">
+            <ul>
+                <li>
+                    <a class="nav-link" href="/administrador/hogares">Hogares</a>
+                </li>
+                <li><a class="nav-link disabled">Reportes</a>
+                    <ul>
+                        <li>
+                            <a class="nav-link" href="/reportes/hogares/consumos">Consumo de hogares en períodos</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/reportes/transformadores/consumos">Consumo de
+                                Transformadores</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/reportes/usuarios">Consumo promedio de
+                                dispositivos</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="container">
+            {{#block "contenido-admin"}}
+            {{/block}}
+        </div>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}

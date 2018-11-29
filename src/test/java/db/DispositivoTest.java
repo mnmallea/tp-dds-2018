@@ -2,18 +2,13 @@ package db;
 
 import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.FabricaDeDispositivos;
-import dominio.dispositivos.PeriodoEncendido;
-import org.junit.After;
+import dominio.dispositivos.Periodo;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import repositorios.RepoDispositivosInteligentes;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import java.time.LocalDateTime;
 
 public class DispositivoTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
@@ -35,9 +30,9 @@ public class DispositivoTest extends AbstractPersistenceTest implements WithGlob
         fecha5 = LocalDateTime.of(2018, 9, 3, 0, 0);
         fecha6 = LocalDateTime.of(2018, 9, 3, 12, 0);
         dispositivoInteligente = FabricaDeDispositivos.crearLED40("Led40", null, 1L);
-        dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha1,fecha2));
-        dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha3,fecha4));
-        dispositivoInteligente.agregarPeriodo(new PeriodoEncendido(fecha5,fecha6));
+        dispositivoInteligente.agregarPeriodo(new Periodo(fecha1,fecha2));
+        dispositivoInteligente.agregarPeriodo(new Periodo(fecha3,fecha4));
+        dispositivoInteligente.agregarPeriodo(new Periodo(fecha5,fecha6));
         RepoDispositivosInteligentes.instancia.agregarDispositivoInteligente(dispositivoInteligente);
     }
 

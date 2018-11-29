@@ -1,0 +1,79 @@
+{{#partial "contenido-admin"}}
+    <h1>Consumo de hogares por período</h1>
+
+    <form method="get" action="/reportes/hogares/consumos" class="alert sge-input-group">
+        <div>
+            <h3>
+                Filtros
+            </h3>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="start-time">Fecha de inicio:</label>
+                <input type="datetime-local" id="start-time" name="start-time" class="form-control"
+                value="{{fechaInicio}}">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="end-time">Fecha de fin:</label>
+                <input type="datetime-local" id="end-time" name="end-time" class="form-control"
+                value="{{fechaFin}}">
+            </div>
+            <input type="text" hidden name="page" value="{{page.currentPage}}">
+        </div>
+
+        <div><input type="submit" class="btn btn-primary"></div>
+
+    </form>
+
+    <table class="table">
+        <tbody>
+
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Domicilio</th>
+            <th>Consumo</th>
+        </tr>
+
+        {{#each reportes}}
+            <tr>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.apellido}}</td>
+                <td>{{cliente.direccion.domicilio}}</td>
+                <td>{{consumo}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    {{#with page}}
+        <ul class="pagination justify-content-center">
+            <li class="{{#if isFirst}}page-item disabled{{else}}page-item{{/if}}">
+                <a class="page-link" href="./hogares">Principio</a>
+            </li>
+            {{#unless isFirst}}
+                <li class="page-item"><a class="page-link" href="?page={{previousPage}}">{{previousPage}}</a>
+                </li>
+            {{/unless}}
+            <li class="page-item active">
+                <a class="page-link" href="#">{{currentPage}}<span class="sr-only">{{currentPage}}</span></a>
+            </li>
+            {{#unless isLast}}
+                <li class="page-item"><a class="page-link" href="?page={{nextPage}}">{{nextPage}}</a></li>
+            {{/unless}}
+            <li class="{{#if isLast}}page-item disabled{{else}}page-item{{/if}}">
+                <a class="page-link" href="?page={{lastPage}}">Última página</a>
+            </li>
+        </ul>
+    {{/with}}
+    <script>
+        function irAPagina(nro) {
+            var start = document.querySelector("#start-time").value;
+            var end = document.querySelector("#start-time").value;
+            window.location.href = '/reportes/hogares/consumos?start-time' + start + '&end=' + end + '&page=' + nro;
+        }
+    </script>
+{{/partial}}
+
+{{>administrador/adminlayout.hbs}}

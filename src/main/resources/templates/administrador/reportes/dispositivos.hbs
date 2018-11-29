@@ -1,0 +1,41 @@
+{{#partial "contenido-admin"}}
+    <h1>Consumo de dispositivos</h1>
+
+    <fieldset class="alert sge-input-group">
+        <h3>Selección de Hogar</h3>
+        <div>
+            <label for="cliente-choice">Elije un cliente:</label>
+            <select class="selectpicker form-control" data-live-search="true" id="cliente-choice" name="cliente-choice"
+                    onchange="actualizarReporte(this.value)">
+                <option selected hidden disabled>Cliente</option>
+                {{#each clientes}}
+                    <option value="{{id}}">{{nombre}} {{apellido}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </fieldset>
+
+    <div id="reportes-list">
+        <div class="alert alert-secondary" role="alert">
+            No hay ningún cliente seleccionado
+        </div>
+    </div>
+
+    <script>
+
+        function actualizarReporte(idToSend) {
+            $.ajax({
+                type: "GET",
+                url: "/reportes/usuarios/" + idToSend + "/promedios",
+                dataType: "html",
+                success: function (res) {
+                    var reportes = document.getElementById("reportes-list");
+                    reportes.innerHTML = res;
+                }
+            });
+        }
+    </script>
+
+
+{{/partial}}
+{{>administrador/adminlayout.hbs}}

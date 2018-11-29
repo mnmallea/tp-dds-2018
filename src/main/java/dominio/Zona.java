@@ -1,8 +1,6 @@
 package dominio;
 
 import puntos.Point;
-import java.lang.Math;
-import repositorios.AdministradorClientes;
 import repositorios.AdministradorTransformadores;
 
 import javax.persistence.*;
@@ -12,23 +10,40 @@ import java.util.List;
 @Entity
 public class Zona {
     @OneToMany
+    @JoinColumn(name = "zona_id", referencedColumnName = "id")
     private List<Transformador> transformadores;
 
     private Double radio;
+
+    private String nombre;
 
     @Embedded
     private Point centro;
     @GeneratedValue
     @Id
     private Long id;
-
     public Zona(Double radio, Point centro) {
-        this.transformadores = AdministradorTransformadores.instancia.inicializarTransformadores(this);
+        inicializarTransformadores();
         this.radio = radio;
         this.centro = centro;
     }
 
+    private void inicializarTransformadores() {
+        this.transformadores = AdministradorTransformadores.instancia.inicializarTransformadores(this);
+    }
+
     public Zona() {
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Zona(Point centro, Double radio, String nombre) {
+        this.radio = radio;
+        this.nombre = nombre;
+        this.centro = centro;
+        inicializarTransformadores();
     }
 
     public List<Transformador> getTransformadores() {
@@ -55,12 +70,12 @@ public class Zona {
         this.centro = centro;
     }
 
-    
+
     public Boolean estaDentroDeZona(Point coordenada) {
-    	//chequeo que este dentro de la zona con la formula de un circulo:  x² + y² <= r²
-    	return ((Math.pow(coordenada.getX(), 2) - Math.pow(this.getCentro().getX(), 2) 
-    			+ Math.pow(coordenada.getY(),2)) - Math.pow(this.getCentro().getY(), 2)
-    			<= Math.pow(this.getRadio(),2));
+        //chequeo que este dentro de la zona con la formula de un circulo:  x² + y² <= r²
+        return ((Math.pow(coordenada.getX(), 2) - Math.pow(this.getCentro().getX(), 2)
+                + Math.pow(coordenada.getY(), 2)) - Math.pow(this.getCentro().getY(), 2)
+                <= Math.pow(this.getRadio(), 2));
     }
 
 

@@ -1,14 +1,5 @@
 package db;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-
 import actuadores.Actuador;
 import actuadores.Regla;
 import actuadores.actuadoresConcretos.ActuadorEncenderDispositivo;
@@ -18,7 +9,15 @@ import dominio.dispositivos.AireAcondicionadoInteligente;
 import dominio.dispositivos.fabricantes.FabricanteAireAcondicionado;
 import dominio.estados.Apagado;
 import dominio.estados.Encendido;
+import org.junit.Assert;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import repositorios.RepoReglas;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReglaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 

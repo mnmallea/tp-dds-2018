@@ -1,24 +1,22 @@
 package tests;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import actuadores.Actuador;
 import actuadores.actuadoresConcretos.ActuadorEncenderDispositivo;
 import actuadores.actuadoresConcretos.ActuadorSubirIntensidadReflector;
 import actuadores.reglasConcretas.ReglaParaMovimiento;
 import actuadores.sensoresConcretos.SensorMovimiento;
 import dominio.dispositivos.ReflectorInteligente;
-import dominio.estados.Apagado;
-import dominio.dispositivos.DispositivoInteligente;
-import dominio.estados.Encendido;
 import dominio.dispositivos.fabricantes.FabricanteReflector;
+import dominio.estados.Apagado;
+import dominio.estados.Encendido;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 public class ReflectorTest {

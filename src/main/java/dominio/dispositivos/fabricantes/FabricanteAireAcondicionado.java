@@ -1,7 +1,6 @@
 package dominio.dispositivos.fabricantes;
-import javax.persistence.Entity;
 
-import dominio.dispositivos.fabricantes.Fabricante;
+import javax.persistence.Entity;
 
 @Entity
 public abstract class FabricanteAireAcondicionado extends Fabricante {

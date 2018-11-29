@@ -1,11 +1,9 @@
 package actuadores.reglasConcretas;
 
 import actuadores.Actuador;
-import actuadores.Condicion;
 import actuadores.Regla;
 import actuadores.condicionesConcretas.TemperaturaMayorA;
 import dominio.dispositivos.AireAcondicionadoInteligente;
-import dominio.dispositivos.DispositivoInteligente;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

@@ -1,6 +1,9 @@
 package tests;
 
-import dominio.*;
+import dominio.Categorizador;
+import dominio.Cliente;
+import dominio.Direccion;
+import dominio.TipoDocumento;
 import dominio.dispositivos.DispositivoEstandar;
 import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.fabricantes.Fabricante;

@@ -1,34 +1,23 @@
 package tests;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
+import dominio.*;
+import dominio.dispositivos.DispositivoEstandar;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.FabricaDeDispositivos;
+import dominio.dispositivos.fabricantes.Fabricante;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-
-import dominio.Categorizador;
-import dominio.Cliente;
-import dominio.Direccion;
-import dominio.TipoDocumento;
-import dominio.Transformador;
-import dominio.Zona;
-import dominio.dispositivos.DispositivoEstandar;
-import dominio.dispositivos.DispositivoInteligente;
-import dominio.dispositivos.FabricaDeDispositivos;
-import dominio.dispositivos.fabricantes.Fabricante;
 import puntos.Point;
-import repositorios.AdministradorClientes;
-import repositorios.AdministradorTransformadores;
-import repositorios.RepoClientes;
-import repositorios.RepoDispositivosEstandares;
-import repositorios.RepoDispositivosInteligentes;
-import repositorios.RepoTransformadores;
+import repositorios.*;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TransformadoresTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	Fabricante unFabricante = Mockito.mock(Fabricante.class);

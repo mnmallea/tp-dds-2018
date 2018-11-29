@@ -1,21 +1,16 @@
 package db;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
+import dominio.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-
-import dominio.Categorizador;
-import dominio.Cliente;
-import dominio.Direccion;
-import dominio.TipoDocumento;
-import dominio.Zona;
 import puntos.Point;
 import repositorios.RepoClientes;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ClienteTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 

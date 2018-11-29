@@ -1,9 +1,9 @@
 package actuadores.condicionesConcretas;
 
+import actuadores.condicionesAbstractas.CondicionBool;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-import actuadores.condicionesAbstractas.CondicionBool;
 
 @Entity
 @DiscriminatorValue(value = "SeMovio")

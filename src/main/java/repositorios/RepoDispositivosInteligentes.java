@@ -1,11 +1,10 @@
 package repositorios;
 
-import java.util.List;
-
+import dominio.dispositivos.DispositivoInteligente;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-import dominio.dispositivos.DispositivoInteligente;
+import java.util.List;
 
 public class RepoDispositivosInteligentes implements WithGlobalEntityManager, EntityManagerOps {
     public static final RepoDispositivosInteligentes instancia = new RepoDispositivosInteligentes();

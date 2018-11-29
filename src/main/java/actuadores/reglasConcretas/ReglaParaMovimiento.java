@@ -1,9 +1,7 @@
 package actuadores.reglasConcretas;
 
 import actuadores.Actuador;
-import actuadores.Condicion;
 import actuadores.Regla;
-import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.ReflectorInteligente;
 
 import javax.persistence.DiscriminatorValue;

@@ -1,9 +1,9 @@
 package tests;
 
-import dominio.estados.AhorroEnergia;
-import dominio.estados.Apagado;
 import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.fabricantes.Fabricante;
+import dominio.estados.AhorroEnergia;
+import dominio.estados.Apagado;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

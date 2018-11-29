@@ -1,9 +1,9 @@
 package actuadores.condicionesConcretas;
 
+import actuadores.condicionesAbstractas.CondicionDouble;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-import actuadores.condicionesAbstractas.CondicionDouble;
 
 @Entity
 @DiscriminatorValue(value = "TemperaturaMenorA")

@@ -29,7 +29,7 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     private Float horasUsoMes;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "dispositivo")
-    private List<PeriodoEncendido> periodosEncendido;
+    private List<Periodo> periodosEncendido;
     private LocalDateTime ultimaHoraDeEncendido;
 
     public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante, Long idDeFabrica) {
@@ -57,11 +57,11 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         this.nombre = nombre;
     }
 
-    public List<PeriodoEncendido> getPeriodosEncendido() {
+    public List<Periodo> getPeriodosEncendido() {
         return periodosEncendido;
     }
 
-    public void agregarPeriodo(PeriodoEncendido periodoEncendido) {
+    public void agregarPeriodo(Periodo periodoEncendido) {
         periodosEncendido.add(periodoEncendido);
     }
 
@@ -109,7 +109,7 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         return !estado.estaEncendido();
     }
 
-    public Float consumoEnPeriodo(PeriodoEncendido periodo) {
+    public Float consumoEnPeriodo(Periodo periodo) {
         return periodo.enHoras() * this.consumoPorHora;
     }
     public double consumoEnPeriodo(LocalDateTime inicio, LocalDateTime fin) {
@@ -127,7 +127,7 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     public void apagarsePosta() {
         fabricante.apagarDispositivo(this.idDeFabrica);
     }
-    
+
     public Double consumoPromedio() {
     	return this.consumoTotal() / this.getPeriodosEncendido().size();
     }
@@ -183,7 +183,7 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         final LocalDateTime NOW = LocalDateTime.now();
         Float horasPrendido = Duration.between(ultimaHoraDeEncendido, NOW).getSeconds() / 3600f;
         this.aumentarHorasPrendido(horasPrendido);
-        this.agregarPeriodo(new PeriodoEncendido(this.ultimaHoraDeEncendido, NOW));
+        this.agregarPeriodo(new Periodo(this.ultimaHoraDeEncendido, NOW));
     }
 
 

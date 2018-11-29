@@ -1,0 +1,89 @@
+{{#partial "contenido-admin"}}
+    <script>
+        function irAPagina(nro) {
+            var start = document.querySelector("#start-time").value;
+            var end = document.querySelector("#start-time").value;
+            var zona = document.querySelector('#zona').value;
+            var path = '/reportes/transformadores/consumos?start-time' + start + '&end=' + end + '&page=' + nro + '&zona=' + zona;
+            window.location.href = path;
+        }
+    </script>
+
+    <h1>Transformadores</h1>
+
+    <form method="get" action="/reportes/transformadores/consumos" class="alert sge-input-group">
+        <div>
+            <h3>
+                Filtros
+            </h3>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="start-time">Fecha de inicio:</label>
+                <input type="datetime-local" id="start-time" name="start-time" class="form-control"
+                       value="{{fechaInicio}}">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="end-time">Fecha de fin:</label>
+                <input type="datetime-local" id="end-time" name="end-time" class="form-control" value="{{fechaFin}}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="zona">Zona:</label>
+            <select class="form-control" id="zona" name="zona">
+                <option value="all">Todas</option>
+                {{#each zonas}}
+                    <option value="{{id}}" {{#if (equals id zonaSeleccionada)}}selected{{/if}}>{{nombre}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div><input type="submit" class="btn btn-primary"></div>
+
+    </form>
+    <table class="table">
+        <tbody>
+
+        <tr>
+            <th>Transformador</th>
+            <th>Consumo</th>
+            <th>Ubicación</th>
+        </tr>
+
+        {{#each reportes}}
+            <tr>
+                <td>{{transformadorId}}</td>
+                <td>{{isNumber consumo "No está disponible el consumo de este transformador"}}</td>
+                <td>{{coordenadas}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    {{#with page}}
+        <ul class="pagination justify-content-center">
+            <li class="{{#if isFirst}}page-item disabled{{else}}page-item{{/if}}">
+                <a class="page-link" href="javascript:irAPagina(0)">Principio</a>
+            </li>
+            {{#unless isFirst}}
+                <li class="page-item"><a class="page-link" href="javascript:irAPagina({{previousPage}})
+                    ">{{previousPage}}</a>
+                </li>
+            {{/unless}}
+            <li class="page-item active">
+                <a class="page-link" href="#">{{currentPage}}<span class="sr-only">{{currentPage}}</span></a>
+            </li>
+            {{#unless isLast}}
+                <li class="page-item"><a class="page-link" href="javascript:irAPagina({{nextPage}})">{{nextPage}}</a>
+                </li>
+            {{/unless}}
+            <li class="{{#if isLast}}page-item disabled{{else}}page-item{{/if}}">
+                <a class="page-link" href="javascript:irAPagina({{lastPage}})">Última página</a>
+            </li>
+        </ul>
+    {{/with}}
+{{/partial}}
+
+{{>administrador/adminlayout.hbs}}
