@@ -33,6 +33,8 @@ public class ClienteController {
     	List<Dispositivo> dispositivos = cliente.getDispositivos();
     	OptimizadorHoras optimizador = new OptimizadorHoras();
     	List<SolucionSimplex> solucionesSimplex = optimizador.optimizarHorasUso(dispositivos);
+    	String persona = cliente.getNombre();
+    	model.put("persona", persona);
     	model.put("dispositivos", dispositivos);
     	model.put("solucionesSimplex", solucionesSimplex);
     	return new ModelAndView(model, "cliente/simplex.hbs");

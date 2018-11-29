@@ -4,6 +4,7 @@ import dominio.Administrador;
 import dominio.Cliente;
 import dominio.TipoUsuario;
 import dominio.Usuario;
+import repositorios.RepoDispositivosInteligentes;
 import repositorios.RepoUsuarios;
 import spark.ModelAndView;
 import spark.Request;
@@ -49,6 +50,7 @@ public class LoginController {
             res.redirect("/administrador");
             tipoUsuario = TipoUsuario.ADMINISTRADOR;
         } else if (usuario instanceof Cliente) {
+        	((Cliente) usuario).setDispositivosInteligentes(RepoDispositivosInteligentes.instancia.dispositivosDeCliente(usuario.getId().intValue()));
             res.redirect("/clientes/" + usuario.getId() + "/hogar");
             tipoUsuario = TipoUsuario.CLIENTE;
         }
