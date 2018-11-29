@@ -32,7 +32,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>app.Runner</mainClass>
+                            <mainClass>Runner</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -47,7 +47,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>app.Runner</mainClass>
+                            <mainClass>Runner</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
