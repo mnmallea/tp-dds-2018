@@ -7,13 +7,13 @@ import static spark.Spark.path;
 import static spark.Spark.post;
 import static spark.Spark.staticFiles;
 
+import controllers.ClienteController;
 import controllers.DispositivosController;
 import controllers.HogaresController;
 import controllers.HomeController;
 import controllers.LoginController;
 import controllers.LoginValidator;
 import controllers.TransformadoresController;
-import dominio.Administrador;
 import dominio.Cliente;
 import exception.UnauthorizedException;
 import handlebarsUtils.BooleanHelper;
@@ -58,23 +58,26 @@ public class Routes {
         path("/administrador", () -> {
             before("", LoginValidator::validateAdmin);
             before("/*", LoginValidator::validateAdmin);
-            get("", ((request, response) -> {
-                Administrador administrador = (Administrador) LoginValidator.getUsuario(request);
-                return "Logeaste como un administrador: " + administrador.getNombre() + "  Fecha de alta: " + administrador.getFechaAlta();
-            }));
+            get("", HomeController::show, engine);
             get("/hogares", HogaresController::show, engine);
         });
 
-        path("/cliente", () -> {
-            before("", LoginValidator::validateCliente);
-            before("/*", LoginValidator::validateCliente);
-            get("", ((request, response) -> {
+        path("/clientes/:id", () -> {
+        	get("/hogar", ((request, response) -> {
                 Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
-                return "Logeaste como un cliente:" + cliente.getNombre() + "!!!  Vivis en: " + cliente.getDireccion();
-            }));
+                return ClienteController.home(cliente);
+            }), engine);
+             get("/consumos", ((request, response) -> {
+                Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
+                return ClienteController.consumos(request, cliente);
+             }), engine);
+              get("/consumos?", ((request, response) -> {
+                 Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
+                 return ClienteController.consumos(request, cliente);
+             }), engine);
         });
 
         //get("/administradores/:id/*", AdministradorController::show);
-        get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
+        //get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
     }
 }
