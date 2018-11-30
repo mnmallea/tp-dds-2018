@@ -1,6 +1,7 @@
 package controllers;
 
 import dominio.Cliente;
+import dominio.dispositivos.Dispositivo;
 import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.Periodo;
 import spark.ModelAndView;

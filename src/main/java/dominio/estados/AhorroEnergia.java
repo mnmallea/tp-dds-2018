@@ -34,8 +34,13 @@ public class AhorroEnergia implements Estado {
         return true;
     }
 
+<<<<<<< HEAD
     @Override
     public String toString(){
         return "Ahorro energia";
+=======
+    public String toString(){
+        return "Ahorro Energia";
+>>>>>>> parteClientes
     }
 }

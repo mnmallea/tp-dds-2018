@@ -23,4 +23,9 @@ public class RepoDispositivosInteligentes implements WithGlobalEntityManager, En
     public DispositivoInteligente buscarPorId(Long id){
         return entityManager().find(DispositivoInteligente.class, id);
     }
+
+    
+    public List<DispositivoInteligente> dispositivosDeCliente(Integer idCliente){
+    	return entityManager().createQuery(" from DispositivoInteligente where cliente =" + idCliente.toString()).getResultList();
+    }
 }

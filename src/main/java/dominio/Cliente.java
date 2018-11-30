@@ -3,10 +3,9 @@ package dominio;
 import dominio.dispositivos.Dispositivo;
 import dominio.dispositivos.DispositivoEstandar;
 import dominio.dispositivos.DispositivoInteligente;
-import dominio.dispositivos.Periodo;
+import dominio.dispositivos.PeriodoEncendido;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Apagado;
-import org.hibernate.annotations.Type;
 import puntos.Point;
 import simplex.EfectoSimplex;
 import simplex.SolucionSimplex;
@@ -20,10 +19,8 @@ import java.util.stream.Stream;
 
 @Entity
 public class Cliente extends Usuario{
-
-    @Type(type="org.hibernate.type.StringNVarcharType")
+    
     private String nombre;
-    @Type(type="org.hibernate.type.StringNVarcharType")
     private String apellido;
     @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
@@ -167,14 +164,14 @@ public class Cliente extends Usuario{
         soluciones.forEach(solucion -> solucion.aplicarEfectoSiDebe(this.efectoSimplex));
     }
 
-    public Double consumoDeDispositivosInteligentesEnPeriodo(Periodo periodo){
-        return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(periodo)).sum();
+    public Double consumoDeDispositivosInteligentesEnPeriodo(PeriodoEncendido periodoEncendido){
+        return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(periodoEncendido)).sum();
     }
     public Double consumoDeDispositivosInteligentesEnPeriodo(LocalDateTime inicio, LocalDateTime fin){
         return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(inicio, fin)).sum();
     }
     
-    public Double consumoTotalEnPeriodo(Periodo periodo) {
+    public Double consumoTotalEnPeriodo(PeriodoEncendido periodo) {
     	return this.consumoDeDispositivosInteligentesEnPeriodo(periodo) + this.consumoDispositivosEstandares() * periodo.enHoras();
     }
     

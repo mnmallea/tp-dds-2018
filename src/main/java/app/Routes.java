@@ -1,6 +1,7 @@
 package app;
 
 import controllers.*;
+import dominio.Administrador;
 import dominio.Cliente;
 import exception.UnauthorizedException;
 import handlebarsUtils.BooleanHelper;
@@ -8,6 +9,7 @@ import handlebarsUtils.EqualityHelper;
 import handlebarsUtils.HandlebarsTemplateEngineBuilder;
 import handlebarsUtils.IsNumberHelper;
 import spark.ModelAndView;
+import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import static spark.Spark.*;
@@ -18,8 +20,6 @@ public class Routes {
                 .create()
                 .withDefaultHelpers()
                 .withHelper("isTrue", BooleanHelper.isTrue)
-                .withHelper("isNumber", new IsNumberHelper())
-                .withHelper("equals", new EqualityHelper())
                 .build();
 
         staticFiles.location("/public");
@@ -37,39 +37,26 @@ public class Routes {
         post("/login", LoginController::login);
         get("/logout", LoginValidator::removeAuthenticatedUser);
 
-        before("/reportes/*", LoginValidator::validateAdmin);
-        get("/reportes/transformadores/consumos", TransformadoresController::show, engine);
-        get("/reportes/usuarios", HogaresController::seleccionarDispositivos, engine);
-        get("/reportes/usuarios/:id/promedios", DispositivosController::showConsumos, engine);
-        get("/reportes/hogares/consumos", HogaresController::consumosPorPeriodo, engine);
-
         path("/administrador", () -> {
             before("", LoginValidator::validateAdmin);
             before("/*", LoginValidator::validateAdmin);
-
-            get("", HomeController::show, engine);
+            get("", ((request, response) -> {
+                Administrador administrador = (Administrador) LoginValidator.getUsuario(request);
+                return "Logeaste como un administrador: " + administrador.getNombre() + "  Fecha de alta: " + administrador.getFechaAlta();
+            }));
             get("/hogares", HogaresController::show, engine);
         });
 
-        path("/clientes/:id", () -> {
+        path("/cliente", () -> {
             before("", LoginValidator::validateCliente);
             before("/*", LoginValidator::validateCliente);
-            get("/hogar", ((request, response) -> {
+            get("", ((request, response) -> {
                 Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
-                return ClienteController.home(cliente);
-            }), engine);
-
-            get("/consumos", ((request, response) -> {
-                Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
-                return ClienteController.consumos(request, cliente);
-            }), engine);
-
-            get("/consumos?", ((request, response) -> {
-                Cliente cliente = (Cliente) LoginValidator.getUsuario(request);
-                return ClienteController.consumos(request, cliente);
-            }), engine);
-
+                return "Logeaste como un cliente:" + cliente.getNombre() + "!!!  Vivis en: " + cliente.getDireccion();
+            }));
         });
 
+        get("/administradores/:id/*", AdministradorController::show);
+        get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" + RepoTransformadores.instancia.getTransformadores() + "</h1> </body> </html>");
     }
 }

@@ -55,7 +55,7 @@ public class OptimizadorHoras {
     }
 
     private LinearConstraint obtenerRestriccionConumoMaximo(List<Dispositivo> dispositivos) {
-        double[] potencias = dispositivos.stream().mapToDouble(Dispositivo::getConsumo).toArray();
+        double[] potencias = dispositivos.stream().mapToDouble(Dispositivo::consumoTotal).toArray();
         return new LinearConstraint(potencias, Relationship.LEQ, CONSUMO_MAX_HOGAR);
     }
 

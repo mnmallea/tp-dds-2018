@@ -1,5 +1,6 @@
 {{#partial "contenido"}}
-    <h1 style="padding: 25px">Mis consumos</h1>
+    <h1 style="padding: 25px">Simplex</h1>
+    <h4 style="padding 25px">Hola, {{persona}}! </h4>
     <div class="cliente">
         <div>
             <nav>
@@ -11,37 +12,29 @@
                         <a class="nav-links-cliente" href="consumos">Consumo por periodo</a>
                     </li>
                     <li>
-                        <a class="nav-links-cliente" href="simplex">Simplex</a>
+                        <a class="nav-links-cliente" href="/">Simplex</a>
                     </li>
                 </ul>
 
             </nav>
         </div>
-        <div class="consumos">
-            <h5>Consumos</h5>
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td>Octubre</td>
-                    <td>{{ultimoConsumo}}kwh</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
         <div class="dispositivos">
-            <h5>Dispositivos</h5>
             <table class="table">
                 <tbody>
 
                 <tr>
                     <th>Dispositivo</th>
-                    <th>Estado</th>
+                    <th>Horas encendido</th>
+                    <th>Horas recomendadas</th>
                 </tr>
 
                 {{#each dispositivos}}
                     <tr>
                         <td>{{nombre}}</td>
-                        <td>{{estado}}</td>
+                        <td>{{horasUsoMes}}</td>
+                        	{{#each solucionesSimplex}}
+                        		<td>{{horasRecomendadas}}</td>
+                        	{{/each}}
                     </tr>
                 {{/each}}
                 </tbody>

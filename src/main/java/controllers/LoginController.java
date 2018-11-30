@@ -49,9 +49,8 @@ public class LoginController {
             res.redirect("/administrador");
             tipoUsuario = TipoUsuario.ADMINISTRADOR;
         } else if (usuario instanceof Cliente) {
-            res.redirect("/clientes/" +
-                    + usuario.getId()
-                    +"/hogar");
+        	((Cliente) usuario).setDispositivosInteligentes(RepoDispositivosInteligentes.instancia.dispositivosDeCliente(usuario.getId().intValue()));
+            res.redirect("/clientes/" + usuario.getId() + "/hogar");
             tipoUsuario = TipoUsuario.CLIENTE;
         }
 

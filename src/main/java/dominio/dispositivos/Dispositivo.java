@@ -1,19 +1,20 @@
 package dominio.dispositivos;
 
-public interface Dispositivo {
-    Float getConsumo();
+public abstract class Dispositivo {
 
-    Float getHorasMinimas();
+	public abstract Float consumoTotal();
 
-    void setHorasMinimas(Float horasMinimas);
+	public abstract Float getHorasMinimas();
 
-    Float getHorasMaximas();
+	public abstract void setHorasMinimas(Float horasMinimas);
 
-    void setHorasMaximas(Float horasMaximas);
+	public abstract Float getHorasMaximas();
 
-    Float getHorasUsoMes();
+	public abstract void setHorasMaximas(Float horasMaximas);
 
-    void apagarse();
+	public abstract Float getHorasUsoMes();
 
-    void ahorrarEnergia();
+	public abstract void apagarse();
+
+	public abstract void ahorrarEnergia();
 }

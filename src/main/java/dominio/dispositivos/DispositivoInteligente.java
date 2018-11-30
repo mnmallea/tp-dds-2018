@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorColumn(name = "tipoDI")
-public class DispositivoInteligente<T extends Fabricante> implements Dispositivo {
+public class DispositivoInteligente<T extends Fabricante> extends Dispositivo {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	protected T fabricante;
@@ -116,8 +116,8 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         return periodosEncendido.stream().filter(p->p.incluidoEn(inicio,fin)).mapToDouble(p->p.enHoras()).sum()*this.consumoPorHora;
     }
 
-    public Double consumoTotal() {
-        return periodosEncendido.stream().mapToDouble(this::consumoEnPeriodo).sum();
+    public Float consumoTotal() {
+        return (float) periodosEncendido.stream().mapToDouble(this::consumoEnPeriodo).sum();
     }
 
     public Float consumoEnUltimasHoras(int unasHoras) {
@@ -127,8 +127,13 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     public void apagarsePosta() {
         fabricante.apagarDispositivo(this.idDeFabrica);
     }
+<<<<<<< HEAD
 
     public Double consumoPromedio() {
+=======
+    
+    public Float consumoPromedio() {
+>>>>>>> parteClientes
     	return this.consumoTotal() / this.getPeriodosEncendido().size();
     }
 
@@ -140,9 +145,9 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
         fabricante.ahorrarEnergia(this.idDeFabrica);
     }
 
-    public Float getConsumo() {
-        return fabricante.consumoUltimoMes(this.idDeFabrica);
-    }
+//    public Float consumoTotal() {
+//        return fabricante.consumoUltimoMes(this.idDeFabrica);
+//    }
 
     public Estado getEstado() {
         return this.estado;
@@ -190,9 +195,15 @@ public class DispositivoInteligente<T extends Fabricante> implements Dispositivo
     public Long getId() {
         return id;
     }
+<<<<<<< HEAD
 
     @Override
     public String toString() {
         return "";
+=======
+    
+    public double cantidadDeHorasEncendido() {
+    	return periodosEncendido.stream().mapToDouble(p->p.enHoras()).sum();
+>>>>>>> parteClientes
     }
 }
