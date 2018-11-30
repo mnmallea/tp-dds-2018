@@ -1,21 +1,29 @@
 package dominio;
 
-import dominio.dispositivos.Dispositivo;
-import dominio.dispositivos.DispositivoEstandar;
-import dominio.dispositivos.DispositivoInteligente;
-import dominio.dispositivos.PeriodoEncendido;
-import dominio.dispositivos.fabricantes.Fabricante;
-import dominio.estados.Apagado;
-import puntos.Point;
-import simplex.EfectoSimplex;
-import simplex.SolucionSimplex;
-
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import dominio.dispositivos.Dispositivo;
+import dominio.dispositivos.DispositivoEstandar;
+import dominio.dispositivos.DispositivoInteligente;
+import dominio.dispositivos.Periodo;
+import dominio.dispositivos.fabricantes.Fabricante;
+import dominio.estados.Apagado;
+import puntos.Point;
+import simplex.EfectoSimplex;
+import simplex.SolucionSimplex;
 
 @Entity
 public class Cliente extends Usuario{
@@ -95,11 +103,11 @@ public class Cliente extends Usuario{
     }
 
     public Double consumoDispositivosInteligentes() {
-        return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+        return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.consumoTotal()).sum();
     }
 
     public Double consumoDispositivosEstandares() {
-        return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.getConsumo()).sum();
+        return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.consumoTotal()).sum();
     }
 
     public void categorizar() {
@@ -164,14 +172,14 @@ public class Cliente extends Usuario{
         soluciones.forEach(solucion -> solucion.aplicarEfectoSiDebe(this.efectoSimplex));
     }
 
-    public Double consumoDeDispositivosInteligentesEnPeriodo(PeriodoEncendido periodoEncendido){
+    public Double consumoDeDispositivosInteligentesEnPeriodo(Periodo periodoEncendido){
         return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(periodoEncendido)).sum();
     }
     public Double consumoDeDispositivosInteligentesEnPeriodo(LocalDateTime inicio, LocalDateTime fin){
         return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(inicio, fin)).sum();
     }
     
-    public Double consumoTotalEnPeriodo(PeriodoEncendido periodo) {
+    public Double consumoTotalEnPeriodo(Periodo periodo) {
     	return this.consumoDeDispositivosInteligentesEnPeriodo(periodo) + this.consumoDispositivosEstandares() * periodo.enHoras();
     }
     

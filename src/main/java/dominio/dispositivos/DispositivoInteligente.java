@@ -17,193 +17,184 @@ public class DispositivoInteligente<T extends Fabricante> extends Dispositivo {
 	@ManyToOne(cascade = CascadeType.ALL)
 	protected T fabricante;
 	@GeneratedValue
-    @Id
-    private Long id;
-    protected Long idDeFabrica;
-    private String nombre;
-    @Convert(converter = EstadoConverter.class)
-    private Estado estado;
-    private Float consumoPorHora;
-    private Float horasMinimas;
-    private Float horasMaximas;
-    private Float horasUsoMes;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "dispositivo")
-    private List<Periodo> periodosEncendido;
-    private LocalDateTime ultimaHoraDeEncendido;
+	@Id
+	private Long id;
+	protected Long idDeFabrica;
+	private String nombre;
+	@Convert(converter = EstadoConverter.class)
+	private Estado estado;
+	private Float consumoPorHora;
+	private Float horasMinimas;
+	private Float horasMaximas;
+	private Float horasUsoMes;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dispositivo")
+	private List<Periodo> periodosEncendido;
+	private LocalDateTime ultimaHoraDeEncendido;
 
-    public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante, Long idDeFabrica) {
-        this.nombre = nombre;
-        this.estado = estado;
-        this.consumoPorHora = consumoPorHora;
-        this.fabricante = fabricante;
-        this.idDeFabrica = idDeFabrica;
-        this.horasUsoMes = 0f;
-        this.periodosEncendido = new ArrayList<>();
-    }
+	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante, Long idDeFabrica) {
+		this.nombre = nombre;
+		this.estado = estado;
+		this.consumoPorHora = consumoPorHora;
+		this.fabricante = fabricante;
+		this.idDeFabrica = idDeFabrica;
+		this.horasUsoMes = 0f;
+		this.periodosEncendido = new ArrayList<>();
+	}
 
-    public DispositivoInteligente() {
-    }
+	public DispositivoInteligente() {
+	}
 
-    public void setUltimaHoraDeEncendido(LocalDateTime ultimaHoraDeEncendido) {
-        this.ultimaHoraDeEncendido = ultimaHoraDeEncendido;
-    }
+	public void setUltimaHoraDeEncendido(LocalDateTime ultimaHoraDeEncendido) {
+		this.ultimaHoraDeEncendido = ultimaHoraDeEncendido;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public List<Periodo> getPeriodosEncendido() {
-        return periodosEncendido;
-    }
+	public List<Periodo> getPeriodosEncendido() {
+		return periodosEncendido;
+	}
 
-    public void agregarPeriodo(Periodo periodoEncendido) {
-        periodosEncendido.add(periodoEncendido);
-    }
+	public void agregarPeriodo(Periodo periodoEncendido) {
+		periodosEncendido.add(periodoEncendido);
+	}
 
-    public T getFabricante() {
-        return fabricante;
-    }
+	public T getFabricante() {
+		return fabricante;
+	}
 
-    public void setFabricante(T fabricante) {
-        this.fabricante = fabricante;
-    }
+	public void setFabricante(T fabricante) {
+		this.fabricante = fabricante;
+	}
 
-    public Long getIdDeFabrica() {
-        return idDeFabrica;
-    }
+	public Long getIdDeFabrica() {
+		return idDeFabrica;
+	}
 
-    public Float consumoEnHoras(int horas) {
-        return horas * consumoPorHora;
-    }
+	public Float consumoEnHoras(int horas) {
+		return horas * consumoPorHora;
+	}
 
-    public Float getConsumoPorHora() {
-        return consumoPorHora;
-    }
+	public Float getConsumoPorHora() {
+		return consumoPorHora;
+	}
 
-    public void setConsumoPorHora(Float consumoPorHora) {
-        this.consumoPorHora = consumoPorHora;
-    }
+	public void setConsumoPorHora(Float consumoPorHora) {
+		this.consumoPorHora = consumoPorHora;
+	}
 
-    public void apagarse() {
-        estado.apagarse(this);
-    }
+	public void apagarse() {
+		estado.apagarse(this);
+	}
 
-    public void encenderse() {
-        estado.encenderse(this);
-    }
+	public void encenderse() {
+		estado.encenderse(this);
+	}
 
-    public void ahorrarEnergia() {
-        estado.ahorrarEnergia(this);
-    }
+	public void ahorrarEnergia() {
+		estado.ahorrarEnergia(this);
+	}
 
-    public Boolean estaEncendido() {
-        return estado.estaEncendido();
-    }
+	public Boolean estaEncendido() {
+		return estado.estaEncendido();
+	}
 
-    public Boolean estaApagado() {
-        return !estado.estaEncendido();
-    }
+	public Boolean estaApagado() {
+		return !estado.estaEncendido();
+	}
 
-    public Float consumoEnPeriodo(Periodo periodo) {
-        return periodo.enHoras() * this.consumoPorHora;
-    }
-    public double consumoEnPeriodo(LocalDateTime inicio, LocalDateTime fin) {
-        return periodosEncendido.stream().filter(p->p.incluidoEn(inicio,fin)).mapToDouble(p->p.enHoras()).sum()*this.consumoPorHora;
-    }
+	public Float consumoEnPeriodo(Periodo periodo) {
+		return periodo.enHoras() * this.consumoPorHora;
+	}
 
-    public Float consumoTotal() {
-        return (float) periodosEncendido.stream().mapToDouble(this::consumoEnPeriodo).sum();
-    }
+	public double consumoEnPeriodo(LocalDateTime inicio, LocalDateTime fin) {
+		return periodosEncendido.stream().filter(p -> p.incluidoEn(inicio, fin)).mapToDouble(p -> p.enHoras()).sum()
+				* this.consumoPorHora;
+	}
 
-    public Float consumoEnUltimasHoras(int unasHoras) {
-        return fabricante.consumoEnUltimasHoras(unasHoras, this.idDeFabrica);
-    }
+	public Float consumoTotal() {
+		return (float) periodosEncendido.stream().mapToDouble(this::consumoEnPeriodo).sum();
+	}
 
-    public void apagarsePosta() {
-        fabricante.apagarDispositivo(this.idDeFabrica);
-    }
-<<<<<<< HEAD
+	public Float consumoEnUltimasHoras(int unasHoras) {
+		return fabricante.consumoEnUltimasHoras(unasHoras, this.idDeFabrica);
+	}
 
-    public Double consumoPromedio() {
-=======
-    
-    public Float consumoPromedio() {
->>>>>>> parteClientes
-    	return this.consumoTotal() / this.getPeriodosEncendido().size();
-    }
+	public void apagarsePosta() {
+		fabricante.apagarDispositivo(this.idDeFabrica);
+	}
 
-    public void encendersePosta() {
-        fabricante.encenderDispositivo(this.idDeFabrica);
-    }
+	public Float consumoPromedio() {
 
-    public void ahorrarEnergiaPosta() {
-        fabricante.ahorrarEnergia(this.idDeFabrica);
-    }
+		return this.consumoTotal() / this.getPeriodosEncendido().size();
+	}
 
-//    public Float consumoTotal() {
-//        return fabricante.consumoUltimoMes(this.idDeFabrica);
-//    }
+	public void encendersePosta() {
+		fabricante.encenderDispositivo(this.idDeFabrica);
+	}
 
-    public Estado getEstado() {
-        return this.estado;
-    }
+	public void ahorrarEnergiaPosta() {
+		fabricante.ahorrarEnergia(this.idDeFabrica);
+	}
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
+	// public Float consumoTotal() {
+	// return fabricante.consumoUltimoMes(this.idDeFabrica);
+	// }
 
-    public Float getHorasMinimas() {
-        return horasMinimas;
-    }
+	public Estado getEstado() {
+		return this.estado;
+	}
 
-    @Override
-    public void setHorasMinimas(Float horasMinimas) {
-        this.horasMinimas = horasMinimas;
-    }
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
 
-    public Float getHorasMaximas() {
-        return horasMaximas;
-    }
+	public Float getHorasMinimas() {
+		return horasMinimas;
+	}
 
-    @Override
-    public void setHorasMaximas(Float horasMaximas) {
-        this.horasMaximas = horasMaximas;
-    }
+	@Override
+	public void setHorasMinimas(Float horasMinimas) {
+		this.horasMinimas = horasMinimas;
+	}
 
-    public void aumentarHorasPrendido(Float unasHoras) {
-        horasUsoMes += unasHoras;
-    }
+	public Float getHorasMaximas() {
+		return horasMaximas;
+	}
 
-    @Override
-    public Float getHorasUsoMes() {
-        return this.horasUsoMes;
-    }
+	@Override
+	public void setHorasMaximas(Float horasMaximas) {
+		this.horasMaximas = horasMaximas;
+	}
 
-    public void completarPeriodoEncendido() {
-        final LocalDateTime NOW = LocalDateTime.now();
-        Float horasPrendido = Duration.between(ultimaHoraDeEncendido, NOW).getSeconds() / 3600f;
-        this.aumentarHorasPrendido(horasPrendido);
-        this.agregarPeriodo(new Periodo(this.ultimaHoraDeEncendido, NOW));
-    }
+	public void aumentarHorasPrendido(Float unasHoras) {
+		horasUsoMes += unasHoras;
+	}
 
+	@Override
+	public Float getHorasUsoMes() {
+		return this.horasUsoMes;
+	}
 
-    public Long getId() {
-        return id;
-    }
-<<<<<<< HEAD
+	public void completarPeriodoEncendido() {
+		final LocalDateTime NOW = LocalDateTime.now();
+		Float horasPrendido = Duration.between(ultimaHoraDeEncendido, NOW).getSeconds() / 3600f;
+		this.aumentarHorasPrendido(horasPrendido);
+		this.agregarPeriodo(new Periodo(this.ultimaHoraDeEncendido, NOW));
+	}
 
-    @Override
-    public String toString() {
-        return "";
-=======
-    
-    public double cantidadDeHorasEncendido() {
-    	return periodosEncendido.stream().mapToDouble(p->p.enHoras()).sum();
->>>>>>> parteClientes
-    }
+	public Long getId() {
+		return id;
+	}
+
+	public double cantidadDeHorasEncendido() {
+		return periodosEncendido.stream().mapToDouble(p -> p.enHoras()).sum();
+
+	}
 }

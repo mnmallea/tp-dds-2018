@@ -1,45 +1,40 @@
 package dominio.estados;
 
-import dominio.dispositivos.DispositivoInteligente;
-
 import java.time.LocalDateTime;
 
+import dominio.dispositivos.DispositivoInteligente;
 
 public class Apagado implements Estado {
 
-    public void apagarse(DispositivoInteligente dispositivo) {
+	public void apagarse(DispositivoInteligente dispositivo) {
 
-    }
+	}
 
-    public String toString(){
-        return "Apagado";
-    }
+	public void encenderse(DispositivoInteligente dispositivo) {
+		dispositivo.encendersePosta();
+		dispositivo.setEstado(new Encendido());
+		dispositivo.setUltimaHoraDeEncendido(LocalDateTime.now());
+	}
 
-    public void encenderse(DispositivoInteligente dispositivo) {
-        dispositivo.encendersePosta();
-        dispositivo.setEstado(new Encendido());
-        dispositivo.setUltimaHoraDeEncendido(LocalDateTime.now());
-    }
+	public void ahorrarEnergia(DispositivoInteligente dispositivo) {
+		dispositivo.ahorrarEnergiaPosta();
+		dispositivo.setEstado(new AhorroEnergia());
+	}
 
-    public void ahorrarEnergia(DispositivoInteligente dispositivo) {
-        dispositivo.ahorrarEnergiaPosta();
-        dispositivo.setEstado(new AhorroEnergia());
-    }
+	public Boolean estaEncendido() {
+		return false;
+	}
 
-    public Boolean estaEncendido() {
-        return false;
-    }
+	public Boolean estaApagado() {
+		return true;
+	}
 
-    public Boolean estaApagado() {
-        return true;
-    }
+	public Boolean estaAhorroEnergia() {
+		return false;
+	}
 
-    public Boolean estaAhorroEnergia() {
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Apagado";
-    }
+	@Override
+	public String toString() {
+		return "Apagado";
+	}
 }

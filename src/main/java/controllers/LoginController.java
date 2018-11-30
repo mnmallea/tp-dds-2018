@@ -1,18 +1,20 @@
 package controllers;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+
+import javax.xml.bind.DatatypeConverter;
+
 import dominio.Administrador;
 import dominio.Cliente;
 import dominio.TipoUsuario;
 import dominio.Usuario;
+import repositorios.RepoDispositivosInteligentes;
 import repositorios.RepoUsuarios;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
-import javax.xml.bind.DatatypeConverter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 
 public class LoginController {
 

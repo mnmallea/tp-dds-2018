@@ -2,43 +2,37 @@ package dominio.estados;
 
 import dominio.dispositivos.DispositivoInteligente;
 
-
 public class Encendido implements Estado {
 
-    public void encenderse(DispositivoInteligente dispositivo) {
+	public void encenderse(DispositivoInteligente dispositivo) {
 
-    }
+	}
 
-    public String toString(){
-        return "Encendido";
-    }
+	public void apagarse(DispositivoInteligente dispositivo) {
+		dispositivo.apagarsePosta();
+		dispositivo.setEstado(new Apagado());
+		dispositivo.completarPeriodoEncendido();
+	}
 
-    public void apagarse(DispositivoInteligente dispositivo) {
-        dispositivo.apagarsePosta();
-        dispositivo.setEstado(new Apagado());
-        dispositivo.completarPeriodoEncendido();
-    }
+	public void ahorrarEnergia(DispositivoInteligente dispositivo) {
+		dispositivo.ahorrarEnergiaPosta();
+		dispositivo.setEstado(new AhorroEnergia());
+	}
 
+	public Boolean estaEncendido() {
+		return true;
+	}
 
-    public void ahorrarEnergia(DispositivoInteligente dispositivo) {
-        dispositivo.ahorrarEnergiaPosta();
-        dispositivo.setEstado(new AhorroEnergia());
-    }
+	public Boolean estaApagado() {
+		return false;
+	}
 
-    public Boolean estaEncendido() {
-        return true;
-    }
+	public Boolean estaAhorroEnergia() {
+		return false;
+	}
 
-    public Boolean estaApagado() {
-        return false;
-    }
-
-    public Boolean estaAhorroEnergia() {
-        return false;
-    }
-
-    @Override
-    public String toString(){
-        return "Encendido";
-    }
+	@Override
+	public String toString() {
+		return "Encendido";
+	}
 }

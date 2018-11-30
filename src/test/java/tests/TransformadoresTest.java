@@ -94,12 +94,12 @@ public class TransformadoresTest extends AbstractPersistenceTest implements With
 
 	@Test
 	public void elConsumoDeLaZonaEs20() {
-		Assert.assertEquals(1220, unaZona.consumoTotal(), 0.05);
+		Assert.assertEquals(1200, unaZona.consumoTotal(), 0.05);
 	}
 
 	@Test
 	public void elConsumoDelTransformador1DebeSer10() {
-		Assert.assertEquals(610, transformador1.energiaSuministrada(), 0);
+		Assert.assertEquals(600, transformador1.energiaSuministrada(), 0);
 	}
 
 }

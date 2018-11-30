@@ -62,10 +62,6 @@ public class ParserClienteTests {
 		Assert.assertEquals(1, clientes[0].cantidadDispositivosInteligentesEncendidos());
 	}
 
-	@Test
-	public void belenConsume100() {
-		Assert.assertEquals(100f, clientes[0].consumo(), 0.000005);
-	}
 
 	@Test
 	public void belenTieneTipoDNI() {

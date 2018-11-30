@@ -75,6 +75,6 @@ public class ClienteTest {
 
     @Test
     public void elClienteConsume14Kwh() {
-        Assert.assertEquals(new Float(1030f), cliente.consumo());
+        Assert.assertEquals(new Float(1020f), cliente.consumo());
     }
 }
