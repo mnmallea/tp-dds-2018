@@ -54,15 +54,17 @@ public class LoginController {
         if (usuario instanceof Administrador) {
             tipoUsuario = TipoUsuario.ADMINISTRADOR;
         } else if (usuario instanceof Cliente) {
-            ((Cliente) usuario).setDispositivosInteligentes(RepoDispositivosInteligentes.instancia.dispositivosDeCliente(usuario.getId().intValue()));
             tipoUsuario = TipoUsuario.CLIENTE;
         }
 
+        System.out.println("PASE POR ACAA");
         req.session().attribute(LoginValidator.USER_SESSION_ID, usuario.getId());
         req.session().attribute(LoginValidator.USER_TYPE, tipoUsuario);
         req.session().attribute(LoginValidator.USER_INSTANCE, usuario);
+        System.out.println("OTRA VEZ");
 
         res.redirect("/");
+        halt(301);
         return null;
     }
 

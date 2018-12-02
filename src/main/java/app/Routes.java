@@ -75,10 +75,5 @@ public class Routes {
 				return ClienteController.simplex(cliente);
 			}), engine);
 		});
-
-		// get("/administradores/:id/*", AdministradorController::show);
-		// get("/clientes/:id/*", (request, response) -> "<html> <body> <h1>" +
-		// RepoTransformadores.instancia.getTransformadores() + "</h1> </body>
-		// </html>");
 	}
 }

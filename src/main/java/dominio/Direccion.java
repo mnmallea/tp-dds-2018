@@ -24,7 +24,6 @@ public class Direccion {
         this.domicilio = domicilio;
     }
 
-    @Type(type="org.hibernate.type.StringNVarcharType")
     private String domicilio;
 
     public Direccion(Point coordenada, String domicilio) {
