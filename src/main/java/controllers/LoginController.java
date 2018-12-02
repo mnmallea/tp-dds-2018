@@ -57,14 +57,14 @@ public class LoginController {
             tipoUsuario = TipoUsuario.CLIENTE;
         }
 
-        System.out.println("PASE POR ACAA");
+        System.out.println("CREANDO SESION");
+        req.session(true);
         req.session().attribute(LoginValidator.USER_SESSION_ID, usuario.getId());
         req.session().attribute(LoginValidator.USER_TYPE, tipoUsuario);
         req.session().attribute(LoginValidator.USER_INSTANCE, usuario);
-        System.out.println("OTRA VEZ");
+        System.out.println("--SESION--");
 
         res.redirect("/");
-        halt(301);
         return null;
     }
 
