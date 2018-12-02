@@ -20,16 +20,6 @@ public class RepoUsuarios implements WithGlobalEntityManager, EntityManagerOps {
         return entityManager().createQuery("from Usuarios").getResultList();
     }
 
-//
-//    public TipoUsuario tipoDeUsuario(Long user) {
-//        //TODO fijarnos que no esto no reviente por null pointer exception
-//        return entityManager().find(Usuario.class, user).getTipoUsuario();
-//    }
-//
-//    public String hashDePassword(Long user) {
-//    	return entityManager().find(Usuario.class, user).getPassword();
-//    }
-
     public Usuario findUsuarioByUsername(String username){
         CriteriaBuilder cb = entityManager().getCriteriaBuilder();
         CriteriaQuery<Usuario> cr = cb.createQuery(Usuario.class);

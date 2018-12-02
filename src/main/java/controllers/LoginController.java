@@ -16,6 +16,8 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import static spark.Spark.halt;
+
 public class LoginController {
 
     @SuppressWarnings("unchecked")
@@ -37,6 +39,7 @@ public class LoginController {
         if (usuario == null) {
             System.out.println("No existe el usuario ingresado");
             res.redirect("/login?invalid=true");
+            halt();
         }
 
         if (PasswordUtil.verifyPassword(password, usuario.getHashedPassword()))
@@ -44,18 +47,16 @@ public class LoginController {
         else {
             System.out.println("Contraseña incorrecta");
             res.redirect("/login?invalid=true");
+            halt();
         }
 
         TipoUsuario tipoUsuario = null;
         if (usuario instanceof Administrador) {
-            res.redirect("/administrador");
             tipoUsuario = TipoUsuario.ADMINISTRADOR;
         } else if (usuario instanceof Cliente) {
-        	((Cliente) usuario).setDispositivosInteligentes(RepoDispositivosInteligentes.instancia.dispositivosDeCliente(usuario.getId().intValue()));
-            res.redirect("/clientes/" + usuario.getId() + "/hogar");
+            ((Cliente) usuario).setDispositivosInteligentes(RepoDispositivosInteligentes.instancia.dispositivosDeCliente(usuario.getId().intValue()));
             tipoUsuario = TipoUsuario.CLIENTE;
         }
-
 
         req.session().attribute(LoginValidator.USER_SESSION_ID, usuario.getId());
         req.session().attribute(LoginValidator.USER_TYPE, tipoUsuario);
