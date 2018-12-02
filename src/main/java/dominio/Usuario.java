@@ -14,7 +14,6 @@ public abstract class Usuario {
     private Long id;
 
     @Column(unique = true)
-    @Type(type="org.hibernate.type.StringNVarcharType")
     private String username;
     private String hashedPassword;
 

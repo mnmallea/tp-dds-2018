@@ -17,6 +17,7 @@ public class LoginValidator {
     public static void validate(Request request, Response response) {
         Long user = getAuthenticatedUser(request);
         if (user == null) {
+            System.out.println("Usuario no ha iniciado sesion");
             response.redirect("/login");
             halt();
         }

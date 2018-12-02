@@ -1,7 +1,5 @@
 package dominio;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.time.LocalDate;
@@ -9,9 +7,7 @@ import java.time.Period;
 
 @Entity
 public class Administrador extends Usuario {
-    @Type(type="org.hibernate.type.StringNVarcharType")
     private String nombre;
-    @Type(type="org.hibernate.type.StringNVarcharType")
     private String apellido;
     private LocalDate fechaAlta;
     @Column(unique = true)
