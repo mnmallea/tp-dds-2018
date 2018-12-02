@@ -1,20 +1,16 @@
 package controllers;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-
-import javax.xml.bind.DatatypeConverter;
-
 import dominio.Administrador;
 import dominio.Cliente;
 import dominio.TipoUsuario;
 import dominio.Usuario;
-import repositorios.RepoDispositivosInteligentes;
 import repositorios.RepoUsuarios;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import spark.Session;
+
+import java.util.HashMap;
 
 import static spark.Spark.halt;
 
@@ -28,8 +24,7 @@ public class LoginController {
         return new ModelAndView(viewModel, "home/login.hbs");
     }
 
-    // tengo dudas sobre el noSuchAlgorithmException pero no me deja no ponerlo
-    public static ModelAndView login(Request req, Response res) throws NoSuchAlgorithmException {
+    public static ModelAndView login(Request req, Response res) {
 
         String usernameReq = req.queryParams("username");
         String password = req.queryParams("password");
@@ -58,21 +53,13 @@ public class LoginController {
         }
 
         System.out.println("CREANDO SESION");
-        req.session(true);
-        req.session().attribute(LoginValidator.USER_SESSION_ID, usuario.getId());
-        req.session().attribute(LoginValidator.USER_TYPE, tipoUsuario);
-        req.session().attribute(LoginValidator.USER_INSTANCE, usuario);
+        Session session = req.session(true);
+        session.attribute(LoginValidator.USER_SESSION_ID, usuario.getId());
+        session.attribute(LoginValidator.USER_TYPE, tipoUsuario);
+        session.attribute(LoginValidator.USER_INSTANCE, usuario);
         System.out.println("--SESION--");
 
         res.redirect("/");
         return null;
-    }
-
-
-    private static String generarHash(String string) throws NoSuchAlgorithmException {
-
-        byte[] bytes = string.getBytes();
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        return DatatypeConverter.printHexBinary(md.digest(bytes));
     }
 }
