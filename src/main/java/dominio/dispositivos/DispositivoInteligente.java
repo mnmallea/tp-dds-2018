@@ -1,6 +1,7 @@
 package dominio.dispositivos;
 
 import converter.EstadoConverter;
+import converter.LocalDateTimeAttributeConverter;
 import dominio.dispositivos.fabricantes.Fabricante;
 import dominio.estados.Estado;
 
@@ -30,6 +31,7 @@ public class DispositivoInteligente<T extends Fabricante> extends Dispositivo {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "dispositivo")
 	private List<Periodo> periodosEncendido;
+	@Convert(converter = LocalDateTimeAttributeConverter.class)
 	private LocalDateTime ultimaHoraDeEncendido;
 
 	public DispositivoInteligente(String nombre, Estado estado, Float consumoPorHora, T fabricante, Long idDeFabrica) {

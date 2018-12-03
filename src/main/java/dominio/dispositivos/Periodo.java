@@ -1,5 +1,8 @@
 package dominio.dispositivos;
 
+import converter.LocalDateTimeAttributeConverter;
+
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,7 +11,9 @@ import java.time.temporal.ChronoUnit;
 
 @Entity(name = "HistorialEncendidos")
 public class Periodo {
+    @Convert(converter = LocalDateTimeAttributeConverter.class)
     private LocalDateTime inicio;
+    @Convert(converter = LocalDateTimeAttributeConverter.class)
     private LocalDateTime fin;
     @Id
     @GeneratedValue
