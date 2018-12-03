@@ -4,18 +4,19 @@ import dominio.dispositivos.DispositivoInteligente;
 
 public class ConsumoPromedio {
     private String nombreDispositivo;
-    private Float consumoPromedio;
+    private Double consumoPromedio;
 
-    public ConsumoPromedio(DispositivoInteligente dispositivoInteligente){
+    public ConsumoPromedio(DispositivoInteligente dispositivoInteligente) {
         this.nombreDispositivo = dispositivoInteligente.getNombre();
-        this.consumoPromedio = dispositivoInteligente.consumoPromedio();
+        Float consumoPromedio = dispositivoInteligente.consumoPromedio();
+        this.consumoPromedio = consumoPromedio.doubleValue();
     }
 
     public String getNombreDispositivo() {
         return nombreDispositivo;
     }
 
-    public Float getConsumoPromedio() {
+    public Double getConsumoPromedio() {
         return consumoPromedio;
     }
 }
