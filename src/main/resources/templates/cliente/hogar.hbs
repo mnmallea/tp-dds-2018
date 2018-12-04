@@ -1,22 +1,6 @@
-{{#partial "contenido"}}
-    <h1 style="padding: 25px">Mis consumos</h1>
-    <div class="cliente">
-        <div>
-            <nav>
-                <ul>
-                    <li>
-                        <a class="nav-links-cliente" href="hogar">Estado actual</a>
-                    </li>
-                    <li>
-                        <a class="nav-links-cliente" href="consumos">Consumo por periodo</a>
-                    </li>
-                    <li>
-                        <a class="nav-links-cliente" href="simplex">Simplex</a>
-                    </li>
-                </ul>
-
-            </nav>
-        </div>
+{{#partial "contenido-cliente"}}
+    <h1 style="padding: 25px">Mi hogar</h1>
+    <div class="page-content">
         <div class="consumos">
             <h5>Consumos</h5>
             <table class="table">
@@ -52,4 +36,4 @@
 
 {{/partial}}
 
-{{>layout.hbs}}
+{{>cliente/clienteLayout.hbs}}

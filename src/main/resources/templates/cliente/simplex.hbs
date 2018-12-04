@@ -1,22 +1,6 @@
-{{#partial "contenido"}}
+{{#partial "contenido-cliente"}}
     <h1 style="padding: 25px">Simplex</h1>
-    <div class="cliente">
-        <div>
-            <nav>
-                <ul>
-                    <li>
-                        <a class="nav-links-cliente" href="hogar">Estado actual</a>
-                    </li>
-                    <li>
-                        <a class="nav-links-cliente" href="consumos">Consumo por periodo</a>
-                    </li>
-                    <li>
-                        <a class="nav-links-cliente" href="/">Simplex</a>
-                    </li>
-                </ul>
-
-            </nav>
-        </div>
+    <div class="page-content">
         <div class="dispositivos">
             <table class="table">
                 <tbody>
@@ -44,4 +28,4 @@
 
 {{/partial}}
 
-{{>layout.hbs}}
+{{>cliente/clienteLayout.hbs}}

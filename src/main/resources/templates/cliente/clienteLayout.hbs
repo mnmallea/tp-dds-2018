@@ -1,0 +1,27 @@
+{{#partial "contenido"}}
+
+    <div class="page-content">
+        <nav class="sidebar-sge">
+            <ul>
+				<li>
+	                <a class="nav-link" href="hogar">Estado actual</a>
+	            </li>
+	            <li>
+	                <a class="nav-link" href="consumos">Consumo por periodo</a>
+	            </li>
+	            <li> 
+	                <a class="nav-link" href="simplex">Simplex</a>
+	            </li>
+            </ul>
+        </nav>
+
+
+        <div class="container">
+            {{#block "contenido-cliente"}}
+            {{/block}}
+        </div>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}
