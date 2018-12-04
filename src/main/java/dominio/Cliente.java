@@ -27,7 +27,7 @@ public class Cliente extends Usuario {
     private int nroDocumento;
     private Integer nroTelefono;
     private LocalDate fechaAlta;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Categoria categoria;
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cliente")

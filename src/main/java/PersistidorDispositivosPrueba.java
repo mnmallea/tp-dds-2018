@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class PersistidorDispositivosPrueba implements WithGlobalEntityManager, TransactionalOps, EntityManagerOps {
     public static void main(String[] args) {
         new PersistidorDispositivosPrueba().init();
+        System.exit(0);
     }
 
     public void init(){

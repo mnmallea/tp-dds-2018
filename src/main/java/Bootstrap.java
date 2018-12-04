@@ -18,14 +18,15 @@ public class Bootstrap implements WithGlobalEntityManager, TransactionalOps, Ent
 
     public static void main(String[] args) {
         new Bootstrap().init();
+        System.exit(0);
     }
 
     public void init() {
         List<Transformador> transformadores = Arrays.asList(new Transformador(new Point(10, 20)), new Transformador(new Point(-10, 40)), new Transformador(new Point(100, 121.5)));
         withTransaction(() -> {
             RepoTransformadores.instancia.agregarTransformadores(transformadores);
-            Zona zona = new Zona(new Point(0,0), 25., "Almagro");
-            Zona otraZona = new Zona(new Point(80,80), 47.0, "Villa Urquiza");
+            Zona zona = new Zona(new Point(0, 0), 25., "Almagro");
+            Zona otraZona = new Zona(new Point(80, 80), 47.0, "Villa Urquiza");
             RepoZonas.instance.guardarZona(zona);
             RepoZonas.instance.guardarZona(otraZona);
             Usuario cliente = new PersistidorClientesPrueba().cliente4;
