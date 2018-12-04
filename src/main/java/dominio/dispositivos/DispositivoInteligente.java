@@ -15,7 +15,7 @@ import java.util.List;
 @DiscriminatorColumn(name = "tipoDI")
 public class DispositivoInteligente<T extends Fabricante> extends Dispositivo {
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Fabricante.class)
     protected T fabricante;
     @GeneratedValue
     @Id
@@ -116,7 +116,7 @@ public class DispositivoInteligente<T extends Fabricante> extends Dispositivo {
     }
 
     public double consumoEnPeriodo(LocalDateTime inicio, LocalDateTime fin) {
-        return periodosEncendido.stream().filter(p -> p.incluidoEn(inicio, fin)).mapToDouble(p -> p.enHoras()).sum()
+        return periodosEncendido.stream().filter(p -> p.incluidoEn(inicio, fin)).mapToDouble(Periodo::enHoras).sum()
                 * this.consumoPorHora;
     }
 

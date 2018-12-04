@@ -2,6 +2,8 @@ package repositorios;
 
 import dominio.Cliente;
 import dominio.Transformador;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import simplex.OptimizadorHoras;
 
 import java.util.Comparator;
@@ -10,6 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AdministradorClientes {
+    private static final Logger logger = LoggerFactory.getLogger(AdministradorClientes.class);
     public static final AdministradorClientes instancia = new AdministradorClientes();
 
     private AdministradorClientes() {
@@ -24,7 +27,13 @@ public class AdministradorClientes {
     }
 
     public void simplexarClientes() {
-        this.getClientes().forEach(this::realizarSimplex);
+        this.getClientes().forEach(cliente -> {
+            try {
+                this.realizarSimplex(cliente);
+            } catch (Exception ex) {
+                logger.error("Error al realizar el simplex para el cliente " + cliente.getId(), ex);
+            }
+        });
     }
 
     public void realizarSimplex(Cliente cliente) {

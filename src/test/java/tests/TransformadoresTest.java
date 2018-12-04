@@ -5,10 +5,10 @@ import dominio.dispositivos.DispositivoEstandar;
 import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.FabricaDeDispositivos;
 import dominio.dispositivos.fabricantes.Fabricante;
+import dominio.dispositivos.fabricantes.UnFabricanteAire;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import puntos.Point;
@@ -21,10 +21,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TransformadoresTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
-	Fabricante unFabricante = Mockito.mock(Fabricante.class);
+	private Fabricante unFabricante = new UnFabricanteAire();
 
-	DispositivoInteligente dispoInte1 = FabricaDeDispositivos.crearAire2200("aire2200", unFabricante, 1l);
-	DispositivoInteligente dispoInte2 = FabricaDeDispositivos.crearAire3500("aire3500", unFabricante, 1l);
+	private DispositivoInteligente dispoInte1 = FabricaDeDispositivos.crearAire2200("aire2200", unFabricante, 1L);
+	private DispositivoInteligente dispoInte2 = FabricaDeDispositivos.crearAire3500("aire3500", unFabricante, 1L);
 
 	private DispositivoEstandar dispoEstan1;
 	private DispositivoEstandar dispoEstan2;
@@ -48,7 +48,6 @@ public class TransformadoresTest extends AbstractPersistenceTest implements With
 
 	@Before
 	public void before() {
-		Mockito.when(unFabricante.consumoUltimoMes(1l)).thenReturn(5f);
 		dispoEstan1 = new DispositivoEstandar("dispoEstan1", 10f, 1f);
 		dispoEstan2 = new DispositivoEstandar("dispoEstan2", 10f, 1f);
 

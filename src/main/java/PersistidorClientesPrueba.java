@@ -4,6 +4,7 @@ import dominio.Direccion;
 import dominio.TipoDocumento;
 import dominio.dispositivos.DispositivoInteligente;
 import dominio.dispositivos.FabricaDeDispositivos;
+import dominio.dispositivos.fabricantes.UnFabricante;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -31,7 +32,7 @@ public class PersistidorClientesPrueba implements WithGlobalEntityManager, Trans
             Categorizador.instancia.getR1(), new ArrayList<>(), new ArrayList<>(), LocalDate.now(), EfectoSimplex.NO_HACER_NADA);
 
     Cliente cliente4 = new Cliente("Belén", "Trípodi", TipoDocumento.DNI, 123, 123, otraDireccion,
-            Categorizador.instancia.getR1(), new ArrayList<>(Collections.singletonList(FabricaDeDispositivos.crearAire2200("Aire2200", null, 123L))),
+            Categorizador.instancia.getR1(), new ArrayList<>(Collections.singletonList(FabricaDeDispositivos.crearAire2200("Aire2200", new UnFabricante(), 123L))),
             new ArrayList<>(), LocalDate.now(), EfectoSimplex.NO_HACER_NADA);
 
     Cliente cliente5 = new Cliente("Franco", "Curi", TipoDocumento.DNI, 123, 123, unaDireccion,

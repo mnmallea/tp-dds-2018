@@ -5,6 +5,7 @@ import java.time.Period;
 
 @Entity
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
 public abstract class Fabricante {
 
 	@GeneratedValue

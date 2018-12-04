@@ -3,6 +3,7 @@ import dominio.Cliente;
 import dominio.Direccion;
 import dominio.TipoDocumento;
 import dominio.dispositivos.FabricaDeDispositivos;
+import dominio.dispositivos.fabricantes.UnFabricante;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -25,8 +26,8 @@ public class PersistidorDispositivosPrueba implements WithGlobalEntityManager, T
                     Categorizador.instancia.getR1(), new ArrayList<>(), new ArrayList<>(), LocalDate.now(), EfectoSimplex.NO_HACER_NADA);
             cliente.setUsername("JulianEzequiel");
             cliente.setHashedPassword("hola123");
-            cliente.registrarDispositivoInteligente(FabricaDeDispositivos.crearAire2200("Aire fresco", null, 3L));
-            cliente.registrarDispositivoInteligente(FabricaDeDispositivos.crearLED32("Tele", null, 4L));
+            cliente.registrarDispositivoInteligente(FabricaDeDispositivos.crearAire2200("Aire fresco", new UnFabricante(), 3L));
+            cliente.registrarDispositivoInteligente(FabricaDeDispositivos.crearLED32("Tele", new UnFabricante(), 4L));
             RepoUsuarios.instancia.guardar(cliente);
         });
     }

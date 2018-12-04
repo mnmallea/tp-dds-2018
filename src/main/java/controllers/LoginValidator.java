@@ -3,12 +3,15 @@ package controllers;
 import dominio.TipoUsuario;
 import dominio.Usuario;
 import exception.UnauthorizedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spark.Request;
 import spark.Response;
 
 import static spark.Spark.halt;
 
 public class LoginValidator {
+    private static final Logger logger = LoggerFactory.getLogger(LoginValidator.class);
 
     public static final String USER_SESSION_ID = "user_id";
     public static final String USER_TYPE = "user_type";
@@ -17,7 +20,7 @@ public class LoginValidator {
     public static void validate(Request request, Response response) {
         Long user = getAuthenticatedUser(request);
         if (user == null) {
-            System.out.println("Usuario no ha iniciado sesion");
+            logger.info("Usuario no ha iniciado sesion");
             response.redirect("/login");
             halt();
         }

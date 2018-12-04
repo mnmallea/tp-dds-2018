@@ -57,6 +57,9 @@
         <class>dominio.dispositivos.fabricantes.Fabricante</class>
         <class>dominio.dispositivos.fabricantes.FabricanteAireAcondicionado</class>
         <class>dominio.dispositivos.fabricantes.FabricanteReflector</class>
+        <class>dominio.dispositivos.fabricantes.UnFabricante</class>
+        <class>dominio.dispositivos.fabricantes.UnFabricanteReflector</class>
+        <class>dominio.dispositivos.fabricantes.UnFabricanteAire</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

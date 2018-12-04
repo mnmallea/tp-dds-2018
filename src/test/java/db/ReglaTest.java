@@ -7,6 +7,7 @@ import actuadores.condicionesConcretas.TemperaturaMayorA;
 import actuadores.reglasConcretas.ReglaEnciendeAire;
 import dominio.dispositivos.AireAcondicionadoInteligente;
 import dominio.dispositivos.fabricantes.FabricanteAireAcondicionado;
+import dominio.dispositivos.fabricantes.UnFabricanteAire;
 import dominio.estados.Apagado;
 import dominio.estados.Encendido;
 import org.junit.Assert;
@@ -31,7 +32,7 @@ public class ReglaTest extends AbstractPersistenceTest implements WithGlobalEnti
         actuadorEncenderDispositivo = new ActuadorEncenderDispositivo();
         actuadores.add(actuadorEncenderDispositivo);
 
-        FabricanteAireAcondicionado fabricanteAireAcondicionado = Mockito.mock(FabricanteAireAcondicionado.class);
+        FabricanteAireAcondicionado fabricanteAireAcondicionado = new UnFabricanteAire();
         ac = new AireAcondicionadoInteligente("MyAC", new Apagado(), 32f, fabricanteAireAcondicionado, 1L);
 
         regla = new ReglaEnciendeAire(new TemperaturaMayorA(24d), actuadores, ac);
