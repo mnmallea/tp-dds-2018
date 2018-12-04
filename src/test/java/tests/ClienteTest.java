@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import puntos.Point;
+import simplex.EfectoSimplex;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public class ClienteTest {
         List<DispositivoInteligente> dispositivosInteligentes = Arrays.asList(microondas, lavavajillas);
 
         cliente = new Cliente("unNombre", "unApellido", TipoDocumento.DNI, 12345, 123, new Direccion(new Point(40, 20), "Calle falsa 123"),
-                Categorizador.instancia.getR1(), dispositivosInteligentes, dispositivosEstandar, LocalDate.now());
+                Categorizador.instancia.getR1(), dispositivosInteligentes, dispositivosEstandar, LocalDate.now(), EfectoSimplex.NO_HACER_NADA);
     }
 
     @Test

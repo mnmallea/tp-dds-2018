@@ -13,6 +13,7 @@ import repositorios.AdministradorClientes;
 import repositorios.AdministradorTransformadores;
 import repositorios.RepoDispositivosInteligentes;
 import repositorios.RepoTransformadores;
+import simplex.EfectoSimplex;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -65,7 +66,7 @@ public class ReportesTest  extends AbstractPersistenceTest implements WithGlobal
         cliente = new Cliente("Julian Ezequiel", "Pico", TipoDocumento.DNI, 401, 456,
                 new Direccion(new Point(2.0, 3.0), "Calle 5"), Categorizador.instancia.getR1(),
                 listaDispositivosInteligentes, new ArrayList<>(),
-                LocalDate.now());
+                LocalDate.now(), EfectoSimplex.NO_HACER_NADA);
 
         transformador1 = new Transformador(new Point(0.00, 9.00));
         

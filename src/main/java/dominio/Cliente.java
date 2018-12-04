@@ -1,20 +1,5 @@
 package dominio;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import dominio.dispositivos.Dispositivo;
 import dominio.dispositivos.DispositivoEstandar;
 import dominio.dispositivos.DispositivoInteligente;
@@ -25,9 +10,16 @@ import puntos.Point;
 import simplex.EfectoSimplex;
 import simplex.SolucionSimplex;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Entity
-public class Cliente extends Usuario{
-    
+public class Cliente extends Usuario {
+
     private String nombre;
     private String apellido;
     @Enumerated(EnumType.STRING)
@@ -35,7 +27,7 @@ public class Cliente extends Usuario{
     private int nroDocumento;
     private Integer nroTelefono;
     private LocalDate fechaAlta;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Categoria categoria;
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cliente")
@@ -48,10 +40,11 @@ public class Cliente extends Usuario{
     private Direccion direccion;
     @Enumerated(EnumType.STRING)
     private EfectoSimplex efectoSimplex;
+
     public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, Integer nroDocumento,
                    Integer nroTelefono, Direccion direccion, Categoria categoria,
                    List<DispositivoInteligente> dispositivosInteligentes, List<DispositivoEstandar> dispositivosEstandar,
-                   LocalDate fechaAlta) {
+                   LocalDate fechaAlta, EfectoSimplex efectoSimplex) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.tipoDocumento = tipoDocumento;
@@ -61,7 +54,10 @@ public class Cliente extends Usuario{
         this.fechaAlta = fechaAlta;
         this.dispositivosEstandar = dispositivosEstandar;
         this.dispositivosInteligentes = dispositivosInteligentes;
+        this.categoria = categoria;
+        this.efectoSimplex = efectoSimplex;
     }
+
     public Cliente() {
     }
 
@@ -98,16 +94,16 @@ public class Cliente extends Usuario{
         return nombre;
     }
 
-    public Float consumo() { 
+    public Float consumo() {
         return (float) (this.consumoDispositivosEstandares() + this.consumoDispositivosInteligentes());
     }
 
     public Double consumoDispositivosInteligentes() {
-        return this.dispositivosInteligentes.stream().mapToDouble(dispositivo -> dispositivo.consumoTotal()).sum();
+        return this.dispositivosInteligentes.stream().mapToDouble(DispositivoInteligente::consumoTotal).sum();
     }
 
     public Double consumoDispositivosEstandares() {
-        return this.dispositivosEstandar.stream().mapToDouble(dispositivo -> dispositivo.consumoTotal()).sum();
+        return this.dispositivosEstandar.stream().mapToDouble(DispositivoEstandar::consumoTotal).sum();
     }
 
     public void categorizar() {
@@ -115,7 +111,7 @@ public class Cliente extends Usuario{
     }
 
     public long cantidadDispositivosInteligentesEncendidos() {
-        return this.dispositivosInteligentes.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
+        return this.dispositivosInteligentes.stream().filter(DispositivoInteligente::estaEncendido).count();
     }
 
     public long cantidadDispositivosInteligentesApagados() {
@@ -135,7 +131,7 @@ public class Cliente extends Usuario{
     }
 
     public Boolean algunDispositivoEncendido() {
-        return this.dispositivosInteligentes.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
+        return this.dispositivosInteligentes.stream().anyMatch(DispositivoInteligente::estaEncendido);
     }
 
     public Float montoEstimadoAPagar() {
@@ -160,8 +156,8 @@ public class Cliente extends Usuario{
     }
 
     public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
-	}
+        this.direccion = direccion;
+    }
 
     public List<Dispositivo> getDispositivos() {
         return Stream.concat(this.dispositivosInteligentes.stream(), this.dispositivosEstandar.stream())
@@ -172,23 +168,24 @@ public class Cliente extends Usuario{
         soluciones.forEach(solucion -> solucion.aplicarEfectoSiDebe(this.efectoSimplex));
     }
 
-    public Double consumoDeDispositivosInteligentesEnPeriodo(Periodo periodoEncendido){
+    public Double consumoDeDispositivosInteligentesEnPeriodo(Periodo periodoEncendido) {
         return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(periodoEncendido)).sum();
     }
-    public Double consumoDeDispositivosInteligentesEnPeriodo(LocalDateTime inicio, LocalDateTime fin){
+
+    public Double consumoDeDispositivosInteligentesEnPeriodo(LocalDateTime inicio, LocalDateTime fin) {
         return dispositivosInteligentes.stream().mapToDouble(d -> d.consumoEnPeriodo(inicio, fin)).sum();
     }
-    
+
     public Double consumoTotalEnPeriodo(Periodo periodo) {
-    	return this.consumoDeDispositivosInteligentesEnPeriodo(periodo) + this.consumoDispositivosEstandares() * periodo.enHoras();
-    }
-    
-    public Float  consumoPromedioPorDispositivo() {
-    	return this.consumo() / this.cantidadDeDispositivos();
+        return this.consumoDeDispositivosInteligentesEnPeriodo(periodo) + this.consumoDispositivosEstandares() * periodo.enHoras();
     }
 
-    public Double distanciaA(Point unPunto){
+    public Float consumoPromedioPorDispositivo() {
+        return this.consumo() / this.cantidadDeDispositivos();
+    }
+
+    public Double distanciaA(Point unPunto) {
         return getDireccion().getCoordenada().distance(unPunto);
     }
-    
+
 }

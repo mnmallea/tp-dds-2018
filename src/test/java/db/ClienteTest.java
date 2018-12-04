@@ -8,6 +8,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import puntos.Point;
 import repositorios.RepoClientes;
+import simplex.EfectoSimplex;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class ClienteTest extends AbstractPersistenceTest implements WithGlobalEn
 		zona2 = new Zona(10.0, new Point(50.0, 50.0));
 		cliente = new Cliente("Julian Ezequiel", "Pico", TipoDocumento.DNI, 401, 456,
 				new Direccion(new Point(2.0, 3.0), "Calle 5"), Categorizador.instancia.getR1(), new ArrayList<>(),
-				new ArrayList<>(), LocalDate.now());
+				new ArrayList<>(), LocalDate.now(), EfectoSimplex.NO_HACER_NADA);
 	}
 
 	@Test

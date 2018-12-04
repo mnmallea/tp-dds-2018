@@ -9,7 +9,7 @@ public class SimplexJob {
 
         Trigger trigger = TriggerBuilder
                 .newTrigger()
-                .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(1800).repeatForever())
+                .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(10).repeatForever())
                 .build();
 
         Scheduler scheduler = new StdSchedulerFactory().getScheduler();

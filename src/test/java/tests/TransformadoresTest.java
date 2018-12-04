@@ -13,6 +13,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import puntos.Point;
 import repositorios.*;
+import simplex.EfectoSimplex;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -64,10 +65,10 @@ public class TransformadoresTest extends AbstractPersistenceTest implements With
 		unaZona = new Zona(50.0, new Point(1.0, 1.0));
 
 		cliente = new Cliente("nombre", "apellido", TipoDocumento.DNI, 123, 123, unaDireccion,
-				Categorizador.instancia.getR1(), listaDispoInteligentes, listaDispoEstandar, LocalDate.now());
+				Categorizador.instancia.getR1(), listaDispoInteligentes, listaDispoEstandar, LocalDate.now(), EfectoSimplex.NO_HACER_NADA);
 
 		cliente2 = new Cliente("otroNombre", "otroApellido", TipoDocumento.DNI, 123, 123, otraDireccion,
-				Categorizador.instancia.getR1(), listaDispoInteligentes, listaDispoEstandar, LocalDate.now());
+				Categorizador.instancia.getR1(), listaDispoInteligentes, listaDispoEstandar, LocalDate.now(), EfectoSimplex.NO_HACER_NADA);
 
 		transformador1 = new Transformador(new Point(1, 0));
 		transformador2 = new Transformador(new Point(10, 10));
