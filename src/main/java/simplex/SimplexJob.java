@@ -5,7 +5,7 @@ import org.quartz.impl.StdSchedulerFactory;
 
 public class SimplexJob {
 
-    private static final int INTERVAL_IN_SECONDS = 600;
+    private static final int INTERVAL_IN_SECONDS = 1800;
 
     public static void init() throws SchedulerException {
         JobDetail job = JobBuilder.newJob(QuartzJob.class).build();

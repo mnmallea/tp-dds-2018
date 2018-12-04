@@ -50,7 +50,7 @@
     {{#with page}}
         <ul class="pagination justify-content-center">
             <li class="{{#if isFirst}}page-item disabled{{else}}page-item{{/if}}">
-                <a class="page-link" href="./hogares">Principio</a>
+                <a class="page-link" href="?page=1">Principio</a>
             </li>
             {{#unless isFirst}}
                 <li class="page-item"><a class="page-link" href="?page={{previousPage}}">{{previousPage}}</a>
